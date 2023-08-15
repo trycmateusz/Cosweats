@@ -1,0 +1,17 @@
+@use './abstracts' as *;
+@use './base' as *;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Violet Sans', sans-serif;
+  background-color: $whiteish-main;
+  color: $main-blackish;
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 1400px;
+  width: 100%;
+}

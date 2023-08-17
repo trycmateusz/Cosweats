@@ -39,6 +39,9 @@ module.exports = {
       },
       fontSize: {
         '10xl': '10rem'
+      },
+      transform: {
+        'flipHorizontally': 'rotateY(180deg)'
       }
     },
   },

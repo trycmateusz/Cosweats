@@ -17,7 +17,7 @@ defineProps<{
 </script>
 
 <style lang="scss" scoped>
-$dark-glow: radial-gradient(closest-side, rgba(#c5a89c, .8), transparent);
+$dark-glow: radial-gradient(closest-side, rgba(#deb7a9, .8), transparent);
 $light-glow: radial-gradient(closest-side, #382E2B, transparent);
 .dark {
   background: $dark-glow;

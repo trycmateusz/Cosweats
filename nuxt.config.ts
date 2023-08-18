@@ -25,5 +25,8 @@ export default defineNuxtConfig({
       }
     }
   },
-  css: ['~/assets/sass/main.scss']
+  css: ['~/assets/sass/main.scss'],
+  routeRules: {
+    '/': { static: true }
+  }
 })

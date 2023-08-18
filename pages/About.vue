@@ -23,7 +23,7 @@
       </h2>
     </header>
     <section class="text-center text-blackishMain">
-      <h2 class="flex flex-col justify-center items-center mt-16 mb-16 uppercase text-5xl sm:mb-16 sm:text-6xl md:text-7xl">
+      <h2 class="flex flex-col justify-center items-center mt-16 mb-16 uppercase text-4xl sm:mb-16 sm:text-5xl md:text-6xl">
         <span class="font-violetSans">check who works</span>
         <span class="font-halibutSerifRegular">on the whole project</span>
       </h2>
@@ -55,7 +55,7 @@
           <div class="mobile-mask absolute right-0 top-0 h-full aspect-[7/10] bg-[url('designer_mobile.svg')] bg-cover opacity-30 z-[-1] sm:hidden"></div>
         </div>
         <section class="models overflow-hidden">
-          <h2 class="p-16 text-5xl text-center uppercase sm:mb-16 sm:text-6xl md:text-7xl">
+          <h2 class="p-16 text-4xl text-center uppercase sm:text-5xl md:text-6xl">
             meet our models
           </h2>
           <ModelList />

@@ -27,7 +27,7 @@
       :style="`right: ${rightPosition}%; bottom: ${bottomPosition}%; z-index: ${10-index}`"
     >
       <img
-        :src="`/assets/img/${firstNameInLowercase}.svg`" 
+        :src="`@/assets/img/${firstNameInLowercase}.svg`" 
         :alt="`A picture of Cosweats ${model.occupation} - ${model.firstName}`"
         class="h-full w-full md:max-h-[70svh]"
       >
@@ -76,7 +76,7 @@ const classesForSide = computed((): string[] => {
   }
 })
 const maskImageUrl = computed(() => {
-  return `/assets/img/${firstNameInLowercase.value}_mask.svg`
+  return `@/assets/img/${firstNameInLowercase.value}_mask.svg`
 })
 const inSpotlight = computed(() => {
   return props.spotlight === props.index

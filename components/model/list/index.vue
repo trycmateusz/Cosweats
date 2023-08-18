@@ -11,7 +11,7 @@
       class="animate-pulse z-50 disabled:opacity-30 disabled:animate-none"
     >
       <img 
-        src="/assets/img/arrow_left.svg" 
+        src="@/assets/img/arrow_left.svg" 
         alt=""
         class="absolute top-0 left-0 max-w-[15%] max-h-[15svh]"
       >
@@ -23,7 +23,7 @@
       class="animate-pulse z-50 disabled:opacity-30 disabled:animate-none"
     >
       <img 
-        src="/assets/img/arrow_right.svg" 
+        src="@/assets/img/arrow_right.svg" 
         alt=""
         class="absolute top-0 right-0 max-w-[15%] max-h-[15svh]"
       >

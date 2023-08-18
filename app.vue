@@ -1,7 +1,6 @@
 <template>
-  <About></About>
+  <NuxtPage></NuxtPage>
 </template>
 
 <script setup lang="ts">
-import About from '~/pages/About.vue'
 </script>

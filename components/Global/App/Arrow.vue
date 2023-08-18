@@ -1,6 +1,6 @@
 <template>
   <a :href="anchor" class="arrow w-32 h-32 animate-pulse">
-    <img src="arrow_down.svg" alt="">
+    <img src="~/assets/img/arrow_down.svg" alt="">
   </a>
 </template>
 

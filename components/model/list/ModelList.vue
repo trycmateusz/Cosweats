@@ -43,28 +43,28 @@ import { ref, watch } from 'vue'
 import type Model from '~/types/Model.js'
 const cosweatsModels: Model[] = [
   {
-    id: Math.random(),
+    id: 0,
     firstName: 'Jazmine',
     lastName: 'Taylor',
     occupation: 'Promotional Model',
     introduction: 'Jazmine Taylor took up modeling 6 years ago. She got noticed by AEC Fashion, which was a key to her career. She won 3 beauty contest, one of which one was international.'
   },
   {
-    id: Math.random(),
+    id: 1,
     firstName: 'Liz',
     lastName: 'Kakko',
     occupation: 'Model',
     introduction: 'Liz came knocking at our door after she saw our advertisement for our collection. She was looking for a job at a place where she can find comfort in her own body - and she found it!'
   },
   {
-    id: Math.random(),
+    id: 2,
     firstName: 'Pedro',
     lastName: 'Shakal',
     occupation: 'Extra Model',
     introduction: 'Pedro works for his own brand but our uniqueness in the clothing industry attracted him and he decided to reach out to us. He occassionally takes part in our photoshoots.'
   },
   {
-    id: Math.random(),
+    id: 3,
     firstName: 'Philip',
     lastName: 'Jenkins',
     occupation: 'Intern Model',

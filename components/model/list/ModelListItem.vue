@@ -3,36 +3,34 @@
     class="model wrapper relative pt-8 pb-8 flex gap-8 mb-16 md:absolute md:p-16 md:h-full"
     :class="{ 'in-spotlight': inSpotlight }"
   >
-    <Transition name="text">
-      <div
-        v-if="inSpotlight || windowWidth < 768"
-        class="text relative flex flex-col items-center justify-center ml-auto z-20 sm:w-[60%] md:absolute md:right-24 md:top-1/2 md:-translate-y-1/2 md:w-1/2"
-      >
-        <h3 class="flex flex-col items-center justify-center mb-8 sm:mb-16 text-center leading-none">
-          <span class="uppercase text-3xl sm:text-5xl">
-            {{ fullName }}
-          </span>
-          <span class="text-2xl sm:text-3xl text-grayLight">
-            {{ model.occupation }}
-          </span>
-        </h3>
-        <p class="text-2xl sm:text-3xl font-halibutSerifRegular">
-          {{ model.introduction }}
-        </p>
-      </div>
-    </Transition>
+    <div
+      class="text relative flex flex-col items-center justify-center ml-auto z-20 sm:w-[60%] md:absolute md:right-24 md:top-1/2 md:-translate-y-1/2 md:w-1/2 md:opacity-0 md:pointer-events-none"
+      :class="{ 'show': inSpotlight }"
+    >
+      <h3 class="flex flex-col items-center justify-center mb-8 sm:mb-16 text-center leading-none">
+        <span class="uppercase text-3xl sm:text-5xl">
+          {{ fullName }}
+        </span>
+        <span class="text-2xl sm:text-3xl text-grayLight">
+          {{ model.occupation }}
+        </span>
+      </h3>
+      <p class="text-2xl sm:text-3xl font-halibutSerifRegular">
+        {{ model.introduction }}
+      </p>
+    </div>
     <div
       ref="imgBox"
       class="img-box hidden w-full max-w-[40%] bg-clip-content sm:block md:absolute"
       :style="`right: ${rightPosition}%; bottom: ${bottomPosition}%; z-index: ${10-index}`"
     >
       <img
-        :src="`~/${firstNameInLowercase}.svg`" 
+        :src="imageUrl" 
         :alt="`A picture of Cosweats ${model.occupation} - ${model.firstName}`"
-        class="h-full w-full md:max-h-[70svh]"
+        class="h-full w-full sm:max-h-[70svh]"
       >
       <img 
-        :src="`${maskImageUrl}`" 
+        :src="maskImageUrl" 
         alt=""
         class="img-mask absolute left-0 top-0 hidden h-full w-full opacity-60"
       >
@@ -47,19 +45,19 @@
 
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
-import { useWindowSize } from '@vueuse/core'
+import { useImages } from '~/composables/useImages.js'
 import type Model from '~/types/Model.js'
 const props = defineProps<{
   model: Model
   index: number
   spotlight: number
 }>()
-const { width: windowWidth } = useWindowSize()
+const { getImageSrc } = useImages()
 const baseModelMargin = 5
 const horizontalDistanceBetweenModels = 12.5
 const verticalDistanceBetweenModels = 5
-const bottomPosition = (baseModelMargin + verticalDistanceBetweenModels * props.index)
-const rightPosition = (horizontalDistanceBetweenModels * props.index)
+const bottomPosition: number = (baseModelMargin + verticalDistanceBetweenModels * props.index)
+const rightPosition: number = (horizontalDistanceBetweenModels * props.index)
 const imgBox = ref<HTMLDivElement | undefined>(undefined)
 const fullName = computed(() => {
   return `${props.model.firstName} ${props.model.lastName}`
@@ -76,7 +74,10 @@ const classesForSide = computed((): string[] => {
   }
 })
 const maskImageUrl = computed(() => {
-  return `~/${firstNameInLowercase.value}_mask.svg`
+  return getImageSrc(`~/${firstNameInLowercase.value}_mask.svg`)
+})
+const imageUrl = computed(() => {
+  return getImageSrc(`~/${firstNameInLowercase.value}.svg`)
 })
 const inSpotlight = computed(() => {
   return props.spotlight === props.index
@@ -107,16 +108,15 @@ watch(inSpotlight, (newValue) => {
 </script>
 
 <style lang="scss" scoped>
+.text {
+  transition: opacity .3s;
+}
+.show {
+  opacity: 1;
+  pointer-events: all;
+}
 .horizontal-flip {
   transform: rotateY(180deg)
-}
-.spotlight-position {
-  left: 0;
-  bottom: 10% !important;
-  z-index: 50 !important;
-  .img-mask {
-    display: inline-block;
-  }
 }
 .img-box {
   transition: transform 2s;
@@ -165,22 +165,26 @@ watch(inSpotlight, (newValue) => {
     opacity: 1;
   }
 }
-.outOfSpotlight {
-  animation: outOfSpotlight 2s forwards;
-}
-.getInSpotlight {
-  animation: getInSpotlight 2s forwards;
-}
-.text-enter-active,
-.text-leave-active {
-  transition: opacity .5s ease;
-}
-.text-enter-active {
-  transition-delay: 1.5s;
-}
-.text-enter-from,
-.text-leave-to {
-  opacity: 0;
-  pointer-events: none;
+
+@media (min-width: 768px) {
+  .outOfSpotlight {
+    animation: outOfSpotlight 2s forwards;
+  }
+  .getInSpotlight {
+    animation: getInSpotlight 2s forwards;
+  }
+  .spotlight-position {
+    left: 0;
+    bottom: 10% !important;
+    z-index: 50 !important;
+    .img-mask {
+      display: inline-block;
+    }
+  }
+  .in-spotlight {
+    .text {
+      transition-delay: 1.5s;
+    }
+  }
 }
 </style>

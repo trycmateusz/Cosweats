@@ -29,7 +29,7 @@
       </h2>
       <div class="occupations flex flex-col gap-8 sm:gap-0">
         <div class="ceo wrapper p-16  flex gap-8 relative">
-          <img src="@/assets/img/ceo.svg" alt="A picture of Cosweats CEO - Aisha" class="hidden sm:block max-w-[40%] max-h-[320px] md:max-h-[400px] 2xl:max-h-[500px]">
+          <img src="~/assets/img/ceo.svg" alt="A picture of Cosweats CEO - Aisha" class="hidden sm:block max-w-[40%] max-h-[320px] md:max-h-[400px] 2xl:max-h-[500px]">
           <div class="text flex flex-col items-center justify-center ml-auto flex-grow sm:w-[60%]">
             <h3 class="flex flex-col items-center justify-center mb-8 sm:mb-16 text-center leading-none">
               <span class="uppercase text-3xl sm:text-5xl">aisha</span>
@@ -51,7 +51,7 @@
               As a fan of clothing since her early chlidhood days, she was always experimenting with different fabrics to create something unique. Before Cosweats she released several collections where she showcased her unique ideas and style. 
             </p>
           </div>
-          <img src="@/assets/img/designer.svg" alt="A picture of Cosweats Lead Designer - Sarah" class="hidden sm:block max-w-[40%] max-h-[320px] md:max-h-[400px] 2xl:max-h-[500px]">
+          <img src="~/assets/img/designer.svg" alt="A picture of Cosweats Lead Designer - Sarah" class="hidden sm:block max-w-[40%] max-h-[320px] md:max-h-[400px] 2xl:max-h-[500px]">
           <div class="mobile-mask absolute right-0 top-0 h-full aspect-[7/10] bg-[url('designer_mobile.svg')] bg-cover opacity-30 z-[-1] sm:hidden"></div>
         </div>
         <section class="models overflow-hidden">

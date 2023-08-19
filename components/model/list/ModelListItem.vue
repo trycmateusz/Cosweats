@@ -73,12 +73,8 @@ const classesForSide = computed((): string[] => {
     return ['right-0']
   }
 })
-const maskImageUrl = computed(() => {
-  return getImageSrc(`~/${firstNameInLowercase.value}_mask.svg`)
-})
-const imageUrl = computed(() => {
-  return getImageSrc(`~/${firstNameInLowercase.value}.svg`)
-})
+const maskImageUrl = getImageSrc(`~/${firstNameInLowercase.value}_mask.svg`)
+const imageUrl = getImageSrc(`~/${firstNameInLowercase.value}.svg`)
 const inSpotlight = computed(() => {
   return props.spotlight === props.index
 })

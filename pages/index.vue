@@ -65,7 +65,7 @@
     <div class="outro-evoker relative h-[100svh]">
       <section 
         ref="outro"
-        class="outro relative flex flex-col justify-center items-center h-full p-16 bg-blackishMain opacity-0 pointer-events-none transition-opacity"
+        class="outro relative flex flex-col justify-center items-center h-full p-16 bg-blackishDark opacity-0 pointer-events-none transition-opacity"
         :class="{ 
           'partly-visible': outroPartlyVisible,
           'fully-visible': outroFullyVisible

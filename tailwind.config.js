@@ -33,6 +33,7 @@ module.exports = {
         'pinkMain': '#dd9e8d',
         'pinkDark': '#574a56',
         'blackishMain': '#211c1b',
+        'blackishDark': '#111010',
         'borderDarkColor': '#474545',
         'grayLight': '#e8dcdc',
         'grayDark': '#5c5856'

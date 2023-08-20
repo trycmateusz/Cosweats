@@ -81,7 +81,7 @@
           <h2 class="flex flex-col font-halibutSerifRegular text-whiteishMain text-5xl sm:text-6xl md:text-7xl">
             Since you got to know us,
             <span>let us introduce our</span>
-            <span class="block font-violetSans text-pinkDark text-6xl sm:text-7xl md:text-8xl">Offer</span>
+            <span class="block mt-4 font-violetSans text-pinkDark text-6xl sm:text-7xl md:text-8xl">Offer</span>
           </h2>
           <AppButton class="mt-16 text-3xl sm:text-4xl md:text-5xl" link="/" :style="'secondary'" text="Hi Offer!" />
         </div>

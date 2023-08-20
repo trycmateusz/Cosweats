@@ -1,9 +1,11 @@
 <template>
-  <a :href="anchor" class="arrow w-32 h-32 animate-pulse">
+  <div>
     <ClientOnly> 
-      <img src="~/assets/img/arrow_down.svg" alt="">
+      <a :href="anchor" class="arrow w-32 h-32 animate-pulse">
+        <img src="~/assets/img/arrow_down.svg" alt="">
+      </a>
     </ClientOnly>
-  </a>
+  </div>
 </template>
 
 <script lang="ts" setup>

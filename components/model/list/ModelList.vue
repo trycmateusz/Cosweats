@@ -1,5 +1,5 @@
 <template>
-  <div class="model-list flex flex-col justify-center items-center gap-16 p-16 text-whiteishMain bg-blackishDark  md:relative md:h-[100svh] md:w-full md:bg-whiteishMain">
+  <div class="model-list flex flex-col justify-center items-center gap-16 p-16 text-whiteishMain bg-blackishDark  md:relative md:h-[Calc(100svh_-_6.25rem)] md:w-full md:bg-whiteishMain">
     <div 
       class="shadow hidden absolute w-full h-full md:block bg-black z-20"
       :class="{ 'is-transitioning': isTransitioning }"
@@ -8,7 +8,7 @@
       @click="decrementSpotlight"
       aria-label="Button to showcase previous model"
       :disabled="isTransitioning"
-      class="hidden animate-pulse z-50 disabled:opacity-30 disabled:animate-none md:block"
+      class="hidden animate-pulse z-40 disabled:opacity-30 disabled:animate-none md:block"
     >
       <ClientOnly>
         <img 
@@ -22,7 +22,7 @@
       @click="incrementSpotlight"
       aria-label="Button to showcase next model"
       :disabled="isTransitioning"
-      class="hidden animate-pulse z-50 disabled:opacity-30 disabled:animate-none md:block"
+      class="hidden animate-pulse z-40 disabled:opacity-30 disabled:animate-none md:block"
     >
       <ClientOnly>
         <img 

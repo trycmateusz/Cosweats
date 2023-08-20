@@ -174,7 +174,7 @@ watch(inSpotlight, (newValue) => {
   .spotlight-position {
     left: 0;
     bottom: 10% !important;
-    z-index: 50 !important;
+    z-index: 25 !important;
     .img-mask {
       display: inline-block;
     }

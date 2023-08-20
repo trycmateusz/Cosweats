@@ -39,7 +39,7 @@
               Her dream was always to create something that’s accessible and affordable for people who at the moment don’t have that many options. She then studied marketing and with the help of her friends, Cosweats came to life. 
             </p>
           </div>
-          <div class="mobile-mask absolute left-0 top-0 sm:hidden h-full aspect-[3/4] bg-[url('ceo_mobile.svg')] bg-cover opacity-30 z-[-1]"></div>
+          <div class="mobile-mask absolute left-0 top-0 sm:hidden h-full aspect-[3/4] bg-[url('~/assets/img/ceo_mobile.svg')] bg-cover opacity-30 z-[-1]"></div>
         </div>
         <div class="designer wrapper p-16  flex gap-8 relative mb-16">
           <div class="text flex flex-col items-center justify-center sm:w-[60%] ml-auto flex-grow">
@@ -52,7 +52,7 @@
             </p>
           </div>
           <img src="~/assets/img/designer.svg" alt="A picture of Cosweats Lead Designer - Sarah" class="hidden sm:block max-w-[40%] max-h-[320px] md:max-h-[400px] 2xl:max-h-[500px]">
-          <div class="mobile-mask absolute right-0 top-0 h-full aspect-[7/10] bg-[url('designer_mobile.svg')] bg-cover opacity-30 z-[-1] sm:hidden"></div>
+          <div class="mobile-mask absolute right-0 top-0 h-full aspect-[7/10] bg-[url('~/assets/img/designer_mobile.svg')] bg-cover opacity-30 z-[-1] sm:hidden"></div>
         </div>
         <section class="models overflow-hidden">
           <h2 class="p-16 text-4xl text-center uppercase sm:text-5xl md:text-6xl">

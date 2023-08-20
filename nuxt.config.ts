@@ -4,17 +4,14 @@ import { defineNuxtConfig } from 'nuxt/config'
 export default defineNuxtConfig({
   devtools: { enabled: true },
   pages: true,
-  modules: [
-    '@nuxtjs/eslint-module',
-  ],
   typescript: {
     strict: true
   },
   postcss: {
     plugins: {
       tailwindcss: {},
-      autoprefixer: {},
-    },
+      autoprefixer: {}
+    }
   },
   vite: {
     css: {

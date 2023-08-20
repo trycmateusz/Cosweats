@@ -1,38 +1,38 @@
 <template>
   <div class="model-list flex flex-col justify-center items-center gap-16 p-16 text-whiteishMain bg-blackishDark  md:relative md:h-[100svh] xl:h-[Calc(100svh_-_6.25rem)] md:w-full md:bg-whiteishMain">
-    <div 
+    <div
       class="shadow hidden absolute w-full h-full md:block bg-black z-20"
       :class="{ 'is-transitioning': isTransitioning }"
-    ></div>
-    <button 
-      @click="decrementSpotlight"
+    />
+    <button
       aria-label="Button to showcase previous model"
       :disabled="isTransitioning"
-      class="hidden animate-pulse z-40 disabled:opacity-30 disabled:animate-none md:block"
+      class="hidden animate-pulse z-30 disabled:opacity-30 disabled:animate-none md:block"
+      @click="decrementSpotlight"
     >
       <ClientOnly>
-        <img 
-          src="~/assets/img/arrow_left.svg" 
+        <img
+          src="~/assets/img/arrow_left.svg"
           alt=""
           class="absolute top-0 left-0 max-w-[15%] max-h-[15svh]"
         >
       </ClientOnly>
     </button>
-    <button 
-      @click="incrementSpotlight"
+    <button
       aria-label="Button to showcase next model"
       :disabled="isTransitioning"
-      class="hidden animate-pulse z-40 disabled:opacity-30 disabled:animate-none md:block"
+      class="hidden animate-pulse z-30 disabled:opacity-30 disabled:animate-none md:block"
+      @click="incrementSpotlight"
     >
       <ClientOnly>
-        <img 
-          src="~/assets/img/arrow_right.svg" 
+        <img
+          src="~/assets/img/arrow_right.svg"
           alt=""
           class="absolute top-0 right-0 max-w-[15%] max-h-[15svh]"
         >
       </ClientOnly>
     </button>
-    <ModelListItem 
+    <ModelListItem
       v-for="(cosweatsModel, index) in cosweatsModels"
       :key="cosweatsModel.id"
       :model="cosweatsModel"
@@ -78,23 +78,21 @@ const cosweatsModels: Model[] = [
 const spotlight = ref(0)
 const isTransitioning = ref(false)
 const incrementSpotlight = () => {
-  if(spotlight.value + 1 > cosweatsModels.length - 1){
+  if (spotlight.value + 1 > cosweatsModels.length - 1) {
     spotlight.value = 0
-  }
-  else {
+  } else {
     spotlight.value++
   }
 }
 const decrementSpotlight = () => {
-  if(spotlight.value - 1 < 0){
+  if (spotlight.value - 1 < 0) {
     spotlight.value = cosweatsModels.length - 1
-  }
-  else {
+  } else {
     spotlight.value--
   }
 }
 watch(spotlight, () => {
-  if(!isTransitioning.value){
+  if (!isTransitioning.value) {
     isTransitioning.value = true
     setTimeout(() => {
       isTransitioning.value = false

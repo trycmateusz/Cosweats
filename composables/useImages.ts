@@ -2,7 +2,7 @@ import { filename } from 'pathe/utils'
 import { computed } from 'vue'
 
 interface ImagesComposable {
-  getImageSrc: (fileName: string) => string | undefined;
+  getImageSrc(fileName: string): string | undefined;
 }
 
 const images = computed(() => import.meta.glob('~/assets/img/*.(svg)', { eager: true }))

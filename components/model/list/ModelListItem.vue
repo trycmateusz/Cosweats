@@ -1,5 +1,5 @@
 <template>
-  <div 
+  <div
     class="model wrapper relative pt-8 pb-8 flex gap-8 mb-16 md:absolute md:p-16 md:h-full"
     :class="{ 'in-spotlight': inSpotlight }"
   >
@@ -25,23 +25,23 @@
       :style="`right: ${rightPosition}%; bottom: ${bottomPosition}%; z-index: ${10-index}`"
     >
       <img
-        :src="imageUrl" 
+        :src="imageUrl"
         :alt="`A picture of Cosweats ${model.occupation} - ${model.firstName}`"
         class="h-full w-full sm:max-h-[300px] md:max-h-[70svh]"
       >
       <ClientOnly>
-        <img 
-          :src="maskImageUrl" 
+        <img
+          :src="maskImageUrl"
           alt=""
           class="img-mask absolute left-0 top-0 hidden h-full w-full opacity-60"
         >
       </ClientOnly>
     </div>
-    <div 
+    <div
       class="mobile-mask absolute top-0 h-full aspect-square bg-cover opacity-40 z-10 sm:hidden"
       :class="classesForSide"
       :style="`background-image: url('${maskImageUrl}')`"
-    ></div>
+    />
   </div>
 </template>
 
@@ -68,10 +68,9 @@ const firstNameInLowercase = computed(() => {
   return props.model.firstName.toLowerCase()
 })
 const classesForSide = computed((): string[] => {
-  if(props.index % 2 === 0){
+  if (props.index % 2 === 0) {
     return ['left-0', 'horizontal-flip']
-  }
-  else {
+  } else {
     return ['right-0']
   }
 })
@@ -81,8 +80,8 @@ const inSpotlight = computed(() => {
   return props.spotlight === props.index
 })
 watch(imgBox, () => {
-  if(imgBox.value && inSpotlight.value){
-     imgBox.value.classList.add('getInSpotlight')
+  if (imgBox.value && inSpotlight.value) {
+    imgBox.value.classList.add('getInSpotlight')
     setTimeout(() => {
       imgBox.value?.classList.add('spotlight-position')
     }, 1000)
@@ -91,11 +90,10 @@ watch(imgBox, () => {
   immediate: true
 })
 watch(inSpotlight, (newValue) => {
-  if(newValue === true) {
+  if (newValue === true) {
     imgBox.value?.classList.add('getInSpotlight')
     imgBox.value?.classList.remove('outOfSpotlight')
-  }
-  else {
+  } else {
     imgBox.value?.classList.remove('getInSpotlight')
     imgBox.value?.classList.add('outOfSpotlight')
   }

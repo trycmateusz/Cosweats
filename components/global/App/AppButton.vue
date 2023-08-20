@@ -8,8 +8,8 @@
       {{ text }}
     </button>
     <NuxtLink
-      :aria-label="`Link that redirects to ${link} subpage`"
       v-else
+      :aria-label="`Link that redirects to ${link} subpage`"
       :to="link"
       class="inline-block py-[0.7em] px-[3em] rounded-full"
       :class="[style]"

@@ -2,6 +2,7 @@
   "name": "nuxt-app",
   "private": true,
   "scripts": {
+    "lint": "eslint .",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
@@ -10,6 +11,8 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@nuxt/eslint-config": "^0.1.1",
+    "@nuxtjs/eslint-config-typescript": "^12.0.0",
     "@nuxtjs/eslint-module": "^4.1.0",
     "@types/node": "^18.17.3",
     "@typescript-eslint/eslint-plugin": "^6.3.0",

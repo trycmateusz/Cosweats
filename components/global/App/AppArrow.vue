@@ -1,8 +1,14 @@
 <template>
   <div>
-    <ClientOnly> 
-      <a :href="anchor" class="arrow w-32 h-32 animate-pulse">
-        <img src="~/assets/img/arrow_down.svg" alt="">
+    <ClientOnly>
+      <a
+        :href="anchor"
+        class="arrow w-32 h-32 animate-pulse"
+      >
+        <img
+          src="~/assets/img/arrow_down.svg"
+          alt=""
+        >
       </a>
     </ClientOnly>
   </div>

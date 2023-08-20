@@ -1,5 +1,5 @@
 <template>
-  <nav class="sticky top-0 text-3xl font-halibutSerifRegular bg-blackishDark text-whiteishMain z-50">
+  <nav class="sticky top-0 text-3xl font-halibutSerifRegular bg-blackishDark text-whiteishMain z-40">
     <div class="links wrapper flex justify-between items-center">
       <a 
         aria-label="Redirect to top of the page" href="#"

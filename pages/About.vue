@@ -63,7 +63,7 @@
         </section>
       </div>
     </section>
-    <div class="outro-evoker relative h-[Calc(100vh_-_6.25rem)]">
+    <div class="outro-evoker relative h-[100vh]">
       <Transition name="outro-partly-visible">
           <div v-if="outroPartlyVisible" class="outro-start fixed top-0 w-full h-full bg-blackishDark z-30">
             <AppArrow class="fixed bottom-[10%] left-1/2 -translate-x-1/2 z-30" anchor="#outro"></AppArrow>
@@ -77,13 +77,13 @@
           'fully-visible': outroFullyVisible
         }"
       >
-        <div id="outro" class="relative z-40">
+        <div id="outro" class="relative z-50">
           <h2 class="flex flex-col font-halibutSerifRegular text-whiteishMain text-5xl sm:text-6xl md:text-7xl">
             Since you got to know us,
             <span>let us introduce our</span>
             <span class="block mt-4 font-violetSans text-pinkDark text-6xl sm:text-7xl md:text-8xl">Offer</span>
           </h2>
-          <AppButton class="mt-16 text-3xl sm:text-4xl md:text-5xl" link="/" :style="'secondary'" text="Hi Offer!" />
+          <AppButton class="mt-8 text-3xl sm:text-4xl md:text-5xl" link="/" :style="'secondary'" text="Hi Offer!" />
         </div>
       </section>
     </div>

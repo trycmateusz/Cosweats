@@ -1,5 +1,5 @@
 <template>
-  <div class="model-list flex flex-col justify-center items-center gap-16 p-16 text-whiteishMain bg-blackishDark  md:relative md:h-[Calc(100svh_-_6.25rem)] md:w-full md:bg-whiteishMain">
+  <div class="model-list flex flex-col justify-center items-center gap-16 p-16 text-whiteishMain bg-blackishDark  md:relative md:h-[100svh] xl:h-[Calc(100svh_-_6.25rem)] md:w-full md:bg-whiteishMain">
     <div 
       class="shadow hidden absolute w-full h-full md:block bg-black z-20"
       :class="{ 'is-transitioning': isTransitioning }"

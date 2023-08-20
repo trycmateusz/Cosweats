@@ -1,12 +1,12 @@
 <template>
   <a :href="anchor" class="arrow w-32 h-32 animate-pulse">
-    <img :src="getImageSrc('~/assets/img/arrow_down.svg')" alt="">
+    <ClientOnly> 
+      <img src="~/assets/img/arrow_down.svg" alt="">
+    </ClientOnly>
   </a>
 </template>
 
 <script lang="ts" setup>
-import { useImages } from '~/composables/useImages.js'
-const { getImageSrc } = useImages()
 defineProps<{
   anchor: string
 }>()

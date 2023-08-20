@@ -61,11 +61,68 @@
           <ModelList />
         </section>
       </div>
-      
     </section>
+    <div class="outro-evoker relative h-[100svh]">
+      <section 
+        ref="outro"
+        class="outro relative flex flex-col justify-center items-center h-full p-16 bg-blackishMain opacity-0 pointer-events-none transition-opacity"
+        :class="{ 
+          'partly-visible': outroPartlyVisible,
+          'fully-visible': outroFullyVisible
+        }"
+      >
+        <div v-if="outroPartlyVisible" class="outro-start">
+
+        </div>
+        <h2 class="wrapper flex flex-col font-halibutSerifRegular text-whiteishMain text-6xl sm:text-8xl">
+          Since you got
+          <span>to know us, let us</span>
+          <span>introduce our</span>
+          <span class="block font-violetSans text-pinkDark text-7xl sm:text-9xl">Offer</span>
+        </h2>
+      </section>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref, watch } from 'vue'
+import { useIntersectionObserver } from '@vueuse/core'
+const outro = ref<HTMLDivElement | undefined>(undefined)
+const outroPartlyVisible = ref(false)
+const outroFullyVisible = ref(false)
+useIntersectionObserver(outro, ([{ isIntersecting, intersectionRatio }]) => {
+  if(isIntersecting){
+    const visibleRatio = Math.ceil(intersectionRatio * 100)
+    console.log(visibleRatio)
+    if(visibleRatio >= 40  && visibleRatio < 80 && !outroPartlyVisible.value) {
+      outroPartlyVisible.value = true
+      outroFullyVisible.value = false
+    }
+    else if(visibleRatio >= 80 && !outroFullyVisible.value){
+      outroFullyVisible.value = true
+      outroPartlyVisible.value = true
+    }
+    else {
+      outroFullyVisible.value = false
+      outroPartlyVisible.value = false
+    }
+  }
+  else {
+    outroFullyVisible.value = false
+    outroPartlyVisible.value = false
+  }
+}, {
+  threshold: [0.5, .90]
+})
+watch(outroFullyVisible, () => {
+  console.log('outro', outroFullyVisible.value)
+})
 </script>
 
+<style scoped>
+.fully-visible {
+  opacity: 1;
+  pointer-events: all
+}
+</style>

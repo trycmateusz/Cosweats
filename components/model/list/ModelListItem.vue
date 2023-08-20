@@ -27,13 +27,15 @@
       <img
         :src="imageUrl" 
         :alt="`A picture of Cosweats ${model.occupation} - ${model.firstName}`"
-        class="h-full w-full sm:max-h-[70svh]"
+        class="h-full w-full sm:max-h-[300px] md:max-h-[70svh]"
       >
-      <img 
-        :src="maskImageUrl" 
-        alt=""
-        class="img-mask absolute left-0 top-0 hidden h-full w-full opacity-60"
-      >
+      <ClientOnly>
+        <img 
+          :src="maskImageUrl" 
+          alt=""
+          class="img-mask absolute left-0 top-0 hidden h-full w-full opacity-60"
+        >
+      </ClientOnly>
     </div>
     <div 
       class="mobile-mask absolute top-0 h-full aspect-square bg-cover opacity-40 z-10 sm:hidden"

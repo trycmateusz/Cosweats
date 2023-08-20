@@ -8,25 +8,29 @@
       @click="decrementSpotlight"
       aria-label="Button to showcase previous model"
       :disabled="isTransitioning"
-      class="animate-pulse z-50 disabled:opacity-30 disabled:animate-none"
+      class="hidden animate-pulse z-50 disabled:opacity-30 disabled:animate-none md:block"
     >
-      <img 
-        src="~/assets/img/arrow_left.svg" 
-        alt=""
-        class="absolute top-0 left-0 max-w-[15%] max-h-[15svh]"
-      >
+      <ClientOnly>
+        <img 
+          src="~/assets/img/arrow_left.svg" 
+          alt=""
+          class="absolute top-0 left-0 max-w-[15%] max-h-[15svh]"
+        >
+      </ClientOnly>
     </button>
     <button 
       @click="incrementSpotlight"
       aria-label="Button to showcase next model"
       :disabled="isTransitioning"
-      class="animate-pulse z-50 disabled:opacity-30 disabled:animate-none"
+      class="hidden animate-pulse z-50 disabled:opacity-30 disabled:animate-none md:block"
     >
-      <img 
-        src="~/assets/img/arrow_right.svg" 
-        alt=""
-        class="absolute top-0 right-0 max-w-[15%] max-h-[15svh]"
-      >
+      <ClientOnly>
+        <img 
+          src="~/assets/img/arrow_right.svg" 
+          alt=""
+          class="absolute top-0 right-0 max-w-[15%] max-h-[15svh]"
+        >
+      </ClientOnly>
     </button>
     <ModelListItem 
       v-for="(cosweatsModel, index) in cosweatsModels"

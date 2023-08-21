@@ -43,6 +43,9 @@ module.exports = {
       },
       transform: {
         flipHorizontally: 'rotateY(180deg)'
+      },
+      transitionProperty: {
+        'max-height': 'max-height'
       }
     }
   },

@@ -4,6 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --nav-height: 4.75rem;
+  }
+}
+
 body {
   font-family: 'Violet Sans', sans-serif;
   background-color: $whiteish-main;

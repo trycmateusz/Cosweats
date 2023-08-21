@@ -27,7 +27,7 @@
       <img
         :src="imageUrl"
         :alt="`A picture of Cosweats ${model.occupation} - ${model.firstName}`"
-        class="h-full w-full sm:max-h-[300px] md:max-h-[70svh]"
+        class="h-full w-full sm:max-h-[300px] md:max-h-[60svh]"
       >
       <ClientOnly>
         <img
@@ -46,7 +46,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
 import { useImages } from '~/composables/useImages.js'
 import type Model from '~/types/Model.js'
 const props = defineProps<{

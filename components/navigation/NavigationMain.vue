@@ -1,27 +1,43 @@
 <template>
-  <nav class="sticky top-0 text-3xl font-halibutSerifRegular bg-blackishDark text-whiteishMain z-40">
-    <div class="links wrapper flex justify-between items-center">
+  <div class="sticky top-0 text-3xl font-halibutSerifRegular bg-blackishDark text-whiteishMain z-40">
+    <nav class="links wrapper flex justify-between items-center">
       <a
         aria-label="Redirect to top of the page"
         href="#"
-        class="inline-block p-8"
+        class="inline-block px-8 py-5"
       >
         CS
       </a>
       <div class="flex">
-        <NuxtLink
-          class="p-8"
-          to="/shop"
-        >
-          Shop
-        </NuxtLink>
+        <div v-for="link in links" :key="link.id">
+          <NuxtLink
+            v-if="route.path !== link.to"
+            class="p-8"
+            :to="link.to"
+          >
+            {{ link.name }}
+          </NuxtLink>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+    <slot />
+  </div>
 </template>
 
 <script setup lang="ts">
-console.log('123')
+const route = useRoute()
+const links = [
+  {
+    id: Math.random(),
+    name: 'Home',
+    to: '/'
+  },
+  {
+    id: Math.random(),
+    name: 'Shop',
+    to: '/shop'
+  }
+]
 </script>
 
 <style scoped>

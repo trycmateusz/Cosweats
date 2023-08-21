@@ -15,7 +15,7 @@
     <NavigationMain />
     <header
       id="content"
-      class="flex flex-col justify-center items-center p-16 min-h-[Calc(100svh_-_6.25rem)] bg-whiteishPink font-halibutSerifRegular"
+      class="flex flex-col justify-center items-center p-16 min-h-[Calc(100svh_-_var(--nav-height))] bg-whiteishPink font-halibutSerifRegular"
     >
       <h2 class="wrapper flex flex-col uppercase p-8 text-5xl sm:text-6xl md:text-7xl text-pinkDark">
         we are presenting
@@ -119,7 +119,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { useIntersectionObserver } from '@vueuse/core'
 const outro = ref<HTMLDivElement | undefined>(undefined)
 const outroPartlyVisible = ref(false)

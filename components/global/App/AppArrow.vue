@@ -2,6 +2,7 @@
   <div>
     <ClientOnly>
       <a
+        :aria-label="`Link redirecting to ${anchor}`"
         :href="anchor"
         class="arrow w-32 h-32 animate-pulse"
       >

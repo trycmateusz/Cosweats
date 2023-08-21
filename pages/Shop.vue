@@ -1,6 +1,8 @@
 <template>
   <div>
-    <NavigationMain />
+    <NavigationMain>
+      <NavigationShop />
+    </NavigationMain>
   </div>
 </template>
 

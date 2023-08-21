@@ -34,8 +34,7 @@
       class="menu absolute flex flex-col top-0 translate-y-[Calc(1px_+_var(--nav-height))] min-w-full max-h-0 bg-blackishDark border-borderDarkColor transition-max-height overflow-hidden"
       :class="menuItemClasses"
     >
-      <a href="#" class="px-8 py-5 border-t border-b border-borderDarkColor">Sweaters</a>
-      <a href="#" class="px-8 py-5 border-t border-b border-borderDarkColor">Sweatshirts</a>
+      AppDropdownItem
     </div>
   </button>
 </template>

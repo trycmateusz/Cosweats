@@ -1,8 +1,7 @@
 <template>
   <button
-    ref="dropdown"
     :aria-controls="dropdownId"
-    :aria-expanded="expanded"
+    :aria-expanded="dropdown.expanded"
     class="relative flex items-center gap-2 px-8 py-5"
     @click="emit('expand')"
   >
@@ -10,11 +9,12 @@
       class="sm:inline"
       :class="{ 'hidden': hasIcon }"
     >
-      {{ text }}
+      {{ dropdown.text }}
     </span>
     <ClientOnly>
+      <slot name="currency-dropdown" />
       <div class="icons relative">
-        <img v-if="hasIcon" :src="getImageSrc(`${text.toLowerCase()}.svg`)" class="max-w-[2.5rem] max-h-[2.25rem] sm:hidden" alt="">
+        <img v-if="hasIcon" :src="getImageSrc(`${dropdown.role.toLowerCase()}.svg`)" class="max-w-[2.5rem] max-h-[2.25rem] sm:hidden" alt="">
       </div>
       <div class="indicator">
         <svg
@@ -30,40 +30,26 @@
       </div>
     </ClientOnly>
     <div
-      ref="menu"
-      class="menu absolute flex flex-col top-0 translate-y-[Calc(1px_+_var(--nav-height))] min-w-full max-h-0 bg-blackishDark border-borderDarkColor transition-max-height overflow-hidden"
-      :class="menuItemClasses"
+      class="menu absolute flex flex-col top-0 translate-y-[Calc(var(--nav-height)_-_1px)] min-w-full max-h-0 bg-blackishDark border-borderDarkColor transition-max-height overflow-hidden"
+      :class="[...dropdown.classes, { 'menu-expanded': dropdown.expanded }]"
     >
-      AppDropdownItem
+      <slot name="options" />
     </div>
   </button>
 </template>
 
 <script setup lang="ts">
 import { useImages } from '~/composables/useImages.js'
+import type Dropdown from '~/types/Dropdown.js'
 const { getImageSrc } = useImages()
 const props = defineProps<{
-  text: string
+  dropdown: Dropdown
   light?: boolean
-  expanded: boolean
   hasIcon?: boolean
-  menuItemClasses: string[]
-  // links: DropdownLink
 }>()
-const menu = ref<HTMLDivElement | undefined>(undefined)
-const dropdown = ref<HTMLButtonElement | undefined>(undefined)
 const emit = defineEmits(['expand'])
 const dropdownId = computed(() => {
-  return `${props.text.toLowerCase()}-dropdown-menu`
-})
-watch(props, () => {
-  if (menu.value) {
-    if (props.expanded) {
-      menu.value.style.maxHeight = `${menu.value.scrollHeight}px`
-    } else {
-      menu.value.style.maxHeight = '0px'
-    }
-  }
+  return `${props.dropdown.text.toLowerCase()}-dropdown-menu`
 })
 </script>
 
@@ -72,5 +58,9 @@ button[aria-expanded="true"]{
   svg {
     @apply rotate-180
   }
+}
+.menu-expanded {
+  max-height: 50vh;
+  overflow-y: scroll;
 }
 </style>

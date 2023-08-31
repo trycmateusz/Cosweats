@@ -76,14 +76,14 @@ const cosweatsModels: Model[] = [
 ]
 const spotlight = ref(0)
 const isTransitioning = ref(false)
-const incrementSpotlight = () => {
+const incrementSpotlight = (): void => {
   if (spotlight.value + 1 > cosweatsModels.length - 1) {
     spotlight.value = 0
   } else {
     spotlight.value++
   }
 }
-const decrementSpotlight = () => {
+const decrementSpotlight = (): void => {
   if (spotlight.value - 1 < 0) {
     spotlight.value = cosweatsModels.length - 1
   } else {

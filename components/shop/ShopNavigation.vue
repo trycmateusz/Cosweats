@@ -16,7 +16,6 @@
             {{ `[${currentCurrency.symbol}] ` }}
           </span>
         </template>
-
         <template #options>
           <div v-if="dropdown.links" class="flex flex-col">
             <AppDropdownLink
@@ -28,13 +27,13 @@
           </div>
           <div v-else class="flex flex-col max-w-[60svw]">
             <div
-              v-for="currency in currencies"
+              v-for="currency in currencyStore.currencies"
               :key="currency.id"
               class="border-b border-borderDarkColor first:border-t"
             >
               <button
                 class="flex-grow px-8 py-5 w-max max-w-full "
-                @click="() => setCurrentCurrency(currency)"
+                @click="currencyStore.setCurrent(currency)"
               >
                 {{ `${currency.name} (${currency.symbol})` }}
               </button>
@@ -64,8 +63,8 @@
 <script setup lang="ts">
 import type Dropdown from '~/types/Dropdown.js'
 import { useCurrencyStore } from '~/stores/CurrencyStore.js'
-const { setCurrentCurrency, currencies } = useCurrencyStore()
-const { currentCurrency } = storeToRefs(useCurrencyStore())
+const currencyStore = useCurrencyStore()
+const { currentCurrency } = storeToRefs(currencyStore)
 const dropdowns: Dropdown[] = reactive([
   {
     id: Math.random(),
@@ -96,14 +95,14 @@ const dropdowns: Dropdown[] = reactive([
     classes: ['right-0', 'border-l', 'border-r']
   }
 ])
-const closeAll = (dropdowns: Dropdown[]) => {
+const closeAll = (dropdowns: Dropdown[]): void => {
   dropdowns.forEach((dropdown) => {
     if (dropdown.expanded) {
       dropdown.expanded = false
     }
   })
 }
-const closeAllButOneDropdown = (id: number) => {
+const closeAllButOneDropdown = (id: number): void => {
   const toClose = dropdowns.filter(dropdown => dropdown.id !== id)
   const toOpen = dropdowns.find(dropdown => dropdown.id === id)
   closeAll(toClose)
@@ -111,7 +110,7 @@ const closeAllButOneDropdown = (id: number) => {
     toOpen.expanded = !toOpen.expanded
   }
 }
-watch(currentCurrency, () => {
+watch(currentCurrency, (): void => {
   const currencyDropdown = dropdowns.find(dropdown => dropdown.role === 'currency')
   if (currencyDropdown) {
     if (currentCurrency.value) {

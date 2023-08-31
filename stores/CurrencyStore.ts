@@ -19,15 +19,10 @@ export const useCurrencyStore = defineStore('CurrencyStore', {
     }
   },
   actions: {
-    async fetchAll () {
-      const { find } = useStrapi()
-      const response = await find<Currency>('currencies')
-      response.data.forEach((currency) => {
-        this.currencies.push({ ...currency.attributes })
-      })
-    },
-    setCurrentCurrency (currency: Currency) {
-      this.currentCurrency = { ...currency }
+    setCurrent (currency: Currency) {
+      if (this.currentCurrency?.code !== currency.code) {
+        this.currentCurrency = { ...currency }
+      }
     }
   }
 })

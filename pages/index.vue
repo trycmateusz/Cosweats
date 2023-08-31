@@ -3,7 +3,11 @@
     <header class="flex flex-col justify-center items-center gap-16 p-8 min-h-[100vh] text-blackishMain overflow-hidden">
       <h1 class="wrapper flex flex-col font-halibutSerifRegular text-6xl sm:text-8xl">
         You cannot
-        <span>get more <AppGlow glow="dark">comfy</AppGlow></span>
+        <span>get more
+          <AppGlow glow="light">
+            <span class="relative z-20">comfy</span>
+          </AppGlow>
+        </span>
         <span>than</span>
         <span class="font-violetSans text-pinkDark text-7xl sm:text-9xl">Cosweats</span>
       </h1>
@@ -12,7 +16,7 @@
         anchor="#content"
       />
     </header>
-    <NavigationMain />
+    <TheNavigation />
     <header
       id="content"
       class="flex flex-col justify-center items-center p-16 min-h-[Calc(100svh_-_var(--nav-height))] bg-whiteishPink font-halibutSerifRegular"

@@ -60,7 +60,7 @@ button[aria-expanded="true"]{
   }
 }
 .menu-expanded {
-  max-height: 50vh;
+  max-height: 40svh;
   overflow-y: scroll;
 }
 </style>

@@ -3,6 +3,11 @@ import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  runtimeConfig: {
+    public: {
+      apiUrl: process.env.API_URL
+    }
+  },
   modules: [
     ['@pinia/nuxt', {
       autoImports: ['defineStore', 'acceptHMRUpdate', 'storeToRefs']

@@ -30,7 +30,7 @@
       </div>
     </ClientOnly>
     <div
-      class="menu absolute flex flex-col top-0 translate-y-[Calc(var(--nav-height)_-_1px)] min-w-full max-h-0 bg-blackishDark border-borderDarkColor transition-max-height overflow-hidden"
+      class="menu absolute flex flex-col top-0 translate-y-[Calc(var(--nav-height)_+_1px)] min-w-full max-h-0 bg-blackishDark border-borderDarkColor transition-max-height overflow-auto"
       :class="[...dropdown.classes, { 'menu-expanded': dropdown.expanded }]"
     >
       <slot name="options" />

@@ -10,6 +10,10 @@
   }
 }
 
+html {
+  scroll-padding: var(--nav-height);
+}
+
 body {
   font-family: 'Violet Sans', sans-serif;
   background-color: $whiteish-main;

@@ -15,4 +15,3 @@ I also enhanced my ability to determine the right priorities to writing code.
 - TypeScript
 - Eslint
 - Tailwind CSS
-- Strapi (in the future)

@@ -1,5 +1,6 @@
+import { fetchCollection } from '~/services/fetch.js'
+
 interface Currency {
-  id: number
   symbol: string
   name: string
   name_plural: string
@@ -20,19 +21,13 @@ export const useCurrencyStore = defineStore('CurrencyStore', {
   },
   actions: {
     async fetchAll () {
-      const config = useRuntimeConfig()
-      const { data, error } = await useFetch(`${config.public.apiUrl}/currencies.json`)
-      if (error.value) {
-        console.log('error', error.value)
-      }
-      if (data.value) {
-        console.log('data', data.value)
+      const currencies = await fetchCollection<Currency>('currencies')
+      if (currencies) {
+        this.currencies = [...currencies]
       }
     },
     setCurrent (currency: Currency) {
-      if (this.currentCurrency?.code !== currency.code) {
-        this.currentCurrency = { ...currency }
-      }
+      this.currentCurrency = { ...currency }
     }
   }
 })

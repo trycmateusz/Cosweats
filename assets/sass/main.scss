@@ -1,5 +1,6 @@
 @use './abstracts' as *;
 @use './base' as *;
+@use './components' as *;
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

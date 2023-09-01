@@ -1,0 +1,20 @@
+@use '../abstracts' as *;
+
+::-webkit-scrollbar {
+  width: 2rem;
+}
+::-webkit-scrollbar-track {
+  background-color: $darker-blackish;
+  border: 1px solid $border-dark-color;
+  border-right: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $whiteish-main;
+  &:hover {
+    background-color: $pink-darker;
+  }
+  &:active {
+    background-color: $pink-dark;
+  }
+}

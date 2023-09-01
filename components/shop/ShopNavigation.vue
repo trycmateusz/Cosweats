@@ -26,20 +26,22 @@
                 :to="link.to"
               />
             </div>
-            <div v-else class="flex flex-col max-w-[60svw]">
-              <div
-                v-for="currency in currencyStore.currencies"
-                :key="currency.id"
-                class="border-b border-borderDarkColor first:border-t"
-              >
-                <button
-                  class="flex-grow px-8 py-5 w-max max-w-full "
-                  @click="currencyStore.setCurrent(currency)"
+            <ClientOnly v-else>
+              <div class="flex flex-col max-w-[60svw]">
+                <div
+                  v-for="currency in currencyStore.currencies"
+                  :key="currency.code"
+                  class="border-b border-borderDarkColor first:border-t"
                 >
-                  {{ `${currency.name} (${currency.symbol})` }}
-                </button>
+                  <button
+                    class="flex-grow px-8 py-5 w-max max-w-full "
+                    @click="currencyStore.setCurrent(currency)"
+                  >
+                    {{ `${currency.name} (${currency.symbol})` }}
+                  </button>
+                </div>
               </div>
-            </div>
+            </ClientOnly>
           </template>
         </AppDropdown>
       </div>
@@ -121,6 +123,8 @@ watch(currentCurrency, (): void => {
       currencyDropdown.text = 'Currency'
     }
   }
+}, {
+  immediate: true
 })
 </script>
 

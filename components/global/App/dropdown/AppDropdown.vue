@@ -30,8 +30,9 @@
       </div>
     </ClientOnly>
     <div
-      class="menu absolute flex flex-col top-0 translate-y-[Calc(var(--nav-height)_+_1px)] min-w-full max-h-0 bg-blackishDark border-borderDarkColor transition-max-height overflow-auto"
-      :class="[...dropdown.classes, { 'menu-expanded': dropdown.expanded }]"
+      ref="menu"
+      class="menu absolute flex flex-col top-0 translate-y-[Calc(var(--nav-height)_+_1px)] min-w-full max-h-0 bg-blackishDark border-borderDarkColor transition-max-height overflow-hidden"
+      :class="[...dropdown.classes, { 'overflow-y-auto': isMenuOverflowing, 'menu-expanded': dropdown.expanded }]"
     >
       <slot name="options" />
     </div>
@@ -48,9 +49,15 @@ const props = defineProps<{
   hasIcon?: boolean
 }>()
 const emit = defineEmits(['expand'])
-const dropdownId = computed(() => {
-  return `${props.dropdown.text.toLowerCase()}-dropdown-menu`
+const menu = ref<HTMLDivElement | undefined>(undefined)
+const isMenuOverflowing = computed(() => {
+  if (menu.value) {
+    console.log(menu.value?.scrollHeight)
+    console.log(menu.value?.scrollHeight > window.innerHeight * 0.40)
+    return menu.value?.scrollHeight > window.innerHeight * 0.40
+  }
 })
+const dropdownId = `${props.dropdown.role.toLowerCase()}-dropdown-menu`
 </script>
 
 <style lang="scss" scoped>
@@ -59,8 +66,10 @@ button[aria-expanded="true"]{
     @apply rotate-180
   }
 }
+.overflow-y-auto {
+  overflow-y: auto
+}
 .menu-expanded {
-  max-height: 40svh;
-  overflow-y: scroll;
+  max-height: 40vh;
 }
 </style>

@@ -21,11 +21,11 @@ const headerText = computed(() => {
     return route.path.split('')[2]
   }
 })
-onMounted(async () => {
-  await currencyStore.fetchAll()
-  // await currencyStore.setCurrent(currencyStore.currencies[0])
-  // await productStore.fetchAll()
-})
+
+await currencyStore.fetchAll()
+currencyStore.setCurrent(currencyStore.currencies[0])
+// productStore.fetchAll()
+
 </script>
 
 <style scoped>

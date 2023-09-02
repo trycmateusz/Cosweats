@@ -1,6 +1,8 @@
 export const fetchCollection = async <Resource>(resourcePlural: string): Promise<Resource[] | undefined> => {
   const config = useRuntimeConfig()
-  const { data, error } = await useFetch<Resource>(`${config.public.apiUrl}/${resourcePlural}.json`)
+  const url = `${config.public.apiUrl}/${resourcePlural}.json`
+  console.log(`Fetching ${resourcePlural} from: ${url}`)
+  const { data, error } = await useFetch<Resource>(url)
   if (error.value) {
     // eslint-disable-next-line no-console
     console.log(`Error while fetching: ${resourcePlural}`, error.value)

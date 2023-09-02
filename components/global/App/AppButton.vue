@@ -29,11 +29,9 @@ defineProps<{
 
 <style lang="scss" scoped>
 .primary {
-  background-color: $main-blackish;
-  color: $whiteish-main;
+  @apply bg-blackishMain text-whiteishMain
 }
 .secondary {
-  background-color: $whiteish-main;
-  color: $main-blackish;
+  @apply bg-whiteishMain text-blackishMain
 }
 </style>

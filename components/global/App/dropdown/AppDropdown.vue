@@ -50,14 +50,22 @@ const props = defineProps<{
 }>()
 const emit = defineEmits(['expand'])
 const menu = ref<HTMLDivElement | undefined>(undefined)
-const isMenuOverflowing = computed(() => {
+const isMenuOverflowing = ref(false)
+const checkIfMenuIsOverflowing = async () => {
   if (menu.value) {
-    console.log(menu.value?.scrollHeight)
-    console.log(menu.value?.scrollHeight > window.innerHeight * 0.40)
-    return menu.value?.scrollHeight > window.innerHeight * 0.40
+    await nextTick()
+    isMenuOverflowing.value = menu.value?.scrollHeight > window.innerHeight * 0.40
   }
-})
+}
 const dropdownId = `${props.dropdown.role.toLowerCase()}-dropdown-menu`
+watch(menu, () => {
+  checkIfMenuIsOverflowing()
+}, {
+  deep: true
+})
+onMounted(() => {
+  window.addEventListener('resize', checkIfMenuIsOverflowing)
+})
 </script>
 
 <style lang="scss" scoped>

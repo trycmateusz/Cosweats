@@ -1,11 +1,5 @@
-import { fetchCollection } from '~/services/fetch.js'
-
-interface Currency {
-  symbol: string
-  name: string
-  name_plural: string
-  code: string
-}
+import { fetchCollection } from '~/services/fetch'
+import type { Currency } from '~/types/Currency'
 
 type State = {
   currentCurrency: Currency | null

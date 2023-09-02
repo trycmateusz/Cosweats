@@ -1,6 +1,7 @@
+const baseApiUrl = 'https://cosweats-default-rtdb.europe-west1.firebasedatabase.app'
+
 export const fetchCollection = async <Resource>(resourcePlural: string): Promise<Resource[] | undefined> => {
-  const config = useRuntimeConfig()
-  const url = `${config.public.NUXT_API_URL}/${resourcePlural}.json`
+  const url = `${baseApiUrl}/${resourcePlural}.json`
   console.log(`Fetching ${resourcePlural} from: ${url}`)
   const { data, error } = await useFetch<Resource>(url)
   if (error.value) {

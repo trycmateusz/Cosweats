@@ -1,6 +1,6 @@
 export const fetchCollection = async <Resource>(resourcePlural: string): Promise<Resource[] | undefined> => {
   const config = useRuntimeConfig()
-  const url = `${config.public.apiUrl}/${resourcePlural}.json`
+  const url = `${config.public.NUXT_API_URL}/${resourcePlural}.json`
   console.log(`Fetching ${resourcePlural} from: ${url}`)
   const { data, error } = await useFetch<Resource>(url)
   if (error.value) {

@@ -110,10 +110,10 @@
             <span>let us introduce our</span>
             <span class="block mt-4 font-violetSans text-pinkDark text-6xl sm:text-7xl md:text-8xl">Offer</span>
           </h2>
-          <AppButton
+          <AppLink
             class="mt-8 text-3xl sm:text-4xl md:text-5xl"
             link="/shop"
-            :style="'secondary'"
+            style-type="secondary"
             text="Hi Offer!"
           />
         </div>

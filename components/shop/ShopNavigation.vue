@@ -71,7 +71,7 @@ import type { Dropdown } from '~/types/Dropdown'
 import type { Currency } from '~/types/Currency'
 import { useCurrencyStore } from '~/stores/CurrencyStore.js'
 const currencyStore = useCurrencyStore()
-const { currentCurrency } = storeToRefs(currencyStore)
+const { current: currentCurrency } = storeToRefs(currencyStore)
 const dropdowns: Dropdown[] = reactive([
   {
     id: Math.random(),

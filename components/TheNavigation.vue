@@ -4,7 +4,7 @@
       <a
         aria-label="Redirect to top of the page"
         href="#"
-        class="inline-block px-8 py-5"
+        class="inline-block px-5 py-5 sm:px-8"
       >
         CS
       </a>

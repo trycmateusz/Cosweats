@@ -3,7 +3,7 @@
     <button
       :aria-controls="dropdownId"
       :aria-expanded="dropdown.expanded"
-      class="relative flex items-center gap-2 px-8 py-5"
+      class="relative flex items-center gap-2 px-5 py-5 sm:px-8"
       @click="emit('expand')"
     >
       <span

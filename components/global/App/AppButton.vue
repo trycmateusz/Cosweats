@@ -1,29 +1,18 @@
 <template>
-  <div>
-    <button
-      v-if="!link"
-      class="py-[0.7em] px-[3em] rounded-full"
-      :class="[style]"
-    >
-      {{ text }}
-    </button>
-    <NuxtLink
-      v-else
-      :aria-label="`Link that redirects to ${link} subpage`"
-      :to="link"
-      class="inline-block py-[0.7em] px-[3em] rounded-full"
-      :class="[style]"
-    >
-      {{ text }}
-    </NuxtLink>
-  </div>
+  <button
+    class="w-max py-[0.7em] px-[3em] rounded-full"
+    :class="[styleType]"
+    :label="label"
+  >
+    {{ text }}
+  </button>
 </template>
 
 <script setup lang="ts">
 defineProps<{
-  style: 'primary' | 'secondary'
+  styleType: 'primary' | 'secondary'
   text: string
-  link?: string
+  label?: string
 }>()
 </script>
 

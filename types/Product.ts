@@ -6,7 +6,7 @@ export interface Product {
   name: string
   nameKebab: string
   colors: Color[]
-  defaultColor: Color
   sizes: Size[]
   photoURLs: string[]
+  priceInCents: number
 }

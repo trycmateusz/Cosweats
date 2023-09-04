@@ -3,4 +3,5 @@ export interface Currency {
   name: string
   namePlural: string
   code: string
+  ratio: number
 }

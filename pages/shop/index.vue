@@ -4,8 +4,10 @@
       <ShopNavigation />
     </TheNavigation>
     <ShopHeader :text="headerText" />
-    <div>
-      <ProductList />
+    <div v-for="(category, index) in productStore.categories" :key="index">
+      <div v-if="category.length > 0">
+        <ProductList :product-category="category" />
+      </div>
     </div>
   </div>
 </template>

@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 const currencyStore = useCurrencyStore()
-// const productStore = useProductStore()
+const productStore = useProductStore()
 const route = useRoute()
 const headerText = computed(() => {
   if (route.path === '/shop') {
@@ -24,8 +24,7 @@ const headerText = computed(() => {
 
 await currencyStore.fetchAll()
 currencyStore.setCurrent(currencyStore.currencies[0])
-// productStore.fetchAll()
-
+productStore.fetchAll()
 </script>
 
 <style scoped>

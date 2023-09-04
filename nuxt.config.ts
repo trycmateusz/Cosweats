@@ -3,11 +3,6 @@ import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  runtimeConfig: {
-    public: {
-      NUXT_API_URL: process.env.API_URL
-    }
-  },
   modules: [
     ['@pinia/nuxt', {
       autoImports: ['defineStore', 'acceptHMRUpdate', 'storeToRefs']
@@ -36,8 +31,5 @@ export default defineNuxtConfig({
       }
     }
   },
-  css: ['~/assets/sass/main.scss'],
-  routeRules: {
-    '/': { static: true }
-  }
+  css: ['~/assets/sass/main.scss']
 })

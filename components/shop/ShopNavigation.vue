@@ -7,10 +7,12 @@
         :class="{ 'mr-auto': dropdownIndex === 0 }"
       >
         <AppDropdown
+          v-click-outside="{ 'close': () => dropdown.expanded = false }"
           :has-icon="true"
           :light="true"
           :dropdown="dropdown"
           @expand="() => closeAllButOneDropdown(dropdown.id)"
+          @close="closeOne(dropdown)"
         >
           <template v-if="dropdown.role === 'currency' && currentCurrency" #currency-dropdown>
             <span class="inline-block mr-1 leading-none sm:hidden">
@@ -26,16 +28,16 @@
                 :to="link.to"
               />
             </div>
-            <ClientOnly v-else>
+            <ClientOnly v-if="dropdown.role === 'currency'">
               <div class="flex flex-col max-w-[60svw]">
                 <div
                   v-for="currency in currencyStore.currencies"
                   :key="currency.code"
-                  class="border-b border-borderDarkColor first:border-t"
+                  class="flex border-b border-borderDarkColor first:border-t"
                 >
                   <button
                     class="flex-grow px-8 py-5 w-max max-w-full "
-                    @click="currencyStore.setCurrent(currency)"
+                    @click="chooseCurrency(currency)"
                   >
                     {{ `${currency.name} (${currency.symbol})` }}
                   </button>
@@ -65,7 +67,8 @@
 </template>
 
 <script setup lang="ts">
-import type Dropdown from '~/types/Dropdown.js'
+import type { Dropdown } from '~/types/Dropdown'
+import type { Currency } from '~/types/Currency'
 import { useCurrencyStore } from '~/stores/CurrencyStore.js'
 const currencyStore = useCurrencyStore()
 const { currentCurrency } = storeToRefs(currencyStore)
@@ -99,11 +102,12 @@ const dropdowns: Dropdown[] = reactive([
     classes: ['right-0', 'border-l', 'border-r']
   }
 ])
+const closeOne = (dropdown: Dropdown): void => {
+  dropdown.expanded = false
+}
 const closeAll = (dropdowns: Dropdown[]): void => {
   dropdowns.forEach((dropdown) => {
-    if (dropdown.expanded) {
-      dropdown.expanded = false
-    }
+    closeOne(dropdown)
   })
 }
 const closeAllButOneDropdown = (id: number): void => {
@@ -113,6 +117,10 @@ const closeAllButOneDropdown = (id: number): void => {
   if (toOpen) {
     toOpen.expanded = !toOpen.expanded
   }
+}
+const chooseCurrency = (currency: Currency): void => {
+  currencyStore.setCurrent(currency)
+  closeAll(dropdowns)
 }
 watch(currentCurrency, (): void => {
   const currencyDropdown = dropdowns.find(dropdown => dropdown.role === 'currency')

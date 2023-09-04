@@ -3,7 +3,7 @@ type DropdownLink = {
   to: string
 }
 
-export default interface Dropdown {
+export interface Dropdown {
   text: string
   role: string
   expanded: boolean

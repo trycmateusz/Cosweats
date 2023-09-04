@@ -1,17 +1,12 @@
-import type { Color } from '~/types/Color.js'
-import type { Size } from '~/types/Size.js'
-
-export type ProductPhoto = {
-  url: string
-  name: string
-}
+import type { Color } from '~/types/Color'
+import type { Size } from '~/types/Size'
 
 export interface Product {
   id: number
   name: string
-  photos: ProductPhoto[]
-  categoryId: number
+  nameKebab: string
   colors: Color[]
   defaultColor: Color
   sizes: Size[]
+  photoURLs: string[]
 }

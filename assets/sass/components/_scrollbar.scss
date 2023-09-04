@@ -4,8 +4,8 @@
   width: 1.5rem;
 }
 ::-webkit-scrollbar-track {
+  border-left: 1px solid $border-dark-color;
   background-color: $darker-blackish;
-  border-right: 0;
 }
 
 ::-webkit-scrollbar-thumb {

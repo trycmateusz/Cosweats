@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink :to="to" class="px-8 py-5 border-b border-borderDarkColor first:border-t">
+  <NuxtLink :to="to" class="px-8 py-5 text-center border-b border-borderDarkColor first:border-t">
     {{ text }}
   </NuxtLink>
 </template>

@@ -12,7 +12,7 @@
         <div v-for="link in links" :key="link.id">
           <NuxtLink
             v-if="route.path !== link.to"
-            class="p-8"
+            class="px-8 py-5"
             :to="link.to"
           >
             {{ link.name }}

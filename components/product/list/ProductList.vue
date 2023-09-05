@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-5 p-5 bg-whiteishMain sm:p-8">
+  <div class="wrapper grid grid-cols-1 gap-5 p-5 bg-whiteishMain sm:p-8 sm:gap-8 md:grid-cols-2">
     <div
       v-for="product in productCategory"
       :key="product.id"

@@ -9,6 +9,7 @@ export interface Product {
   id: number
   name: string
   nameKebab: string
+  description: string
   colors: Color[]
   sizes: Size[]
   photoURLs: PhotoURLs

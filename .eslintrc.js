@@ -29,6 +29,7 @@ module.exports = {
   rules: {
     'vue/multi-word-component-names': 0,
     semi: ['error', 'never'],
-    quotes: ['error', 'single']
+    quotes: ['error', 'single'],
+    'func-call-spacing': 'off'
   }
 }

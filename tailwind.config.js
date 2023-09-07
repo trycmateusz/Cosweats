@@ -25,6 +25,9 @@ module.exports = {
       '2xl': '1400px'
     },
     extend: {
+      zIndex: {
+        60: '60'
+      },
       colors: {
         whiteishMain: '#ECE6DB',
         whiteishDarker: '#E8D6CA',
@@ -36,7 +39,8 @@ module.exports = {
         blackishDark: '#111010',
         borderDarkColor: '#474545',
         grayLight: '#e8dcdc',
-        grayDark: '#5c5856'
+        grayDark: '#5c5856',
+        productItemOverlayBackground: 'rgba(#ECE6DB, .7)'
       },
       fontSize: {
         '10xl': '10rem'

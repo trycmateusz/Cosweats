@@ -12,6 +12,6 @@ export interface Product {
   description: string
   colors: Color[]
   sizes: Size[]
-  photoURLs: PhotoURLs
+  photoUrls: PhotoURLs
   priceInCents: number
 }

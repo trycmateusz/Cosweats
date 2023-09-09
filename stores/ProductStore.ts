@@ -1,30 +1,51 @@
 import { fetchCollection } from '~/services/fetch'
-import type { Product } from '~/types/Product.js'
+import type { Product, ProductActive } from '~/types/Product.js'
+import type { Color } from 'types/Color'
+import type { Size } from 'types/Size'
+import type { Category } from '~/types/Category'
 
 type State = {
-  categories: {
-    sweatshirts: Product[]
-  }
+  sweatshirts: Product[]
+  categories: Category[]
+  active: ProductActive | null
 }
 
 export const useProductStore = defineStore('ProductStore', {
   state: (): State => {
     return {
-      categories: {
-        sweatshirts: []
-      }
+      sweatshirts: [],
+      categories: [
+        'sweatshirts'
+      ],
+      active: null
     }
   },
+  getters: {
+
+  },
   actions: {
-    async fetchAll () {
+    async fetchAll (): Promise<void> {
       const sweatshirts = await fetchCollection<Product>('sweatshirts')
       if (sweatshirts) {
         for (const sweatshirtToSet of sweatshirts) {
-          const isSet = this.categories.sweatshirts.find(sweatshirt => sweatshirt.id === sweatshirtToSet.id)
+          const isSet = this.sweatshirts.find(sweatshirt => sweatshirt.id === sweatshirtToSet.id)
           if (!isSet) {
-            this.categories.sweatshirts.push(sweatshirtToSet)
+            this.sweatshirts.push({ ...sweatshirtToSet, category: 'sweatshirts' })
           }
         }
+      }
+    },
+    setActive (product: ProductActive) {
+      this.active = { ...product }
+    },
+    setActiveColor (color: Color): void {
+      if (this.active) {
+        this.active.color = color
+      }
+    },
+    setActiveSize (size: Size): void {
+      if (this.active) {
+        this.active.size = size
       }
     }
   }

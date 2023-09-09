@@ -5,8 +5,8 @@
     </TheNavigation>
     <ShopHeader :text="headerText" />
     <div v-for="(category, index) in productStore.categories" :key="index">
-      <div v-if="category.length > 0">
-        <ProductList :product-category="category" />
+      <div>
+        <ProductList :products="productStore[category]" />
       </div>
     </div>
   </div>
@@ -23,7 +23,6 @@ const headerText = computed(() => {
     return route.path.split('')[2]
   }
 })
-
 await currencyStore.fetchAll()
 currencyStore.setCurrent(currencyStore.currencies[0])
 productStore.fetchAll()

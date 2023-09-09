@@ -2,7 +2,6 @@
   <button
     class="w-max py-[0.7em] px-[3em] rounded-full"
     :class="[styleType]"
-    :label="label"
   >
     {{ text }}
   </button>
@@ -12,7 +11,6 @@
 defineProps<{
   styleType: 'primary' | 'secondary'
   text: string
-  label?: string
 }>()
 </script>
 

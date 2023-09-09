@@ -2,7 +2,7 @@
   <button
     class="uppercase px-8 py-2 rounded-full border border-borderDarkColor text-blackishMain bg-whiteishDarker"
     :class="{ 'size-active': isActive }"
-    @click="emit('chooseSize', size)"
+    @click="productStore.setActiveSize(size)"
   >
     {{ size }}
   </button>
@@ -10,12 +10,11 @@
 
 <script setup lang="ts">
 import type { Size } from '~/types/Size'
+import { useProductStore } from '~/stores/ProductStore'
+const productStore = useProductStore()
 defineProps<{
   size: Size
   isActive: boolean
-}>()
-const emit = defineEmits<{
-  (e: 'chooseSize', size: Size): void
 }>()
 </script>
 

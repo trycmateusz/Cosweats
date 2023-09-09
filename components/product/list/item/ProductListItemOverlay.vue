@@ -43,7 +43,7 @@
       </div>
       <ClientOnly>
         <ProductListItemInfo :product="product" />
-        <div class="mt-5 mb-5">
+        <div class="mt-10 mb-10">
           <span class="block mb-5 font-bold text-2xl">Choose a size:</span>
           <div class="flex flex-wrap gap-5 sm:gap-8 text-3xl">
             <ProductListItemSize
@@ -54,7 +54,10 @@
             />
           </div>
         </div>
-        <AppButton class="ml-auto text-3xl" style-type="primary" text="Add to cart" />
+        <div class="flex flex-col gap-5 ml-auto items-end sm:flex-row sm:items-center">
+          <ProductListItemQuantity />
+          <AppButton class="text-3xl" style-type="primary" text="Add to cart" />
+        </div>
       </ClientOnly>
     </div>
   </div>
@@ -76,7 +79,8 @@ const { sizes, colors, photoUrls, ...productBase } = props.product
 productStore.setActive({
   ...productBase,
   size: props.product.sizes[0],
-  color: props.product.colors[0]
+  color: props.product.colors[0],
+  quantity: 1
 })
 dump({ sizes, colors, photoUrls })
 const activePhotoSrc = computed(() => {

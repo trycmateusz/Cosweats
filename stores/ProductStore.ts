@@ -47,6 +47,13 @@ export const useProductStore = defineStore('ProductStore', {
       if (this.active) {
         this.active.size = size
       }
+    },
+    changeActiveQuantityBy (amount: -1 | 1) {
+      if (this.active) {
+        if (this.active.quantity + amount !== 0) {
+          this.active.quantity += amount
+        }
+      }
     }
   }
 })

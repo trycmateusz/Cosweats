@@ -24,4 +24,5 @@ export interface Product extends ProductBase {
 export interface ProductActive extends ProductBase {
   size: Size
   color: Color
+  quantity: number
 }

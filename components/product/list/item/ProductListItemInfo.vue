@@ -4,7 +4,7 @@
       <span>{{ product.name }}</span>
       <span class="flex flex-col text-right sm:flex-row sm:gap-2 md:flex-col md:gap-0">
         <span>
-          {{ priceToShow }}
+          {{ currencyStore.getPriceToShow(product.priceInCents) }}
         </span>
         <span v-if="currencyStore.current">
           {{ currencyStore.current.symbol }}
@@ -20,17 +20,10 @@
 <script setup lang="ts">
 import { Product } from '~/types/Product'
 import { useCurrencyStore } from '~/stores/CurrencyStore'
-const props = defineProps<{
+const currencyStore = useCurrencyStore()
+defineProps<{
   product: Product
 }>()
-const currencyStore = useCurrencyStore()
-const priceToShow = computed(() => { // jako getter w currency store
-  if (currencyStore.current) {
-    return `${Math.floor(props.product.priceInCents * currencyStore.current.ratio) / 100}`
-  } else {
-    return ''
-  }
-})
 </script>
 
 <style scoped>

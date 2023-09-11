@@ -1,13 +1,14 @@
 import { fetchCollection } from '~/services/fetch'
-import type { Product, ProductActive } from '~/types/Product.js'
+import type { Product, ProductForCart, ProductCategory } from '~/types/Product.js'
 import type { Color } from 'types/Color'
 import type { Size } from 'types/Size'
-import type { Category } from '~/types/Category'
 
 type State = {
   sweatshirts: Product[]
-  categories: Category[]
-  active: ProductActive | null
+  categories: ProductCategory[]
+  active: ProductForCart | null
+  maxQuantity: number
+  minQuantity: number
 }
 
 export const useProductStore = defineStore('ProductStore', {
@@ -17,7 +18,9 @@ export const useProductStore = defineStore('ProductStore', {
       categories: [
         'sweatshirts'
       ],
-      active: null
+      active: null,
+      maxQuantity: 10,
+      minQuantity: 1
     }
   },
   getters: {
@@ -35,7 +38,7 @@ export const useProductStore = defineStore('ProductStore', {
         }
       }
     },
-    setActive (product: ProductActive) {
+    setActive (product: ProductForCart) {
       this.active = { ...product }
     },
     setActiveColor (color: Color): void {
@@ -50,7 +53,7 @@ export const useProductStore = defineStore('ProductStore', {
     },
     changeActiveQuantityBy (amount: -1 | 1) {
       if (this.active) {
-        if (this.active.quantity + amount !== 0) {
+        if (this.active.quantity + amount >= this.minQuantity && this.active.quantity + amount <= this.maxQuantity) {
           this.active.quantity += amount
         }
       }

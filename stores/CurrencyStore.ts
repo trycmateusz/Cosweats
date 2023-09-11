@@ -28,5 +28,16 @@ export const useCurrencyStore = defineStore('CurrencyStore', {
     setCurrent (currency: Currency) {
       this.current = { ...currency }
     }
+  },
+  getters: {
+    getPriceToShow (state) {
+      return (price: number): string => {
+        if (state.current) {
+          return `${Math.floor(price * state.current.ratio) / 100}`
+        } else {
+          return '0'
+        }
+      }
+    }
   }
 })

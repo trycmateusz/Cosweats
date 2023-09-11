@@ -7,7 +7,7 @@
       class="overlay wrapper flex flex-col gap-5 fixed top-0 left-0 right-0 p-5 w-full h-full bg-whiteishMain z-50 overflow-y-scroll sm:p-8 sm:gap-8"
     >
       <ClientOnly>
-        <div class="flex justify-end mb-8 border-b border-grayLight">
+        <div class="flex justify-end border-b border-grayLight">
           <button
             :aria-label="`Button to close overlay of ${product.name}`"
             class="close-btn sticky top-0 p-5 -mt-5 -mr-5 sm:p-8 sm:-mt-8 sm:-mr-8"
@@ -17,13 +17,13 @@
           </button>
         </div>
       </ClientOnly>
-      <div ref="activeImageContainer" class="product-image-active grid grid-cols-1 w-full gap-5 sm:gap-8 sm:grid-cols-[1fr_auto]">
+      <div ref="activeImageContainer" class="product-image-active grid grid-cols-1 w-full gap-5 sm:gap-8 sm:grid-cols-[1fr_auto] lg:grid-cols-[3fr_1fr]">
         <ClientOnly>
-          <div class="flex justify-center items-center w-full bg-white p-5 aspect-square sm:p-8">
-            <img :src="activePhotoSrc" :alt="activePhotoAlt" class="w-full">
+          <div class="flex justify-center items-center w-full bg-white p-5 aspect-square sm:p-8 lg:aspect-video">
+            <img :src="activePhotoSrc" :alt="activePhotoAlt" class="w-full max-h-[550px]">
           </div>
         </ClientOnly>
-        <div ref="colorImagesContainer" class="relative w-full sm:w-[30vw] sm:min-w-[120px]">
+        <div ref="colorImagesContainer" class="relative w-full sm:w-[30vw] sm:min-w-[120px] lg:w-full">
           <div class="flex gap-5 max-w-full h-full min-h-[150px] max-h-[150px] overflow-x-scroll sm:flex-col sm:gap-8 sm:absolute sm:w-max sm:max-h-none sm:overflow-x-hidden sm:overflow-y-scroll">
             <button
               v-for="(url, color) in product.photoUrls"
@@ -45,7 +45,7 @@
         <ProductListItemInfo :product="product" />
         <div class="mt-10 mb-10">
           <span class="block mb-5 font-bold text-2xl">Choose a size:</span>
-          <div class="flex flex-wrap gap-5 sm:gap-8 text-3xl">
+          <div class="flex flex-wrap gap-5 text-3xl">
             <ProductListItemSize
               v-for="(size, index) in product.sizes"
               :key="index"
@@ -56,7 +56,7 @@
         </div>
         <div class="flex flex-col gap-5 ml-auto items-end sm:flex-row sm:items-center">
           <ProductListItemQuantity />
-          <AppButton class="text-3xl" style-type="primary" text="Add to cart" />
+          <AppButton class="text-3xl" style-type="primary" text="Add to cart" @click="addActiveToCart" />
         </div>
       </ClientOnly>
     </div>
@@ -64,25 +64,25 @@
 </template>
 
 <script setup lang="ts">
-import type { Product } from '~/types/Product'
+import type { Product, ProductForCart } from '~/types/Product'
 import { useProductStore } from '~/stores/ProductStore'
-import { dump } from '~/helpers/'
+import { useCartStore } from '~/stores/CartStore'
 const productStore = useProductStore()
+const cartStore = useCartStore()
 const props = defineProps<{
   product: Product
   overlayId: string
 }>()
 const emit = defineEmits<{
   (e: 'close'): void
+  (e: 'add-active', product: ProductForCart): void
 }>()
-const { sizes, colors, photoUrls, ...productBase } = props.product
-productStore.setActive({
-  ...productBase,
+const activeProduct = ref<ProductForCart>({
+  ...props.product,
   size: props.product.sizes[0],
   color: props.product.colors[0],
   quantity: 1
 })
-dump({ sizes, colors, photoUrls })
 const activePhotoSrc = computed(() => {
   if (productStore.active) {
     return props.product.photoUrls[productStore.active.color]
@@ -93,6 +93,13 @@ const activePhotoSrc = computed(() => {
 const activePhotoAlt = computed(() => {
   return `${props.product.name} in ${productStore.active?.color}`
 })
+const addActiveToCart = () => {
+  if (productStore.active) {
+    cartStore.addOne(productStore.active)
+    emit('close')
+  }
+}
+productStore.setActive(activeProduct.value)
 </script>
 
 <style scoped>

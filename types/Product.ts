@@ -1,28 +1,26 @@
 import type { Color } from '~/types/Color'
 import type { Size } from '~/types/Size'
-import type { Category } from '~/types/Category'
 
 type PhotoURLs = {
   [each in Color]: string
 }
 
-interface ProductBase {
-  id: number
+export type ProductCategory = 'sweatshirts'
+
+export interface Product {
+  id: string
   name: string
   nameKebab: string
   description: string
-  category: Category
-}
-
-export interface Product extends ProductBase {
+  category: ProductCategory,
   colors: Color[]
   sizes: Size[]
   photoUrls: PhotoURLs
   priceInCents: number
 }
 
-export interface ProductActive extends ProductBase {
-  size: Size
-  color: Color
+export interface ProductForCart extends Product {
+  size: Size,
+  color: Color,
   quantity: number
 }

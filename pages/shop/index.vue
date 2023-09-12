@@ -1,7 +1,7 @@
 <template>
   <div>
     <TheNavigation>
-      <ShopNavigation />
+      <ShopNavigation @open-cart="isCartActive = true" />
     </TheNavigation>
     <ShopHeader :text="headerText" />
     <div v-for="(category, index) in productStore.categories" :key="index">
@@ -9,6 +9,12 @@
         <ProductList :products="productStore[category]" />
       </div>
     </div>
+    <teleport to="body">
+      <TheCart
+        v-if="isCartActive"
+        @close="isCartActive = false"
+      />
+    </teleport>
   </div>
 </template>
 
@@ -16,6 +22,7 @@
 const currencyStore = useCurrencyStore()
 const productStore = useProductStore()
 const route = useRoute()
+const isCartActive = ref(false)
 const headerText = computed(() => {
   if (route.path === '/shop') {
     return 'Cosweats'

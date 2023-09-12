@@ -26,7 +26,6 @@
         :overlay-id="overlayAriaControlsId"
         :product="product"
         @close="isOverlayActive = false"
-        @add-active="addActiveProductToCart"
       />
     </Teleport>
   </div>
@@ -34,8 +33,6 @@
 
 <script setup lang="ts">
 import type { Product } from '~/types/Product'
-import { useCartStore } from '~/stores/CartStore'
-const cartStore = useCartStore()
 const props = defineProps<{
   product: Product
 }>()
@@ -47,9 +44,6 @@ const imageSrc = computed(() => {
 const overlayAriaControlsId = computed(() => {
   return `${props.product.nameKebab}-overlay`
 })
-const addActiveProductToCart = (): void => {
-
-}
 </script>
 
 <style lang="scss" scoped>

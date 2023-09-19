@@ -22,18 +22,27 @@ export const useCartStore = defineStore('CartStore', {
       } else {
         this.cart.push(product)
       }
+    },
+    removeOne (product: ProductForCart) {
+      const index = this.cart.findIndex(productToFind => productToFind.id === product.id)
+      if (index !== -1) {
+        this.cart.splice(index, 1)
+      }
     }
   },
   getters: {
-    allProductQuantities (state): number[] {
+    getAllProductQuantities (state): number[] {
       return state.cart.map(product => product.quantity)
     },
     getLength (state): number {
       if (state.cart.length === 0) {
         return 0
       } else {
-        return this.allProductQuantities.reduce((quantity, currentValue) => quantity + currentValue, 0)
+        return this.getAllProductQuantities.reduce((quantity, currentValue) => quantity + currentValue, 0)
       }
+    },
+    hasProducts (state) {
+      return state.cart.length !== 0
     }
   }
 })

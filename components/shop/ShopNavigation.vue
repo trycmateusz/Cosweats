@@ -73,8 +73,6 @@
 <script setup lang="ts">
 import type { Dropdown } from '~/types/Dropdown'
 import type { Currency } from '~/types/Currency'
-import { useCurrencyStore } from '~/stores/CurrencyStore'
-import { useCartStore } from '~/stores/CartStore'
 const currencyStore = useCurrencyStore()
 const cartStore = useCartStore()
 const emit = defineEmits<{

@@ -1,7 +1,7 @@
 @use '../abstracts' as *;
 
 ::-webkit-scrollbar {
-  width: 1.5rem;
+  width: var(--scrollbar-width)
 }
 ::-webkit-scrollbar-track {
   border-left: 1px solid $border-dark-color;

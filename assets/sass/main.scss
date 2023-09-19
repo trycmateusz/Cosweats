@@ -8,6 +8,7 @@
 @layer base {
   :root {
     --nav-height: 4.75rem;
+    --scrollbar-width: 1.5rem;
   }
 }
 
@@ -21,8 +22,21 @@ body {
   color: $main-blackish;
 }
 
+.body-fixed {
+  position: fixed;
+  width: 100%;
+  overflow: auto;
+}
+
 .wrapper {
   margin: 0 auto;
   max-width: 1400px;
   width: 100%;
+}
+
+@media (min-width: 768px){
+  .body-fixed {
+    width: Calc(100% - var(--scrollbar-width));
+  }
+
 }

@@ -19,7 +19,6 @@
 
 <script setup lang="ts">
 import { Product } from '~/types/Product'
-import { useCurrencyStore } from '~/stores/CurrencyStore'
 const currencyStore = useCurrencyStore()
 defineProps<{
   product: Product

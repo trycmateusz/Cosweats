@@ -10,7 +10,6 @@
 
 <script setup lang="ts">
 import type { Size } from '~/types/Size'
-import { useProductStore } from '~/stores/ProductStore'
 const productStore = useProductStore()
 defineProps<{
   size: Size

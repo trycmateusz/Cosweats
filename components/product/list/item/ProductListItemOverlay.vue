@@ -1,13 +1,11 @@
 <template>
-  <div class="bg-productItemOverlayBackground">
-    <div class="shadow fixed top-0 w-full h-full left-0 bg-black opacity-90 z-50" />
+  <div class="fixed top-0 left-0 right-0 h-[100vh] bg-whiteishMain z-50 overflow-y-auto">
     <div
       :id="overlayId"
-      v-click-outside="{ close: () => emit('close'), checkAriaControls: true }"
-      class="overlay wrapper fixed top-0 left-0 right-0 w-full h-full bg-whiteishMain z-50 overflow-y-scroll"
+      class="overlay wrapper h-full"
     >
       <ClientOnly>
-        <AppCloseBar :parent-label="product.name" @close="emit('close')" />
+        <AppCloseBar :parent-label="`Button to close overlay of ${product.name}`" @close="emit('close')" />
       </ClientOnly>
       <div class="flex flex-col gap-5 p-5 sm:gap-8 sm:p-8">
         <div ref="activeImageContainer" class="product-image-active grid grid-cols-1 w-full gap-5 sm:gap-8 sm:grid-cols-[1fr_auto] lg:grid-cols-[3fr_1fr]">
@@ -48,7 +46,7 @@
             </div>
           </div>
           <div class="flex flex-col gap-5 ml-auto items-end sm:flex-row sm:items-center">
-            <ProductListItemQuantity />
+            <ProductListItemQuantity :product="productStore.active" @change-quantity="(quantity: 1 | -1) => changeActiveProductQuantity(quantity)" />
             <AppButton class="text-3xl" style-type="primary" text="Add to cart" @click="addActiveToCart" />
           </div>
         </ClientOnly>
@@ -59,10 +57,9 @@
 
 <script setup lang="ts">
 import type { Product, ProductForCart } from '~/types/Product'
-import { useProductStore } from '~/stores/ProductStore'
-import { useCartStore } from '~/stores/CartStore'
 const productStore = useProductStore()
 const cartStore = useCartStore()
+const { makeBodyFixed, removeFixedFromBody } = useFixedBody()
 const props = defineProps<{
   product: Product
   overlayId: string
@@ -71,7 +68,7 @@ const emit = defineEmits<{
   (e: 'close'): void
   (e: 'add-active', product: ProductForCart): void
 }>()
-const activeProduct = ref<ProductForCart>({
+productStore.setActive({
   ...props.product,
   size: props.product.sizes[0],
   color: props.product.colors[0],
@@ -93,7 +90,17 @@ const addActiveToCart = () => {
     emit('close')
   }
 }
-productStore.setActive(activeProduct.value)
+const changeActiveProductQuantity = (quantity: 1 | -1) => {
+  if (productStore.active) {
+    productStore.changeQuantityBy(quantity, productStore.active)
+  }
+}
+onMounted(() => {
+  makeBodyFixed()
+})
+onUnmounted(() => {
+  removeFixedFromBody()
+})
 </script>
 
 <style scoped>

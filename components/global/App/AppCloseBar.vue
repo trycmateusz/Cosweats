@@ -1,11 +1,13 @@
 <template>
   <div class="flex justify-end border-b border-whiteishDarker">
     <button
-      :aria-label="`Button to close overlay of ${parentLabel}`"
-      class="close-btn sticky top-0 p-5 sm:p-8 sm:-mt-8 sm:-mr-8"
-      @click="emit('close')"
+      :data-dynamic-element-parent-id="dynamicElementParentId"
+      :aria-label="parentLabel"
+      class="close-btn sticky top-0 p-5 sm:p-8"
+      @click.prevent="emit('close')"
     >
-      <img src="~/assets/img/x.svg" alt="">
+      <img v-if="!showBinIcon" class="text-2xl w-[1.4em] h-[1.4em] pointer-events-none" src="~/assets/img/x.svg" alt="">
+      <img v-else class="text-2xl w-[1.6em] h-[1.6em] pointer-events-none" src="~/assets/img/bin.svg" alt="">
     </button>
   </div>
 </template>
@@ -13,6 +15,8 @@
 <script setup lang="ts">
 defineProps<{
   parentLabel: string
+  showBinIcon?: boolean
+  dynamicElementParentId?: string
 }>()
 const emit = defineEmits<{
   (e: 'close'): void

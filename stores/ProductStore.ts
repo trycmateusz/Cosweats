@@ -24,7 +24,11 @@ export const useProductStore = defineStore('ProductStore', {
     }
   },
   getters: {
-
+    getActivePhotoUrl () {
+      return (product: Product | ProductForCart) => {
+        return product.photoUrls[product.colors[0]]
+      }
+    }
   },
   actions: {
     async fetchAll (): Promise<void> {
@@ -51,11 +55,9 @@ export const useProductStore = defineStore('ProductStore', {
         this.active.size = size
       }
     },
-    changeActiveQuantityBy (amount: -1 | 1) {
-      if (this.active) {
-        if (this.active.quantity + amount >= this.minQuantity && this.active.quantity + amount <= this.maxQuantity) {
-          this.active.quantity += amount
-        }
+    changeQuantityBy (amount: -1 | 1, product: ProductForCart) {
+      if (product.quantity + amount >= this.minQuantity && product.quantity + amount <= this.maxQuantity) {
+        product.quantity += amount
       }
     }
   }

@@ -6,9 +6,9 @@
       @click="isOverlayActive = true"
     >
       <img
-        :src="imageSrc"
+        :src="productStore.getActivePhotoUrl(product)"
         :alt="imageAlt"
-        class="p-5 w-full bg-white sm:p-8 pointer-events-none"
+        class="p-5 w-full bg-white sm:p-8 pointer-events-none aspect-square"
       >
     </button>
     <ProductListItemInfo :product="product" />
@@ -33,14 +33,12 @@
 
 <script setup lang="ts">
 import type { Product } from '~/types/Product'
+const productStore = useProductStore()
 const props = defineProps<{
   product: Product
 }>()
 const imageAlt = ref(`${props.product.name} in ${props.product.colors[0]}`)
 const isOverlayActive = ref(false)
-const imageSrc = computed(() => {
-  return props.product.photoUrls[props.product.colors[0]]
-})
 const overlayAriaControlsId = computed(() => {
   return `${props.product.nameKebab}-overlay`
 })

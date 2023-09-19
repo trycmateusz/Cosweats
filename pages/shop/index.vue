@@ -21,6 +21,7 @@
 <script setup lang="ts">
 const currencyStore = useCurrencyStore()
 const productStore = useProductStore()
+const cartStore = useCartStore()
 const route = useRoute()
 const isCartActive = ref(false)
 const headerText = computed(() => {
@@ -33,6 +34,15 @@ const headerText = computed(() => {
 await currencyStore.fetchAll()
 currencyStore.setCurrent(currencyStore.currencies[0])
 productStore.fetchAll()
+console.log('adding one product to cart...')
+if (productStore.sweatshirts[0]) {
+  cartStore.addOne({
+    ...productStore.sweatshirts[0],
+    size: 'xs',
+    color: 'black',
+    quantity: 1
+  })
+}
 </script>
 
 <style scoped>

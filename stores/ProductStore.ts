@@ -45,20 +45,11 @@ export const useProductStore = defineStore('ProductStore', {
     setActive (product: ProductForCart) {
       this.active = { ...product }
     },
-    setActiveColor (color: Color): void {
-      if (this.active) {
-        this.active.color = color
-      }
+    setColor (color: Color, product: ProductForCart): void {
+      product.color = color
     },
-    setActiveSize (size: Size): void {
-      if (this.active) {
-        this.active.size = size
-      }
-    },
-    changeQuantityBy (amount: -1 | 1, product: ProductForCart) {
-      if (product.quantity + amount >= this.minQuantity && product.quantity + amount <= this.maxQuantity) {
-        product.quantity += amount
-      }
+    setSize (size: Size, product: ProductForCart): void {
+      product.size = size
     }
   }
 })

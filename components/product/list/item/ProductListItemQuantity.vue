@@ -3,7 +3,7 @@
     <button
       class="button"
       :class="{ 'light-background': lightBackground }"
-      @click="emit('change-quantity', 1)"
+      @click="emit('change-quantity', -1)"
     >
       -
     </button>

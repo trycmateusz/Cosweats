@@ -1,23 +1,31 @@
 <template>
   <div
     id="cart"
-    class="fixed top-0 right-0 w-full h-full z-60 overflow-y-auto bg-whiteishMain md:max-w-[50%]"
+    class="fixed flex items-stretch top-0 right-0 w-full h-full z-60 overflow-y-auto overflow-x-hidden bg-whiteishMain md:max-w-[50%]"
   >
     <ClientOnly>
       <div class="shadow hidden fixed top-0 right-1/2 w-full h-full bg-black opacity-90 z-50 md:block" @click="emit('close')" />
       <div
-        class="cart max-w-[700px] mr-0 right relative w-full z-60"
+        class="cart relative max-w-[700px] mr-0 right w-full z-60"
       >
-        <AppCloseBar parent-label="Button to close Cart" @close="emit('close')" />
+        <AppCloseBar :cover-all-viewport-width="true" class="sticky top-0 bg-whiteishMain z-60" parent-label="Button to close Cart" @close="emit('close')" />
         <div class="p-5 sm:p-8">
-          <div class="flex gap-4 mb-16">
+          <div class="flex gap-4 mb-10 sm:mb-16">
             <span class="text-7xl">Cart</span>
             <img src="~/assets/img/cart_dark.svg" alt="">
           </div>
-          <TheCartProductList
-            v-if="cartStore.hasProducts"
-            :products="cartStore.cart"
-          />
+          <div v-if="cartStore.hasProducts" class="flex flex-col gap-5 sm:gap-8">
+            <TheCartProductList
+              :products="cartStore.cart"
+            />
+            <AppButton
+              text="Checkout"
+              style-type="primary"
+              class="ml-auto text-3xl"
+              @click="() => console.log('checkout!')"
+            />
+          </div>
+
           <div v-else class="flex flex-col gap-5 text-2xl sm:gap-8">
             <p>
               It seems like you haven't added any items. Please, take a look around!

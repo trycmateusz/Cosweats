@@ -21,6 +21,5 @@ export interface Product {
 
 export interface ProductForCart extends Product {
   size: Size,
-  color: Color,
-  quantity: number
+  color: Color
 }

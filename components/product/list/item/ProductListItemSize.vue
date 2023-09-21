@@ -1,8 +1,8 @@
 <template>
   <button
     class="uppercase px-8 py-2 rounded-full border border-borderDarkColor text-blackishMain bg-whiteishDarker"
-    :class="{ 'size-active': isActive }"
-    @click="productStore.setActiveSize(size)"
+    :aria-selected="isActive"
+    @click="emit('size-change', size)"
   >
     {{ size }}
   </button>
@@ -10,7 +10,9 @@
 
 <script setup lang="ts">
 import type { Size } from '~/types/Size'
-const productStore = useProductStore()
+const emit = defineEmits<{
+  (e: 'size-change', size: Size): void
+}>()
 defineProps<{
   size: Size
   isActive: boolean
@@ -18,7 +20,7 @@ defineProps<{
 </script>
 
 <style scoped>
-.size-active {
+[aria-selected="true"] {
   @apply  bg-pinkDark text-whiteishMain
 }
 </style>

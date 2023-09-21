@@ -1,11 +1,11 @@
 <template>
-  <div class="fixed top-0 left-0 right-0 h-[100vh] bg-whiteishMain z-50 overflow-y-auto">
+  <div class="fixed top-0 left-0 right-0 h-[100vh] bg-whiteishMain z-50 overflow-y-auto overflow-x-hidden">
     <div
       :id="overlayId"
       class="overlay wrapper h-full"
     >
       <ClientOnly>
-        <AppCloseBar :parent-label="`Button to close overlay of ${product.name}`" @close="emit('close')" />
+        <AppCloseBar :cover-all-viewport-width="true" class="sticky top-0 z-60 bg-whiteishMain" :parent-label="`Button to close overlay of ${product.name}`" @close="emit('close')" />
       </ClientOnly>
       <div class="flex flex-col gap-5 p-5 sm:gap-8 sm:p-8">
         <div ref="activeImageContainer" class="product-image-active grid grid-cols-1 w-full gap-5 sm:gap-8 sm:grid-cols-[1fr_auto] lg:grid-cols-[3fr_1fr]">
@@ -21,7 +21,7 @@
                 :key="color"
                 class=" border-b-0 border-white border bg-white p-2 aspect-square sm:p-4 sm:border-b sm:border-r-0"
                 :class="{ 'active-border': url === activePhotoSrc }"
-                @click="productStore.setActiveColor(color)"
+                @click="setActiveProductColor(color)"
               >
                 <img
                   :src="url"
@@ -42,13 +42,11 @@
                 :key="index"
                 :size="size"
                 :is-active="size === productStore.active?.size"
+                @size-change="(size) => setActiveProductSize(size)"
               />
             </div>
           </div>
-          <div class="flex flex-col gap-5 ml-auto items-end sm:flex-row sm:items-center">
-            <ProductListItemQuantity :product="productStore.active" @change-quantity="(quantity: 1 | -1) => changeActiveProductQuantity(quantity)" />
-            <AppButton class="text-3xl" style-type="primary" text="Add to cart" @click="addActiveToCart" />
-          </div>
+          <AppButton class="ml-auto text-3xl" style-type="primary" text="Add to cart" @click="addActiveToCart" />
         </ClientOnly>
       </div>
     </div>
@@ -57,6 +55,8 @@
 
 <script setup lang="ts">
 import type { Product, ProductForCart } from '~/types/Product'
+import type { Size } from '~/types/Size'
+import type { Color } from '~/types/Color'
 const productStore = useProductStore()
 const cartStore = useCartStore()
 const { makeBodyFixed, removeFixedFromBody } = useFixedBody()
@@ -71,8 +71,7 @@ const emit = defineEmits<{
 productStore.setActive({
   ...props.product,
   size: props.product.sizes[0],
-  color: props.product.colors[0],
-  quantity: 1
+  color: props.product.colors[0]
 })
 const activePhotoSrc = computed(() => {
   if (productStore.active) {
@@ -90,9 +89,14 @@ const addActiveToCart = () => {
     emit('close')
   }
 }
-const changeActiveProductQuantity = (quantity: 1 | -1) => {
+const setActiveProductSize = (size: Size) => {
   if (productStore.active) {
-    productStore.changeQuantityBy(quantity, productStore.active)
+    productStore.setSize(size, productStore.active)
+  }
+}
+const setActiveProductColor = (color: Color) => {
+  if (productStore.active) {
+    productStore.setColor(color, productStore.active)
   }
 }
 onMounted(() => {

@@ -1,7 +1,9 @@
 <template>
   <p>
     <span class="flex justify-between mb-10 gap-8 text-3xl font-bold">
-      <span>{{ product.name }}</span>
+      <span>
+        {{ product.name }}
+      </span>
       <span class="flex flex-col text-right sm:flex-row sm:gap-2 md:flex-col md:gap-0">
         <span>
           {{ currencyStore.getPriceToShow(product.priceInCents) }}
@@ -18,10 +20,10 @@
 </template>
 
 <script setup lang="ts">
-import { Product } from '~/types/Product'
+import { Product, ProductForCart } from '~/types/Product'
 const currencyStore = useCurrencyStore()
 defineProps<{
-  product: Product
+  product: Product | ProductForCart
 }>()
 </script>
 

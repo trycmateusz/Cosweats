@@ -1,6 +1,6 @@
 <template>
   <div
-    class="grid grid-cols-1 gap-5"
+    class="grid grid-cols-1 gap-5 sm:gap-8"
   >
     <TheCartProductListItem
       v-for="product in products"

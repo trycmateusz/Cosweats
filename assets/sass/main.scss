@@ -23,9 +23,8 @@ body {
 }
 
 .body-fixed {
-  position: fixed;
   width: 100%;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .wrapper {
@@ -38,5 +37,4 @@ body {
   .body-fixed {
     width: Calc(100% - var(--scrollbar-width));
   }
-
 }

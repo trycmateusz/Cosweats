@@ -9,7 +9,7 @@ export const useFixedBody = () => {
     if (scrollPositionY) {
       window.scrollTo({
         top: scrollPositionY.value,
-        behavior: 'instant'
+        behavior: 'auto'
       })
     }
   }

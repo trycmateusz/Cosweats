@@ -1,5 +1,6 @@
 <template>
-  <div class="flex justify-end border-b border-whiteishDarker">
+  <div class="relative flex justify-end">
+    <div v-if="coverAllViewportWidth" class="absolute left-1/2 w-[100vw] h-full border-b border-whiteishDarker -translate-x-1/2" />
     <button
       :data-dynamic-element-parent-id="dynamicElementParentId"
       :aria-label="parentLabel"
@@ -17,6 +18,7 @@ defineProps<{
   parentLabel: string
   showBinIcon?: boolean
   dynamicElementParentId?: string
+  coverAllViewportWidth?: boolean
 }>()
 const emit = defineEmits<{
   (e: 'close'): void

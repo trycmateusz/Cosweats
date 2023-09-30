@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <main>
     <TheNavigation>
       <ShopNavigation @open-cart="isCartActive = true" />
     </TheNavigation>
-    <ShopHeader :text="headerText" />
+    <AppHeader :text="headerText" />
     <div v-for="(category, index) in productStore.categories" :key="index">
       <div>
         <ProductList :products="productStore[category]" />
@@ -15,7 +15,7 @@
         @close="isCartActive = false"
       />
     </teleport>
-  </div>
+  </main>
 </template>
 
 <script setup lang="ts">
@@ -39,8 +39,7 @@ if (productStore.sweatshirts[0]) {
   cartStore.addOne({
     ...productStore.sweatshirts[0],
     size: 'xs',
-    color: 'black',
-    quantity: 1
+    color: 'black'
   })
 }
 </script>

@@ -1,43 +1,35 @@
 import { fetchCollection } from '~/services/fetch'
 import type { Currency } from '~/types/Currency'
 
-type State = {
-  current: Currency | null
-  currencies: Currency[]
-}
-
-export const useCurrencyStore = defineStore('CurrencyStore', {
-  state: (): State => {
-    return {
-      current: null,
-      currencies: []
-    }
-  },
-  actions: {
-    async fetchAll () {
-      const currencies = await fetchCollection<Currency>('currencies')
-      if (currencies) {
-        for (const currencyToSet of currencies) {
-          const isSet = this.currencies.find(currency => currency.code === currencyToSet.code)
-          if (!isSet) {
-            this.currencies.push(currencyToSet)
-          }
-        }
-      }
-    },
-    setCurrent (currency: Currency) {
-      this.current = { ...currency }
-    }
-  },
-  getters: {
-    getPriceToShow (state) {
-      return (price: number): string => {
-        if (state.current) {
-          return `${Math.floor(price * state.current.ratio) / 100}`
-        } else {
-          return '0'
+export const useCurrencyStore = defineStore('CurrencyStore', () => {
+  const current = ref<Currency | null>(null)
+  const currencies = ref<Currency[]>([])
+  const fetchAll = async () => {
+    const fetchedCurrencies = await fetchCollection<Currency>('currencies')
+    if (fetchedCurrencies) {
+      for (const fetchedCurrency of fetchedCurrencies) {
+        const isSet = currencies.value.find(currency => currency.code === fetchedCurrency.code)
+        if (!isSet) {
+          currencies.value.push(fetchedCurrency)
         }
       }
     }
+  }
+  const setCurrent = (currency: Currency) => {
+    current.value = { ...currency }
+  }
+  const getPriceToShow = (price: number) => {
+    if (current.value) {
+      return `${Math.floor(price * current.value.ratio) / 100}`
+    } else {
+      return '0'
+    }
+  }
+  return {
+    current,
+    currencies,
+    fetchAll,
+    setCurrent,
+    getPriceToShow
   }
 })

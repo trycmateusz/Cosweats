@@ -5,7 +5,7 @@
       class="overlay wrapper h-full"
     >
       <ClientOnly>
-        <AppCloseBar :cover-all-viewport-width="true" class="sticky top-0 z-60 bg-whiteishMain" :parent-label="`Button to close overlay of ${product.name}`" @close="emit('close')" />
+        <AppCloseBar class="sticky top-0 z-60 bg-whiteishMain" :parent-label="`Button to close overlay of ${product.name}`" @close="emit('close')" />
       </ClientOnly>
       <div class="flex flex-col gap-5 p-5 sm:gap-8 sm:p-8">
         <div ref="activeImageContainer" class="product-image-active grid grid-cols-1 w-full gap-5 sm:gap-8 sm:grid-cols-[1fr_auto] lg:grid-cols-[3fr_1fr]">
@@ -19,7 +19,7 @@
               <button
                 v-for="(url, color) in product.photoUrls"
                 :key="color"
-                class=" border-b-0 border-white border bg-white p-2 aspect-square sm:p-4 sm:border-b sm:border-r-0"
+                class=" border-b-0 border-white border bg-white p-2 aspect-square focus:-outline-offset-4 sm:p-4 sm:border-b sm:border-r-0"
                 :class="{ 'active-border': url === activePhotoSrc }"
                 @click="setActiveProductColor(color)"
               >

@@ -1,11 +1,10 @@
 <template>
-  <div
-    class="grid grid-cols-1 gap-5 sm:gap-8"
-  >
+  <div>
     <TheCartProductListItem
       v-for="product in products"
       :key="product.id"
       :product="product"
+      :checkout="checkout"
     />
   </div>
 </template>
@@ -14,6 +13,7 @@
 import type { ProductForCart } from '~/types/Product'
 defineProps<{
   products: ProductForCart[]
+  checkout: boolean
 }>()
 </script>
 

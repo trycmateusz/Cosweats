@@ -4,7 +4,7 @@
       <a
         :aria-label="`Link redirecting to ${anchor}`"
         :href="anchor"
-        class="arrow w-32 h-32 animate-pulse"
+        class="arrow w-32 h-32 animate-pulse rounded-full focus:outline-offset-8"
       >
         <img
           src="~/assets/img/arrow_down.svg"

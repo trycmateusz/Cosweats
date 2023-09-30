@@ -6,9 +6,13 @@
     <ClientOnly>
       <div class="shadow hidden fixed top-0 right-1/2 w-full h-full bg-black opacity-90 z-50 md:block" @click="emit('close')" />
       <div
-        class="cart relative max-w-[700px] mr-0 right w-full z-60"
+        class="cart relative mr-0 right w-full h-max z-60 md:max-w-[700px]"
       >
-        <AppCloseBar :cover-all-viewport-width="true" class="sticky top-0 bg-whiteishMain z-60" parent-label="Button to close Cart" @close="emit('close')" />
+        <AppCloseBar
+          class="sticky top-0 bg-whiteishMain z-60"
+          parent-label="Button to close Cart"
+          @close="emit('close')"
+        />
         <div class="p-5 sm:p-8">
           <div class="flex gap-4 mb-10 sm:mb-16">
             <span class="text-7xl">Cart</span>
@@ -16,13 +20,15 @@
           </div>
           <div v-if="cartStore.hasProducts" class="flex flex-col gap-5 sm:gap-8">
             <TheCartProductList
+              class="grid grid-cols-1 gap-5 sm:gap-8"
               :products="cartStore.cart"
+              :checkout="false"
             />
-            <AppButton
+            <AppLink
               text="Checkout"
               style-type="primary"
               class="ml-auto text-3xl"
-              @click="() => console.log('checkout!')"
+              link="/checkout"
             />
           </div>
 

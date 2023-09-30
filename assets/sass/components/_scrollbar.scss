@@ -1,7 +1,8 @@
 @use '../abstracts' as *;
 
 ::-webkit-scrollbar {
-  width: var(--scrollbar-width)
+  width: var(--scrollbar-width);
+  height: var(--scrollbar-width);
 }
 ::-webkit-scrollbar-track {
   border-left: 1px solid $border-dark-color;
@@ -16,5 +17,40 @@
   }
   &:active {
     background-color: $pink-dark;
+  }
+}
+
+::-webkit-scrollbar-button:single-button {
+  display: block;
+  width: var(--scrollbar-width);
+  height: var(--scrollbar-width);
+  background-color: $darker-blackish;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 50%;
+  border-top: 1px solid $border-dark-color;
+  border-left: 1px solid $border-dark-color;
+  border-bottom: 1px solid $border-dark-color;
+  &:hover {
+    background-color: $pink-darker;
+  }
+  &:active {
+    background-color: $pink-dark;
+  }
+  &:vertical {
+    &:decrement {
+      background-image: url('~/assets/img/scrollbar_vertical_decrement_light.svg');
+    }
+    &:increment {
+      background-image: url('~/assets/img/scrollbar_vertical_increment_light.svg');
+    }
+  }
+  &:horizontal {
+    &:decrement {
+      background-image: url('~/assets/img/scrollbar_horizontal_decrement_light.svg');
+    }
+    &:increment {
+      background-image: url('~/assets/img/scrollbar_horizontal_increment_light.svg');
+    }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <button
-    class="px-8 py-2 rounded-full border-2 border-transparent border-whiteishDarker"
+    class="px-8 py-2 rounded-full border-2 border-transparent border-whiteishDarker focus:outline-offset-8 hover:opacity-80 focus:opacity-80 transition-opacity"
     :class="[color]"
     :aria-selected="isActive"
     @click="emit('color-change', color)"

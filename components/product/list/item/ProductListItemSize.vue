@@ -1,6 +1,6 @@
 <template>
   <button
-    class="uppercase px-8 py-2 rounded-full border border-borderDarkColor text-blackishMain bg-whiteishDarker"
+    class="uppercase px-8 py-2 rounded-full border border-borderDarkColor text-blackishMain bg-whiteishDarker focus:outline-offset-8 hover:opacity-80 focus:opacity-80 transition-opacity"
     :aria-selected="isActive"
     @click="emit('size-change', size)"
   >

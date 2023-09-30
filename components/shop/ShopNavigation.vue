@@ -24,6 +24,8 @@
               <AppDropdownLink
                 v-for="(link, linkIndex) in dropdown.links"
                 :key="linkIndex"
+                :aria-hidden="!dropdown.expanded"
+                :tabindex="dropdown.expanded ? 0 : -1"
                 :text="link.text"
                 :to="link.to"
               />
@@ -36,7 +38,9 @@
                   class="flex border-b border-borderDarkColor first:border-t"
                 >
                   <button
-                    class="flex-grow px-8 py-5 w-max max-w-full "
+                    class="flex-grow px-8 py-5 w-max max-w-full focus:-outline-offset-4"
+                    :aria-hidden="!dropdown.expanded"
+                    :tabindex="dropdown.expanded ? 0 : -1"
                     @click="chooseCurrency(currency)"
                   >
                     {{ `${currency.name} (${currency.symbol})` }}
@@ -61,7 +65,7 @@
           <div class="icons relative pointer-events-none">
             <img src="~/assets/img/cart.svg" class="max-w-[2.5rem] max-h-[2.25rem] sm:hidden" alt="">
             <span class="flex items-center justify-center absolute right-0 bottom-[20%] min-w-[1.2em] px-[0.4rem] leading-none rounded-full bg-blackishMain border border-whiteishMain translate-x-1/2 translate-y-1/2 aspect-square sm:static sm:translate-x-0 sm:translate-y-0">
-              {{ cartStore.getLength }}
+              {{ cartStore.getLength() }}
             </span>
           </div>
         </ClientOnly>

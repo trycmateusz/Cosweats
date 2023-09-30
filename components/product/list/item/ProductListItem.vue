@@ -3,6 +3,7 @@
     <button
       :label="`Photo which opens ${product.name} product info overlay`"
       :aria-controls="overlayAriaControlsId"
+      class="focus:-outline-offset-4"
       @click="isOverlayActive = true"
     >
       <img

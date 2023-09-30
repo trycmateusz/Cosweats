@@ -1,9 +1,9 @@
 <template>
-  <div class="relative">
+  <div class="relative h-full">
     <button
       :aria-controls="dropdownId"
       :aria-expanded="dropdown.expanded"
-      class="relative flex items-center gap-2 px-5 py-5 sm:px-8"
+      class="relative flex items-center px-5 py-5 h-full sm:px-8 sm:gap-2"
       @click="emit('expand')"
     >
       <span

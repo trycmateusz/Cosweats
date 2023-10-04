@@ -1,7 +1,6 @@
 <template>
   <button
-    class="px-8 py-2 rounded-full border-2 border-transparent border-whiteishDarker focus:outline-offset-8 hover:opacity-80 focus:opacity-80 transition-opacity"
-    :class="[color]"
+    class="px-8 py-2 rounded-full border border-borderDarkColor focus:outline-offset-8 hover:opacity-80 focus:opacity-80 transition-opacity"
     :aria-selected="isActive"
     @click="emit('color-change', color)"
   >
@@ -21,71 +20,7 @@ const emit = defineEmits<{
 </script>
 
 <style lang="scss" scoped>
-/* 'black' | 'blue' | 'brown' | 'claret' | 'green' | 'khaki' | 'orange' | 'pink' | 'purple' | 'red' | 'white' */
-.black {
-  @apply text-white bg-blackishDark;
-  &[aria-selected="true"] {
-    @apply border-white
-  }
-}
-.blue {
-  @apply bg-blue-100 text-blue-900;
-  &[aria-selected="true"] {
-    @apply border-blue-900
-  }
-}
-.brown {
-  @apply bg-amber-100 text-amber-900;
-  &[aria-selected="true"] {
-    @apply border-amber-900
-  }
-}
-.claret {
-  @apply bg-red-100 text-red-950;
-  &[aria-selected="true"] {
-    @apply border-red-950
-  }
-}
-.green {
-  @apply bg-emerald-100 text-emerald-800;
-  &[aria-selected="true"] {
-    @apply border-emerald-800
-  }
-}
-.khaki {
-  @apply bg-lime-200 text-black;
-  &[aria-selected="true"] {
-    @apply border-black
-  }
-}
-.orange {
-  @apply bg-orange-100 text-orange-600;
-  &[aria-selected="true"] {
-    @apply border-orange-600
-  }
-}
-.pink {
-  @apply bg-pink-100 text-pink-700;
-  &[aria-selected="true"] {
-    @apply border-pink-700
-  }
-}
-.purple {
-  @apply bg-purple-100 text-purple-700;
-  &[aria-selected="true"] {
-    @apply border-white
-  }
-}
-.red {
-  @apply bg-red-100 text-red-500;
-  &[aria-selected="true"] {
-    @apply border-red-500
-  }
-}
-.white {
-  @apply bg-white text-blackishDark;
-  &[aria-selected="true"] {
-    @apply border-blackishDark
-  }
+[aria-selected="true"] {
+  @apply  bg-pinkDark text-whiteishMain
 }
 </style>

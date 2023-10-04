@@ -6,7 +6,7 @@
       dynamic-element-parent-id="cart"
       :is-bin="true"
       :light-border="true"
-      :parent-label="`Button to delete ${product.name} with size ${product.size} and color ${product.color} from the cart`"
+      :button-label="`Button to delete ${product.name} with size ${product.size} and color ${product.color} from the cart`"
       @close="cartStore.removeOne(props.product)"
     />
     <div
@@ -28,30 +28,40 @@
 
         <div class="flex gap-2 mt-auto">
           <span>
-            {{ currencyStore.getPriceToShow(product.priceInCents) }}
+            {{ currencyStore.formatPriceToShow(product.priceInCents) }}
           </span>
           <span>
             {{ currencyStore.current?.symbol }}
           </span>
         </div>
       </div>
-      <div v-if="!checkout" class="flex flex-wrap mt-5 gap-5 text-3xl sm:mt-8">
-        <ProductListItemSize
-          v-for="size in product.sizes"
-          :key="size"
-          :size="size"
-          :is-active="product.size === size"
-          @size-change="productStore.setSize(size, product)"
-        />
+      <div v-if="!checkout" class="flex flex-col gap-5 mt-5 sm:mt-8">
+        <span>
+          Choose a size:
+        </span>
+        <div class="flex flex-wrap gap-5 text-3xl">
+          <ProductListItemSize
+            v-for="size in product.sizes"
+            :key="size"
+            :size="size"
+            :is-active="product.size === size"
+            @size-change="productStore.setSize(size, product)"
+          />
+        </div>
       </div>
-      <div v-if="!checkout" class="flex flex-wrap gap-5 text-3xl">
-        <ProductListItemColor
-          v-for="color in product.colors"
-          :key="color"
-          :color="color"
-          :is-active="product.color === color"
-          @color-change="productStore.setColor(color, product)"
-        />
+      <div v-if="!checkout" class="flex flex-col gap-5 ">
+        <span>
+          Choose a color:
+        </span>
+        <div class="flex flex-wrap gap-5 text-3xl">
+          <ProductListItemColor
+            v-for="color in product.colors"
+            :key="color"
+            :color="color"
+            :is-active="product.color === color"
+            @color-change="productStore.setColor(color, product)"
+          />
+        </div>
       </div>
     </div>
   </div>

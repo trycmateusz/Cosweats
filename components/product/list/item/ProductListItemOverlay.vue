@@ -5,7 +5,7 @@
       class="overlay wrapper h-full"
     >
       <ClientOnly>
-        <AppCloseBar class="sticky top-0 z-60 bg-whiteishMain" :parent-label="`Button to close overlay of ${product.name}`" @close="emit('close')" />
+        <AppCloseBar class="sticky top-0 z-60 bg-whiteishMain" :button-label="`Button to close overlay of ${product.name}`" @close="emit('close')" />
       </ClientOnly>
       <div class="flex flex-col gap-5 p-5 sm:gap-8 sm:p-8">
         <div ref="activeImageContainer" class="product-image-active grid grid-cols-1 w-full gap-5 sm:gap-8 sm:grid-cols-[1fr_auto] lg:grid-cols-[3fr_1fr]">
@@ -42,7 +42,7 @@
                 :key="index"
                 :size="size"
                 :is-active="size === productStore.active?.size"
-                @size-change="(size) => setActiveProductSize(size)"
+                @size-change="setActiveProductSize(size)"
               />
             </div>
           </div>
@@ -59,7 +59,6 @@ import type { Size } from '~/types/Size'
 import type { Color } from '~/types/Color'
 const productStore = useProductStore()
 const cartStore = useCartStore()
-const { makeBodyFixed, removeFixedFromBody } = useFixedBody()
 const props = defineProps<{
   product: Product
   overlayId: string
@@ -68,6 +67,7 @@ const emit = defineEmits<{
   (e: 'close'): void
   (e: 'add-active', product: ProductForCart): void
 }>()
+const router = useRouter()
 productStore.setActive({
   ...props.product,
   size: props.product.sizes[0],
@@ -100,10 +100,14 @@ const setActiveProductColor = (color: Color) => {
   }
 }
 onMounted(() => {
+  const { makeBodyFixed } = useFixedBody()
   makeBodyFixed()
+  router.push({ query: { itemId: props.product.id } })
 })
 onUnmounted(() => {
+  const { removeFixedFromBody } = useFixedBody()
   removeFixedFromBody()
+  router.push({ query: {} })
 })
 </script>
 

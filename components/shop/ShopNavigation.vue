@@ -65,7 +65,7 @@
           <div class="icons relative pointer-events-none">
             <img src="~/assets/img/cart.svg" class="max-w-[2.5rem] max-h-[2.25rem] sm:hidden" alt="">
             <span class="flex items-center justify-center absolute right-0 bottom-[20%] min-w-[1.2em] px-[0.4rem] leading-none rounded-full bg-blackishMain border border-whiteishMain translate-x-1/2 translate-y-1/2 aspect-square sm:static sm:translate-x-0 sm:translate-y-0">
-              {{ cartStore.getLength() }}
+              {{ cartStore.getLength }}
             </span>
           </div>
         </ClientOnly>
@@ -93,15 +93,15 @@ const dropdowns: Dropdown[] = reactive([
     links: [
       {
         text: 'Sweaters',
-        to: '/shop'
+        to: '/shop/sweaters'
       },
       {
         text: 'Sweatshirts',
-        to: '/shop'
+        to: '/shop/sweatshirts'
       },
       {
         text: 'Sweatpants',
-        to: '/shop'
+        to: '/shop/sweatpants'
       }
     ]
   },

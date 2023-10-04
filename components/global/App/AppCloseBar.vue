@@ -6,7 +6,7 @@
     />
     <button
       :data-dynamic-element-parent-id="dynamicElementParentId"
-      :aria-label="parentLabel"
+      :aria-label="buttonLabel"
       class="close-btn sticky top-0 p-5 sm:p-8"
       @click.prevent="emit('close')"
     >
@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 defineProps<{
-  parentLabel: string
+  buttonLabel: string
   isBin?: boolean
   lightBorder?: boolean
   dynamicElementParentId?: string

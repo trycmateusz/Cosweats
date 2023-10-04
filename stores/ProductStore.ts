@@ -1,22 +1,32 @@
-import { fetchCollection } from '~/services/fetch'
-import type { Product, ProductForCart, ProductCategory } from '~/types/Product.js'
+import { fetchCollection, fetchOnCondition } from '~/services/fetch'
+import type { Product, ProductForCart } from '~/types/Product.js'
 import type { Color } from 'types/Color'
 import type { Size } from 'types/Size'
 
 export const useProductStore = defineStore('ProductStore', () => {
   const active = ref<ProductForCart | null>(null)
-  const categories: ProductCategory[] = ['sweatshirts']
-  const sweatshirts = ref<Product[]>([])
-  const getActivePhotoUrl = (product: Product | ProductForCart) => {
+  const products = ref<Product[]>([])
+  const getPhotoUrl = (product: Product | ProductForCart) => {
     return product.photoUrls[product.colors[0]]
   }
   const fetchAll = async (): Promise<void> => {
-    const fetchedSweatshirts = await fetchCollection<Product>('sweatshirts')
-    if (fetchedSweatshirts) {
-      for (const fetchedSweatshirt of fetchedSweatshirts) {
-        const isSet = sweatshirts.value.find(sweatshirt => sweatshirt.id === fetchedSweatshirt.id)
+    const fetchedProducts = await fetchCollection<Product>('products')
+    if (fetchedProducts) {
+      for (const fetchedProduct of fetchedProducts) {
+        const isSet = products.value.find(sweatshirt => sweatshirt.id === fetchedProduct.id)
         if (!isSet) {
-          sweatshirts.value.push({ ...fetchedSweatshirt, category: 'sweatshirts' })
+          products.value.push({ ...fetchedProduct })
+        }
+      }
+    }
+  }
+  const fetchCategory = async (category: string): Promise<void> => {
+    const fetchedProducts = await fetchOnCondition<Product>('products', 'category', category)
+    if (fetchedProducts) {
+      for (const fetchedProduct of fetchedProducts) {
+        const isSet = products.value.find(sweatshirt => sweatshirt.id === fetchedProduct.id)
+        if (!isSet) {
+          products.value.push({ ...fetchedProduct })
         }
       }
     }
@@ -30,14 +40,20 @@ export const useProductStore = defineStore('ProductStore', () => {
   const setSize = (size: Size, product: ProductForCart): void => {
     product.size = size
   }
+  const getProductsFrom = computed(() => {
+    return (category: string) => {
+      return products.value.filter(product => product.category === category)
+    }
+  })
   return {
     active,
-    categories,
-    sweatshirts,
-    getActivePhotoUrl,
+    products,
+    getPhotoUrl,
     fetchAll,
+    fetchCategory,
     setActive,
     setColor,
-    setSize
+    setSize,
+    getProductsFrom
   }
 })

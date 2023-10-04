@@ -3,11 +3,9 @@
     <TheNavigation>
       <ShopNavigation @open-cart="isCartActive = true" />
     </TheNavigation>
-    <AppHeader :text="headerText" />
-    <div v-for="(category, index) in productStore.categories" :key="index">
-      <div>
-        <ProductList :products="productStore[category]" />
-      </div>
+    <AppHeader text="Cosweats" />
+    <div>
+      <ProductList :products="productStore.products" />
     </div>
     <teleport to="body">
       <TheCart
@@ -24,24 +22,19 @@ const productStore = useProductStore()
 const cartStore = useCartStore()
 const route = useRoute()
 const isCartActive = ref(false)
-const headerText = computed(() => {
-  if (route.path === '/shop') {
-    return 'Cosweats'
-  } else {
-    return route.path.split('')[2]
-  }
-})
+const initialQueryItemId = route.query.itemId
+provide('initialQueryItemId', initialQueryItemId)
 await currencyStore.fetchAll()
 currencyStore.setCurrent(currencyStore.currencies[0])
 productStore.fetchAll()
-console.log('adding one product to cart...')
-if (productStore.sweatshirts[0]) {
+if (productStore.products[0]) {
   cartStore.addOne({
-    ...productStore.sweatshirts[0],
+    ...productStore.products[0],
     size: 'xs',
     color: 'black'
   })
 }
+
 </script>
 
 <style scoped>

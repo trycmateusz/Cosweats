@@ -7,7 +7,7 @@
       @click="isOverlayActive = true"
     >
       <img
-        :src="productStore.getActivePhotoUrl(product)"
+        :src="productStore.getPhotoUrl(product)"
         :alt="imageAlt"
         class="p-5 w-full bg-white sm:p-8 pointer-events-none aspect-square"
       >
@@ -39,7 +39,8 @@ const props = defineProps<{
   product: Product
 }>()
 const imageAlt = ref(`${props.product.name} in ${props.product.colors[0]}`)
-const isOverlayActive = ref(false)
+const initialQueryItemId = inject('initialQueryItemId')
+const isOverlayActive = ref(initialQueryItemId ? props.product.id === initialQueryItemId : false)
 const overlayAriaControlsId = computed(() => {
   return `${props.product.nameKebab}-overlay`
 })

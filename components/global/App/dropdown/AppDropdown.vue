@@ -1,5 +1,5 @@
 <template>
-  <div class="relative h-full">
+  <div class="dropdown relative h-full">
     <button
       :aria-controls="dropdownId"
       :aria-expanded="dropdown.expanded"
@@ -74,6 +74,11 @@ onMounted(() => {
 button[aria-expanded="true"]{
   svg {
     @apply rotate-180
+  }
+}
+.dropdown {
+  ::-webkit-scrollbar-thumb {
+    border-right: 0;
   }
 }
 .overflow-y-auto {

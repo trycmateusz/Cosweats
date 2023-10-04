@@ -1,3 +1,12 @@
+type DropdownLinkToParams = {
+  [key: string]: string
+}
+
+export type DropdownLinkTo = {
+  name: string
+  params: DropdownLinkToParams
+}
+
 type DropdownLink = {
   text: string
   to: string

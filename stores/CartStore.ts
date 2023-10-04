@@ -13,28 +13,25 @@ export const useCartStore = defineStore('CartStore', () => {
       cart.value.splice(index, 1)
     }
   }
-  const getLength = (): number => {
-    if (cart.value.length === 0) {
-      return 0
-    } else {
-      return cart.value.length
-    }
-  }
-  const hasProducts = (): boolean => {
-    return cart.value.length !== 0
-  }
-  const getSubtotalPrice = (): number => {
-    const prices = cart.value.map(product => product.priceInCents)
-    const sum = prices.reduce((price, currentValue) => price + currentValue, 0)
-    return sum
-  }
-  const getTotalPrice = (): number => {
+  const getLength = computed((): number => {
+    return cart.value.length
+  })
+  const hasProducts = computed((): boolean => {
+    return getLength.value !== 0
+  })
+  const getPrices = computed((): number[] => {
+    return cart.value.map(product => product.priceInCents)
+  })
+  const getSubtotalPrice = computed((): number => {
+    return getPrices.value.reduce((price, currentValue) => price + currentValue, 0)
+  })
+  const getTotalPrice = computed((): number => {
     if (discount.value) {
-      return getSubtotalPrice() * discount.value.multiplier
+      return getSubtotalPrice.value * discount.value.multiplier
     } else {
-      return getSubtotalPrice()
+      return getSubtotalPrice.value
     }
-  }
+  })
   return {
     cart,
     addOne,

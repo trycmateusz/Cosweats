@@ -18,9 +18,9 @@ export const useCurrencyStore = defineStore('CurrencyStore', () => {
   const setCurrent = (currency: Currency) => {
     current.value = { ...currency }
   }
-  const getPriceToShow = (price: number) => {
+  const formatPriceToShow = (price: number) => {
     if (current.value) {
-      return `${Math.floor(price * current.value.ratio) / 100}`
+      return `${(Math.floor(price * current.value.ratio) / 100).toFixed(2)}`
     } else {
       return '0'
     }
@@ -30,6 +30,6 @@ export const useCurrencyStore = defineStore('CurrencyStore', () => {
     currencies,
     fetchAll,
     setCurrent,
-    getPriceToShow
+    formatPriceToShow
   }
 })

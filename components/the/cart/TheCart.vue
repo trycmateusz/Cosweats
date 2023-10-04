@@ -10,7 +10,7 @@
       >
         <AppCloseBar
           class="sticky top-0 bg-whiteishMain z-60"
-          parent-label="Button to close Cart"
+          button-label="Button to close Cart"
           @close="emit('close')"
         />
         <div class="p-5 sm:p-8">

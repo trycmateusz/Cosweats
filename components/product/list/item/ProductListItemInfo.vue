@@ -6,7 +6,7 @@
       </span>
       <span class="flex flex-col text-right sm:flex-row sm:gap-2 md:flex-col md:gap-0">
         <span>
-          {{ currencyStore.getPriceToShow(product.priceInCents) }}
+          {{ currencyStore.formatPriceToShow(product.priceInCents) }}
         </span>
         <span v-if="currencyStore.current">
           {{ currencyStore.current.symbol }}

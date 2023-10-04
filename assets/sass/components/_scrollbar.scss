@@ -10,7 +10,8 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  border: 1px solid $darker-blackish;
+  border-left: 1px solid $border-dark-color;
+  border-right: 1px solid $border-dark-color;
   background-color: $whiteish-main;
   &:hover {
     background-color: $pink-darker;

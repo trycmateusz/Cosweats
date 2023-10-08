@@ -1,6 +1,6 @@
 export const useFixedBody = () => {
   const scrollPositionY = ref<number | undefined>(undefined)
-  const allContent = document.querySelectorAll('main')
+  const allContent = document.querySelectorAll('#content')
   const makeBodyFixed = () => {
     scrollPositionY.value = window.scrollY
     document.body.classList.add('body-fixed')

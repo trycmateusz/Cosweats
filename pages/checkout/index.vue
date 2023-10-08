@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="content">
     <TheNavigation class="border-b border-borderDarkColor" />
     <AppHeader text="Checkout" />
     <main class="flex flex-col gap-10 wrapper p-5 sm:p-8 sm:gap-16">
@@ -46,7 +46,7 @@
           </div>
         </form>
       </div>
-      <CheckoutForm />
+      <CheckoutForm @success="submitSuccessPopupOpen = true" />
       <div class="flex flex-col gap-5 sm:gap-8 sm:flex-row sm:items-center">
         <ProductListPriceTotal
           class="max-w-full sm:max-w-fit"
@@ -67,38 +67,22 @@
       </div>
     </main>
     <ClientOnly>
-      <teleport to="body">
-        <div
-          v-if="discountAppliedOverlayOpen"
-          class="fixed top-0 left-0 w-full h-full z-50"
-        >
-          <div
-            class="absolute w-full h-full bg-black opacity-90"
-            @click="closeDiscountOverlay"
-          />
-          <div
-            id="discountApplied"
-            class="flex flex-col relative top-0 left-0 w-full h-full bg-whiteishMain z-60 overflow-hidden md:left-1/2 md:top-1/2 md:h-min md:max-w-3xl md:-translate-x-1/2 md:-translate-y-1/2"
-          >
-            <AppCloseBar
-              class="bg-whiteishMain z-20 overflow-hidden"
-              button-label="Button to close overlay indicating that the discount has been set."
-              @close="closeDiscountOverlay"
-            />
-            <img class="absolute left-0 top-1/2 -translate-x-1/4 -translate-y-1/2 md:top-auto md:bottom-0 md:w-1/2 md:translate-y-1/4 md:-translate-x-20" src="~/assets/img/checkmark.svg" alt="">
-            <div class="relative flex-grow flex flex-col items-center justify-center gap-5 p-5 text-3xl z-10 sm:p-8 sm:gap-8">
-              <span>
-                Discount code applied!
-              </span>
-              <AppButton
-                style-type="primary"
-                text="Okay"
-                @click="closeDiscountOverlay"
-              />
-            </div>
-          </div>
-        </div>
-      </teleport>
+      <CheckoutPopup
+        v-if="discountAppliedPopupOpen"
+        title="Discount code applied!"
+        button-text="Okay"
+        @close="closeDiscountOverlay"
+      />
+      <CheckoutPopup
+        v-if="submitSuccessPopupOpen"
+        title="Transaction completed successfully!"
+        button-text="Thanks!"
+        @close="navigateToShopAfterFormSuccess"
+      >
+        <template #message>
+          Thank you for shopping at Cosweats! I hope you will visit us again soon. : )
+        </template>
+      </CheckoutPopup>
     </ClientOnly>
   </div>
 </template>
@@ -112,9 +96,11 @@ const cartStore = useCartStore()
 const currencyStore = useCurrencyStore()
 const { makeBodyFixed, removeFixedFromBody } = useFixedBody()
 const { discount, fetchDiscount, errorMessage, setErrorMessageToNull } = useDiscount()
+const router = useRouter()
 const discountCode = ref('')
 const discountError = ref<HTMLElement | undefined>(undefined)
-const discountAppliedOverlayOpen = ref(false)
+const discountAppliedPopupOpen = ref(false)
+const submitSuccessPopupOpen = ref(false)
 const subtotalWithCurrency = computed(() => {
   return `${currencyStore.formatPriceToShow(cartStore.getSubtotalPrice)} ${currencyStore.current?.symbol}`
 })
@@ -133,7 +119,7 @@ const shipmentText = computed(() => {
 })
 const closeDiscountOverlay = () => {
   removeFixedFromBody()
-  discountAppliedOverlayOpen.value = false
+  discountAppliedPopupOpen.value = false
 }
 const checkIfEmptyAndFetchDiscount = () => {
   setErrorMessageToNull()
@@ -141,9 +127,19 @@ const checkIfEmptyAndFetchDiscount = () => {
     fetchDiscount(discountCode.value)
   }
 }
+const navigateToShopAfterFormSuccess = () => {
+  submitSuccessPopupOpen.value = false
+  removeFixedFromBody()
+  router.push('/shop')
+}
 watch(discount, () => {
   if (discount.value) {
-    discountAppliedOverlayOpen.value = true
+    discountAppliedPopupOpen.value = true
+    makeBodyFixed()
+  }
+})
+watch(submitSuccessPopupOpen, () => {
+  if (submitSuccessPopupOpen.value) {
     makeBodyFixed()
   }
 })

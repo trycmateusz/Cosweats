@@ -1,19 +1,19 @@
 <template>
-  <main>
+  <div id="content">
     <TheNavigation>
       <ShopNavigation @open-cart="isCartActive = true" />
     </TheNavigation>
     <AppHeader :text="headerText" />
-    <div>
+    <main>
       <ProductList :products="productStore.getProductsFrom(category)" />
-    </div>
+    </main>
     <teleport to="body">
       <TheCart
         v-if="isCartActive"
         @close="isCartActive = false"
       />
     </teleport>
-  </main>
+  </div>
 </template>
 
 <script setup lang="ts">

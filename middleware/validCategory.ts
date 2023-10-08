@@ -2,12 +2,12 @@ import { fetchCollection } from '~/services/fetch'
 
 export default defineNuxtRouteMiddleware(async (to) => {
   const categories = await fetchCollection('categories')
+  const { createStatusError } = useStatusError()
   if (!categories) {
-    return navigateTo('/shop')
+    createStatusError(404, 'page not found')
   }
   const routeCategory = to.path.split('/')[2]
   if (!categories?.includes(routeCategory)) {
-    console.log(categories?.includes(routeCategory))
-    return navigateTo('/shop')
+    createStatusError(404, 'page not found')
   }
 })

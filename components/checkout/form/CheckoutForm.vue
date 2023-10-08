@@ -43,7 +43,9 @@ import type { CheckoutForm, CheckoutFormRule, CheckoutFormRulesetWithActiveError
 // I learned a lot. It was painful. But I finished it.
 // thank you for your attention.
 // ~ sincerely, a junior web developer in tears, ready to cry himself to sleep .
-const router = useRouter()
+const emit = defineEmits<{
+  (e: 'success'): void
+}>()
 const formData = ref<CheckoutForm>({
   firstName: '',
   lastName: '',
@@ -151,7 +153,7 @@ const isFormValid = (): boolean => {
 }
 const submitForm = () => {
   if (isFormValid()) {
-    router.push('/shop')
+    emit('success')
   }
 }
 </script>

@@ -9,6 +9,12 @@ export default defineNuxtConfig({
     }]
   ],
   pages: true,
+  routeRules: {
+    '/checkout': { ssr: false },
+    '/error': { ssr: false },
+    '/shop': { swr: true },
+    '/shop/category()': { swr: true }
+  },
   imports: {
     dirs: ['stores']
   },

@@ -46,7 +46,9 @@
           </div>
         </form>
       </div>
-      <CheckoutForm @success="submitSuccessPopupOpen = true" />
+      <CheckoutForm
+        @success="submitSuccessPopupOpen = true"
+      />
       <div class="flex flex-col gap-5 sm:gap-8 sm:flex-row sm:items-center">
         <ProductListPriceTotal
           class="max-w-full sm:max-w-fit"
@@ -116,7 +118,11 @@ const discountText = computed(() => {
   }
 })
 const shipmentText = computed(() => {
-  return 'excluding shipment'
+  if (cartStore.shippingPriceInCents === 0) {
+    return 'excluding shipping'
+  } else {
+    return `and shipment worth ${currencyStore.formatPriceToShow(cartStore.shippingPriceInCents)} ${currencyStore.current?.symbol}`
+  }
 })
 const closeDiscountOverlay = () => {
   removeFixedFromBody()

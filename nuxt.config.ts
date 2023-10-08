@@ -3,6 +3,11 @@ import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  runtimeConfig: {
+    public: {
+      cityApiKey: process.env.API_NINJAS_API_KEY
+    }
+  },
   modules: [
     ['@pinia/nuxt', {
       autoImports: ['defineStore', 'acceptHMRUpdate', 'storeToRefs']
@@ -11,9 +16,7 @@ export default defineNuxtConfig({
   pages: true,
   routeRules: {
     '/checkout': { ssr: false },
-    '/error': { ssr: false },
-    '/shop': { swr: true },
-    '/shop/category()': { swr: true }
+    '/error': { ssr: false }
   },
   imports: {
     dirs: ['stores']

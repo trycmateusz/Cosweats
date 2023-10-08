@@ -38,7 +38,6 @@ const headerText = computed(() => {
 })
 await productStore.fetchCategory(category)
 await currencyStore.fetchAll()
-currencyStore.setCurrent(currencyStore.currencies[0])
 </script>
 
 <style scoped>

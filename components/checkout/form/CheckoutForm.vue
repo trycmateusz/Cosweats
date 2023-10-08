@@ -26,7 +26,12 @@
         class="flex-grow rounded-full p-5 border border-borderDarkColor h-min sm:flex-grow-0"
         :class="{ 'bg-red-100': rulesetsAndActiveErrors[key].error }"
         :type="key === 'email' ? 'email' : 'text'"
-        @blur="rulesetsAndActiveErrors[key].error = null"
+        @blur="() => {
+          rulesetsAndActiveErrors[key].error = null
+          if(key === 'city'){
+            checkShippingPriceTo(formData[key])
+          }
+        }"
       >
     </div>
   </form>
@@ -35,17 +40,25 @@
 <script setup lang="ts">
 import { convertToTitleCaseFromCamelCase, getEntries } from '~/helpers'
 import type { CheckoutForm, CheckoutFormRule, CheckoutFormRulesetWithActiveErrors } from '~/types/Checkout'
-// IMPORTANT!
-// if you are about to review this code, please forgive me.
-// i am fully aware of the spaghetti I made here. I sincerely apologise for this monstrosity.
-// I tried to my best abilities to create a universal form, but it seems taking the easy way (making individual inputs and handling them inidividually) would probably be a better idea.
-// even though I am aware of this, I spent too much time on this solution and I don't plan to scrap it.
-// I learned a lot. It was painful. But I finished it.
-// thank you for your attention.
-// ~ sincerely, a junior web developer in tears, ready to cry himself to sleep .
+import type { City } from '~/types/City'
+const cityApiKey = useRuntimeConfig().public.cityApiKey
+const cartStore = useCartStore()
 const emit = defineEmits<{
   (e: 'success'): void
+  (e: 'shipping-set', price: number): void
 }>()
+const warehouse: City = {
+  name: 'Warsaw',
+  latitude: 52.2167,
+  longitude: 21.0333,
+  country: 'PL',
+  population: 1790658,
+  is_capital: true
+}
+const kilometersPerDegree = 111
+const centsPerTwoKilometers = 1
+const minShippingPriceInCents = 200
+const maxShippingPriceInCents = 2000
 const formData = ref<CheckoutForm>({
   firstName: '',
   lastName: '',
@@ -81,7 +94,10 @@ const rulesetsAndActiveErrors = ref<CheckoutFormRulesetWithActiveErrors>({
     error: null
   },
   city: {
-    error: null
+    error: null,
+    ruleset: {
+      validCity: true
+    }
   }
 })
 const getErrorMessage = (rule: keyof CheckoutFormRule | null, field: string): string => {
@@ -97,6 +113,9 @@ const getErrorMessage = (rule: keyof CheckoutFormRule | null, field: string): st
     },
     onlyNumber: () => {
       return `${field} field accepts only numbers.`
+    },
+    validCity: () => {
+      return 'City not avaiable for shipping.'
     }
   }
   if (rule === 'exactLength') {
@@ -105,6 +124,35 @@ const getErrorMessage = (rule: keyof CheckoutFormRule | null, field: string): st
     return getError[rule]()
   } else {
     return ''
+  }
+}
+const checkShippingPriceTo = async (city: string) => {
+  if (city.length > 0) {
+    const { data, error } = await useFetch<City[]>(`https://api.api-ninjas.com/v1/city?name=${city}`, {
+      headers: {
+        'X-Api-Key': cityApiKey as string
+      }
+    })
+    if (error.value) {
+      rulesetsAndActiveErrors.value.city.error = 'validCity'
+    }
+    if (data.value) {
+      if (!data.value[0]) {
+        rulesetsAndActiveErrors.value.city.error = 'validCity'
+      } else {
+        const city = data.value[0]
+        const distanceInDegrees = Math.sqrt(Math.pow(city.latitude - warehouse.latitude, 2) + Math.pow(city.longitude - warehouse.longitude, 2))
+        const distance = distanceInDegrees * kilometersPerDegree
+        let price = distance * centsPerTwoKilometers
+        if (price < minShippingPriceInCents) {
+          price = minShippingPriceInCents
+        }
+        if (price > maxShippingPriceInCents) {
+          price = maxShippingPriceInCents
+        }
+        cartStore.setShipping(price)
+      }
+    }
   }
 }
 const isEmpty = (expr: string): boolean => {
@@ -146,6 +194,9 @@ const isFormValid = (): boolean => {
           valid = false
           rulesetsAndActiveErrors.value[key].error = 'onlyNumber'
         }
+      }
+      if (rulesetsAndActiveErrors.value[key].error === 'validCity') {
+        valid = false
       }
     }
   })

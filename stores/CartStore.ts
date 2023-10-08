@@ -4,6 +4,7 @@ import { useDiscount } from '~/composables/useDiscount'
 export const useCartStore = defineStore('CartStore', () => {
   const { discount } = useDiscount()
   const cart = ref<ProductForCart[]>([])
+  const shippingPriceInCents = ref(0)
   const addOne = (product: ProductForCart) => {
     cart.value.push(product)
   }
@@ -12,6 +13,9 @@ export const useCartStore = defineStore('CartStore', () => {
     if (index !== -1) {
       cart.value.splice(index, 1)
     }
+  }
+  const setShipping = (price: number) => {
+    shippingPriceInCents.value = price
   }
   const getLength = computed((): number => {
     return cart.value.length
@@ -27,15 +31,17 @@ export const useCartStore = defineStore('CartStore', () => {
   })
   const getTotalPrice = computed((): number => {
     if (discount.value) {
-      return getSubtotalPrice.value * discount.value.multiplier
+      return (getSubtotalPrice.value + shippingPriceInCents.value) * discount.value.multiplier
     } else {
-      return getSubtotalPrice.value
+      return (getSubtotalPrice.value + shippingPriceInCents.value)
     }
   })
   return {
     cart,
+    shippingPriceInCents,
     addOne,
     removeOne,
+    setShipping,
     getLength,
     hasProducts,
     getSubtotalPrice,

@@ -25,7 +25,6 @@ const isCartActive = ref(false)
 const initialQueryItemId = route.query.itemId
 provide('initialQueryItemId', initialQueryItemId)
 await currencyStore.fetchAll()
-currencyStore.setCurrent(currencyStore.currencies[0])
 productStore.fetchAll()
 </script>
 

@@ -13,6 +13,7 @@ export type CheckoutFormRule = {
   exactLength?: number
   email?: boolean
   onlyNumber?: boolean
+  validCity?: boolean
 }
 
 export type CheckoutFormRuleErrorMessage = {

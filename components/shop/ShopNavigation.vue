@@ -130,7 +130,7 @@ const closeAllButOneDropdown = (id: number): void => {
   }
 }
 const chooseCurrency = (currency: Currency): void => {
-  currencyStore.setCurrent(currency)
+  currencyStore.setCurrent(currency.code)
   closeAll(dropdowns)
 }
 watch(currentCurrency, (): void => {

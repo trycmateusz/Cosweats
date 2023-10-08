@@ -40,7 +40,6 @@ const goBack = () => {
   clearError()
 }
 </script>
-
 <style lang="scss" scoped>
 .page-height {
   height: Calc(100svh - var(--nav-height));

@@ -15,16 +15,33 @@ export const useCurrencyStore = defineStore('CurrencyStore', () => {
       }
     }
   }
-  const setCurrent = (currency: Currency) => {
-    current.value = { ...currency }
+  const setCurrent = (currencyCode: string) => {
+    const newCurrent = currencies.value.find(currency => currency.code === currencyCode)
+    if (newCurrent) {
+      current.value = { ...newCurrent }
+      document.cookie = `currencyCode=${currencyCode}`
+    }
   }
   const formatPriceToShow = (price: number) => {
     if (current.value) {
       return `${(Math.floor(price * current.value.ratio) / 100).toFixed(2)}`
     } else {
-      return '0'
+      return '...'
     }
   }
+  const setCurrentInitially = () => {
+    const cookies = document.cookie.split(';')
+    const currencyCookie = cookies.find(cookie => cookie.includes('currencyCode'))
+    if (currencyCookie) {
+      const currencyCode = currencyCookie.split('=')[1]
+      setCurrent(currencyCode)
+    } else {
+      setCurrent(currencies.value[0].code)
+    }
+  }
+  onMounted(() => {
+    setCurrentInitially()
+  })
   return {
     current,
     currencies,

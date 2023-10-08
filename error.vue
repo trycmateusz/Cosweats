@@ -27,13 +27,13 @@
 </template>
 
 <script setup lang="ts">
-import type { NuxtError } from '#app'
+import { NuxtError } from 'nuxt/app'
 const props = defineProps<{
   error: NuxtError
 }>()
 const router = useRouter()
 const fullMessage = computed(() => {
-  return `Oops, ${props.error.message}.`
+  return `Oops, ${props.error.message}`
 })
 const goBack = () => {
   router.back()

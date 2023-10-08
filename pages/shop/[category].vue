@@ -13,6 +13,7 @@
         @close="isCartActive = false"
       />
     </teleport>
+    <TheFooter />
   </div>
 </template>
 

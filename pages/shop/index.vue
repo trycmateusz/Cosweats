@@ -7,6 +7,7 @@
     <main>
       <ProductList :products="productStore.products" />
     </main>
+    <TheFooter />
     <teleport to="body">
       <TheCart
         v-if="isCartActive"

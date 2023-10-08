@@ -2,7 +2,7 @@
   <span
     class="glow-box relative inline-block"
   >
-    <span>
+    <span class="relative z-20">
       <slot />
     </span>
 

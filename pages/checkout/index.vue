@@ -57,7 +57,7 @@
           {{ `${subtotalWithCurrency} worth of products ${discountText} and ${shipmentText}` }}
         </span>
       </div>
-      <div class="flex flex-col justify-end items-end gap-5 text-3xl md:flex-row sm:gap-8">
+      <div class="flex flex-col justify-end items-end gap-5 mb-5 text-3xl md:flex-row sm:gap-8 sm:mb-8">
         <AppButton form="checkoutForm" text="Checkout" style-type="primary" />
         <AppLink
           link="/shop"
@@ -66,6 +66,7 @@
         />
       </div>
     </main>
+    <TheFooter />
     <ClientOnly>
       <CheckoutPopup
         v-if="discountAppliedPopupOpen"

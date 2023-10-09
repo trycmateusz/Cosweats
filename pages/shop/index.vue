@@ -26,9 +26,11 @@ const initialQueryItemId = route.query.itemId
 provide('initialQueryItemId', initialQueryItemId)
 await currencyStore.fetchAll()
 productStore.fetchAll()
-useServerSeoMeta({
+useHead({
   title: 'Cosweats - Shop',
-  description: 'Shop with clothes that all people will find affordable and comfortable, that are manufactured with quality and durability in mind. See for yourself!'
+  meta: [
+    { name: 'description', content: 'Clothing that all kinds of people will find pretty. Come visit and look through our shelves, I promise you\'ll find something for yourself!' }
+  ]
 })
 </script>
 

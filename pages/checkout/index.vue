@@ -91,7 +91,7 @@
 </template>
 
 <script setup lang="ts">
-useSeoMeta({
+useHead({
   title: 'Cosweats - checkout'
 })
 definePageMeta({

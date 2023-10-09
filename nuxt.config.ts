@@ -15,7 +15,7 @@ export default defineNuxtConfig({
   ],
   pages: true,
   routeRules: {
-    '/checkout': { ssr: false },
+    // '/checkout': { ssr: false },
     '/error': { ssr: false }
   },
   imports: {

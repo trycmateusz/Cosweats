@@ -91,7 +91,9 @@
 </template>
 
 <script setup lang="ts">
-
+useSeoMeta({
+  title: 'Cosweats - checkout'
+})
 definePageMeta({
   middleware: ['cart-empty']
 })

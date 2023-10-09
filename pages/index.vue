@@ -126,6 +126,10 @@
 
 <script setup lang="ts">
 import { useIntersectionObserver } from '@vueuse/core'
+useServerSeoMeta({
+  title: 'Cosweats',
+  description: 'Shop with clothes that all people will find affordable and comfortable, that are manufactured with quality and durability in mind. See for yourself!'
+})
 const outro = ref<HTMLDivElement | undefined>(undefined)
 const outroPartlyVisible = ref(false)
 const outroFullyVisible = ref(false)

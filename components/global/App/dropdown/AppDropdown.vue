@@ -1,6 +1,7 @@
 <template>
   <div class="dropdown relative h-full">
     <button
+      :aria-label="dropdown.text"
       :aria-controls="dropdownId"
       :aria-expanded="dropdown.expanded"
       class="relative flex items-center px-5 py-5 h-full sm:px-8 sm:gap-2"

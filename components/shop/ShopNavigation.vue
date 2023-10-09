@@ -54,7 +54,8 @@
       <button
         class="relative flex items-center gap-2 px-8 py-5"
         aria-controls="cart"
-        @click="emit('open-cart')"
+        :aria-expanded="cartStore.isCartOpen"
+        @click="cartStore.toggleCart()"
       >
         <span
           class="hidden sm:inline-block pr-4 pointer-events-none sm:pr-0"
@@ -79,9 +80,6 @@ import type { Dropdown } from '~/types/Dropdown'
 import type { Currency } from '~/types/Currency'
 const currencyStore = useCurrencyStore()
 const cartStore = useCartStore()
-const emit = defineEmits<{
-  (e: 'open-cart'): void
-}>()
 const { current: currentCurrency } = storeToRefs(currencyStore)
 const dropdowns: Dropdown[] = reactive([
   {

@@ -4,9 +4,13 @@ import { useDiscount } from '~/composables/useDiscount'
 export const useCartStore = defineStore('CartStore', () => {
   const { discount } = useDiscount()
   const cart = ref<ProductForCart[]>([])
+  const isCartOpen = ref(false)
   const shippingPriceInCents = ref(0)
   const addOne = (product: ProductForCart) => {
     cart.value.push(product)
+  }
+  const toggleCart = () => {
+    isCartOpen.value = !isCartOpen.value
   }
   const removeOne = (product: ProductForCart) => {
     const index = cart.value.findIndex(productToFind => productToFind.id === product.id)
@@ -38,9 +42,11 @@ export const useCartStore = defineStore('CartStore', () => {
   })
   return {
     cart,
+    isCartOpen,
     shippingPriceInCents,
     addOne,
     removeOne,
+    toggleCart,
     setShipping,
     getLength,
     hasProducts,

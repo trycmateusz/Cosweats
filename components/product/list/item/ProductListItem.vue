@@ -17,7 +17,6 @@
       class="mt-auto ml-auto text-3xl"
       style-type="primary"
       text="Take a look"
-      :aria-label="`Open ${product.name} product info overlay`"
       :aria-controls="overlayAriaControlsId"
       @click="isOverlayActive = true"
     />

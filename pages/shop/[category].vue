@@ -1,7 +1,7 @@
 <template>
   <div id="content">
     <TheNavigation>
-      <ShopNavigation @open-cart="isCartActive = true" />
+      <ShopNavigation />
     </TheNavigation>
     <AppHeader :text="headerText" />
     <main>

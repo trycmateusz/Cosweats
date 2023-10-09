@@ -1,9 +1,9 @@
 <template>
-  <p>
-    <span class="flex justify-between mb-10 gap-8 text-3xl font-bold">
-      <span>
+  <div>
+    <div class="flex justify-between mb-10 gap-8 text-3xl font-bold">
+      <h2>
         {{ product.name }}
-      </span>
+      </h2>
       <span class="flex flex-col text-right sm:flex-row sm:gap-2 md:flex-col md:gap-0">
         <span>
           {{ currencyStore.formatPriceToShow(product.priceInCents) }}
@@ -12,11 +12,11 @@
           {{ currencyStore.current.symbol }}
         </span>
       </span>
-    </span>
-    <span class="text-2xl">
+    </div>
+    <p class="text-2xl">
       {{ product.description }}
-    </span>
-  </p>
+    </p>
+  </div>
 </template>
 
 <script setup lang="ts">

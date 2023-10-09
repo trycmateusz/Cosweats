@@ -32,13 +32,14 @@
               {{ errorMessage }}
             </span>
             <input
+              id="discount"
               v-model="discountCode"
               type="text"
               class="flex-grow w-full rounded-full p-5 border border-borderDarkColor"
-              name="discount"
             >
             <AppButton
               aria-controls="discountApplied"
+              :aria-expanded="discountAppliedPopupOpen"
               text="Apply"
               style-type="primary"
               class="ml-auto"
@@ -60,7 +61,11 @@
         </span>
       </div>
       <div class="flex flex-col justify-end items-end gap-5 mb-5 text-3xl md:flex-row sm:gap-8 sm:mb-8">
-        <AppButton form="checkoutForm" text="Checkout" style-type="primary" />
+        <AppButton
+          form="checkoutForm"
+          text="Checkout"
+          style-type="primary"
+        />
         <AppLink
           link="/shop"
           text="Continue shopping"

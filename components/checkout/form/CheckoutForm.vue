@@ -22,6 +22,7 @@
         {{ getErrorMessage(rulesetsAndActiveErrors[key].error, convertToTitleCaseFromCamelCase(key)) }}
       </span>
       <input
+        :id="key"
         v-model="formData[key]"
         class="flex-grow rounded-full p-5 border border-borderDarkColor h-min sm:flex-grow-0"
         :class="{ 'bg-red-100': rulesetsAndActiveErrors[key].error }"

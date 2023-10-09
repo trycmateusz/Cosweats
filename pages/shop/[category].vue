@@ -9,8 +9,7 @@
     </main>
     <teleport to="body">
       <TheCart
-        v-if="isCartActive"
-        @close="isCartActive = false"
+        v-if="cartStore.isCartOpen"
       />
     </teleport>
     <TheFooter />
@@ -24,8 +23,8 @@ definePageMeta({
 })
 const productStore = useProductStore()
 const currencyStore = useCurrencyStore()
+const cartStore = useCartStore()
 const route = useRoute()
-const isCartActive = ref(false)
 const category = route.path.split('/')[2]
 const initialQueryItemId = route.query.itemId
 provide('initialQueryItemId', initialQueryItemId)
@@ -38,7 +37,6 @@ const headerText = computed(() => {
 })
 await productStore.fetchCategory(category)
 await currencyStore.fetchAll()
-console.log(category)
 useHead({
   title: `Cosweats - ${convertToTitleCaseFromCamelCase(category)}`,
   meta: [

@@ -4,14 +4,17 @@
     class="fixed flex items-stretch top-0 right-0 w-full h-full z-60 overflow-y-auto overflow-x-hidden bg-whiteishMain md:max-w-[50%]"
   >
     <ClientOnly>
-      <div class="shadow hidden fixed top-0 right-1/2 w-full h-full bg-black opacity-90 z-50 md:block" @click="emit('close')" />
+      <div
+        class="shadow hidden fixed top-0 right-1/2 w-full h-full bg-black opacity-90 z-50 md:block"
+        @click="cartStore.closeCart()"
+      />
       <div
         class="cart relative mr-0 right w-full h-max z-60 md:max-w-[700px]"
       >
         <AppCloseBar
           class="sticky top-0 bg-whiteishMain z-60"
           button-label="Button to close Cart"
-          @close="emit('close')"
+          @close="cartStore.closeCart()"
         />
         <div class="p-5 sm:p-8">
           <div class="flex gap-4 mb-10 sm:mb-16">

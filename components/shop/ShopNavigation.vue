@@ -55,7 +55,7 @@
         class="relative flex items-center gap-2 px-8 py-5"
         aria-controls="cart"
         :aria-expanded="cartStore.isCartOpen"
-        @click="cartStore.toggleCart()"
+        @click="cartStore.openCart()"
       >
         <span
           class="hidden sm:inline-block pr-4 pointer-events-none sm:pr-0"

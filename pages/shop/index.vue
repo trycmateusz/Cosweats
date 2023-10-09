@@ -10,8 +10,7 @@
     <TheFooter />
     <teleport to="body">
       <TheCart
-        v-if="isCartActive"
-        @close="isCartActive = false"
+        v-if="cartStore.isCartOpen"
       />
     </teleport>
   </div>
@@ -20,8 +19,8 @@
 <script setup lang="ts">
 const currencyStore = useCurrencyStore()
 const productStore = useProductStore()
+const cartStore = useCartStore()
 const route = useRoute()
-const isCartActive = ref(false)
 const initialQueryItemId = route.query.itemId
 provide('initialQueryItemId', initialQueryItemId)
 await currencyStore.fetchAll()

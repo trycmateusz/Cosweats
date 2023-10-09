@@ -9,8 +9,11 @@ export const useCartStore = defineStore('CartStore', () => {
   const addOne = (product: ProductForCart) => {
     cart.value.push(product)
   }
-  const toggleCart = () => {
-    isCartOpen.value = !isCartOpen.value
+  const openCart = () => {
+    isCartOpen.value = true
+  }
+  const closeCart = () => {
+    isCartOpen.value = false
   }
   const removeOne = (product: ProductForCart) => {
     const index = cart.value.findIndex(productToFind => productToFind.id === product.id)
@@ -46,7 +49,8 @@ export const useCartStore = defineStore('CartStore', () => {
     shippingPriceInCents,
     addOne,
     removeOne,
-    toggleCart,
+    openCart,
+    closeCart,
     setShipping,
     getLength,
     hasProducts,

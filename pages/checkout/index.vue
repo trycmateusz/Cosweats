@@ -94,12 +94,12 @@
 useHead({
   title: 'Cosweats - checkout'
 })
-definePageMeta({
-  middleware: ['cart-empty']
-})
+// definePageMeta({
+//   middleware: ['cart-empty']
+// })
 const cartStore = useCartStore()
 const currencyStore = useCurrencyStore()
-const { makeBodyFixed, removeFixedFromBody } = useFixedBody()
+// const { makeBodyFixed, removeFixedFromBody } = useFixedBody()
 const { discount, fetchDiscount, errorMessage, setErrorMessageToNull } = useDiscount()
 const router = useRouter()
 const discountCode = ref('')
@@ -127,7 +127,7 @@ const shipmentText = computed(() => {
   }
 })
 const closeDiscountOverlay = () => {
-  removeFixedFromBody()
+  // removeFixedFromBody()
   discountAppliedPopupOpen.value = false
 }
 const checkIfEmptyAndFetchDiscount = () => {
@@ -138,18 +138,18 @@ const checkIfEmptyAndFetchDiscount = () => {
 }
 const navigateToShopAfterFormSuccess = () => {
   submitSuccessPopupOpen.value = false
-  removeFixedFromBody()
+  // removeFixedFromBody()
   router.push('/shop')
 }
 watch(discount, () => {
   if (discount.value) {
     discountAppliedPopupOpen.value = true
-    makeBodyFixed()
+    // makeBodyFixed()
   }
 })
 watch(submitSuccessPopupOpen, () => {
   if (submitSuccessPopupOpen.value) {
-    makeBodyFixed()
+    // makeBodyFixed()
   }
 })
 watch(errorMessage, async () => {

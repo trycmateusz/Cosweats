@@ -38,9 +38,12 @@ const headerText = computed(() => {
 })
 await productStore.fetchCategory(category)
 await currencyStore.fetchAll()
-useServerSeoMeta({
-  title: `Cosweats - ${category}`,
-  description: `Comfiest ${category} that will enhance your wardrobe! The setting doesn't matter, with our clothes you'll always look stunning!`
+console.log(category)
+useHead({
+  title: `Cosweats - ${convertToTitleCaseFromCamelCase(category)}`,
+  meta: [
+    { name: 'description', content: `Comfiest ${category} that will enhance your wardrobe! The setting doesn't matter, with our clothes you'll always look stunning!` }
+  ]
 })
 </script>
 

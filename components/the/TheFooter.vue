@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-blackishMain">
+  <div class="bg-blackishMain overflow-hidden">
     <footer class="wrapper flex flex-col gap-5 p-5 text-2xl  text-center text-whiteishMain sm:p-8 sm:gap-8 md:flex-row md:items-center md:justify-between">
       <AppGlow
         class="flex-grow block text-5xl mt-5 sm:mt-8 md:mt-0 md:mr-8 lg:text-7xl"

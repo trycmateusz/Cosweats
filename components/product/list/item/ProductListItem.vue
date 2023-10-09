@@ -2,6 +2,7 @@
   <div class="flex flex-col gap-10 p-5 bg-whiteishDarker text-2xl sm:p-8 sm:gap-8 md:h-full">
     <button
       :aria-controls="overlayAriaControlsId"
+      :aria-expanded="isOverlayActive"
       class="focus:-outline-offset-4"
       @click="isOverlayActive = true"
     >
@@ -17,6 +18,7 @@
       style-type="primary"
       text="Take a look"
       :aria-controls="overlayAriaControlsId"
+      :aria-expanded="isOverlayActive"
       @click="isOverlayActive = true"
     />
     <Teleport to="body">

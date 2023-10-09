@@ -1,7 +1,6 @@
 <template>
   <div class="flex flex-col gap-10 p-5 bg-whiteishDarker text-2xl sm:p-8 sm:gap-8 md:h-full">
     <button
-      :label="`Photo which opens ${product.name} product info overlay`"
       :aria-controls="overlayAriaControlsId"
       class="focus:-outline-offset-4"
       @click="isOverlayActive = true"

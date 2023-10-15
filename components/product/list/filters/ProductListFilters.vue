@@ -20,7 +20,7 @@
             v-for="filter in filters"
             :key="filter.id"
             :dropdown="filter"
-            :menu-max-height-in-viewport-percent="0.20"
+            :menu-max-height-in-viewport-percent="0.30"
             class="w-full border-b border-whiteishDarker last:border-whiteishMain"
             @toggle="() => closeAllButOne(filter.id)"
           >

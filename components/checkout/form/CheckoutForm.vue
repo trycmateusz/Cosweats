@@ -130,7 +130,7 @@ const checkShippingPriceTo = async (city: string) => {
   if (city.length > 0) {
     const { data, error } = await useFetch<City[]>(`https://api.api-ninjas.com/v1/city?name=${city}`, {
       headers: {
-        'X-Api-Key': useRuntimeConfig().cityApiKey as string
+        'X-Api-Key': useRuntimeConfig().public.cityApiKey as string
       }
     })
     if (error.value) {

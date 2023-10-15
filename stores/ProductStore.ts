@@ -76,7 +76,7 @@ export const useProductStore = defineStore('ProductStore', () => {
       if (appliedFilters.value && areAnyFilters.value) {
         return products.filter((product) => {
           for (const size of product.sizes) {
-            if (appliedFilters.value?.sizes.includes(size)) {
+            if (appliedFilters.value?.sizes.includes(size.value)) {
               return true
             }
           }
@@ -93,7 +93,7 @@ export const useProductStore = defineStore('ProductStore', () => {
     }
   })
   const getAllSizes = computed(() => {
-    return products.value.map(product => [...product.sizes])
+    return products.value.map(product => [...product.sizes.map(size => size.value)])
   })
   const getPossibleSizes = computed(() => {
     return new Set(sortSizes(getAllSizes.value.flat()))

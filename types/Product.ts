@@ -12,6 +12,11 @@ export type ProductSortWithText = {
   text: string
 }
 
+export type ProductSizeWithQuantity = {
+  value: Size
+  quantity: number
+}
+
 export interface Product {
   id: string
   name: string
@@ -19,7 +24,7 @@ export interface Product {
   description: string
   category: string,
   colors: Color[]
-  sizes: Size[]
+  sizes: ProductSizeWithQuantity[]
   photoUrls: PhotoURLs
   priceInCents: number
 }

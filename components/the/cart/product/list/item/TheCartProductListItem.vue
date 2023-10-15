@@ -42,10 +42,10 @@
         <div class="flex flex-wrap gap-5 text-3xl">
           <ProductListItemSize
             v-for="size in product.sizes"
-            :key="size"
+            :key="size.value"
             :size="size"
-            :is-active="product.size === size"
-            @size-change="productStore.setSize(size, product)"
+            :is-active="product.size === size.value"
+            @size-change="productStore.setSize(size.value, product)"
           />
         </div>
       </div>

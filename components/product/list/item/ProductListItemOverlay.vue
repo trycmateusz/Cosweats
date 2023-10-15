@@ -41,8 +41,8 @@
                 v-for="(size, index) in product.sizes"
                 :key="index"
                 :size="size"
-                :is-active="size === productStore.active?.size"
-                @size-change="setActiveProductSize(size)"
+                :is-active="size.value === productStore.active?.size"
+                @size-change="setActiveProductSize(size.value)"
               />
             </div>
           </div>
@@ -70,7 +70,7 @@ const emit = defineEmits<{
 const router = useRouter()
 productStore.setActive({
   ...props.product,
-  size: props.product.sizes[0],
+  size: props.product.sizes[0].value,
   color: props.product.colors[0]
 })
 const activePhotoSrc = computed(() => {

@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed top-0 left-0 right-0 h-[100vh] bg-whiteishMain z-50 overflow-y-auto overflow-x-hidden">
+  <div class="fixed top-0 left-0 right-0 h-[100svh] bg-whiteishMain z-50 overflow-y-auto overflow-x-hidden">
     <div
       :id="overlayId"
       class="overlay wrapper h-full"
@@ -111,8 +111,11 @@ onUnmounted(() => {
 })
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+::-webkit-scrollbar-thumb:horizontal {
+  border: 1px solid $border-dark-color;
+}
 .active-border {
-  @apply border-borderDarkColor !important
+  @apply border-borderDarkColor;
 }
 </style>

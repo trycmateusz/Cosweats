@@ -99,7 +99,7 @@
 
 <script setup lang="ts">
 useHead({
-  title: 'Cosweats - checkout'
+  title: 'Cosweats - Checkout'
 })
 definePageMeta({
   middleware: ['cart-empty']

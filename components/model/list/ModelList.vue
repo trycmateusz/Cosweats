@@ -71,7 +71,7 @@ const cosweatsModels: Model[] = [
     firstName: 'Philip',
     lastName: 'Jenkins',
     occupation: 'Intern Model',
-    introduction: 'Philip is learning to become a professional model. He had trouble finding an internship - beacuse he\'s bald. In Cosweats thoughm we do not judge and we saw great potential in him.'
+    introduction: 'Philip is learning to become a professional model. He had trouble finding an internship - beacuse he\'s bald. Since in Cosweats we do not judge, we saw great potential in him.'
   }
 ]
 const spotlight = ref(0)

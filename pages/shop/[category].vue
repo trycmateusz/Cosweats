@@ -4,8 +4,12 @@
       <ShopNavigation />
     </TheNavigation>
     <AppHeader :text="headerText" />
-    <main>
-      <ProductList :products="productStore.getProductsFrom(category)" />
+    <main class="wrapper flex flex-col border-whiteishDarker md:flex-row 2xl:border-l">
+      <ProductListFilters class="min-h-max md:w-1/2" />
+      <ProductList
+        class="w-full md:border-l md:border-whiteishDarker"
+        :products="productStore.getProductsMatchingFilters(productStore.getProductsFrom(category))"
+      />
     </main>
     <teleport to="body">
       <TheCart

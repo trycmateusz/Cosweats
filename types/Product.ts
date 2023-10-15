@@ -5,14 +5,19 @@ type PhotoURLs = {
   [each in Color]: string
 }
 
-export type ProductCategory = 'sweatshirts'
+export type ProductSort = 'alphabetically-a-z' | 'alphabetically-z-a' | 'price-descending' | 'price-ascending'
+
+export type ProductSortWithText = {
+  sort: ProductSort
+  text: string
+}
 
 export interface Product {
   id: string
   name: string
   nameKebab: string
   description: string
-  category: ProductCategory,
+  category: string,
   colors: Color[]
   sizes: Size[]
   photoUrls: PhotoURLs
@@ -22,4 +27,9 @@ export interface Product {
 export interface ProductForCart extends Product {
   size: Size,
   color: Color
+}
+
+export interface ProductFilterConditions {
+  colors: Color[]
+  sizes: Size[]
 }

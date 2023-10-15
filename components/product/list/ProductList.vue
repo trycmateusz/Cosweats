@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper grid grid-cols-1 gap-5 p-5 bg-whiteishMain sm:p-8 sm:gap-8 md:grid-cols-2">
+  <div v-if="products.length > 0" class="grid grid-cols-1 gap-5 p-5 bg-whiteishMain sm:p-8 sm:gap-8 lg:grid-cols-2">
     <div
       v-for="product in products"
       :key="product.id"
@@ -7,6 +7,10 @@
       <ProductListItem :product="product" />
     </div>
   </div>
+  <p v-else class="flex flex-col gap-5 p-5 sm:p-8 sm:gap-8">
+    <span class="text-4xl">Unfortunately,</span>
+    <span class="text-2xl">No products matching criteria found.<br> Please, try some other filters or refresh the page.</span>
+  </p>
 </template>
 
 <script setup lang="ts">

@@ -8,10 +8,11 @@
       >
         <AppDropdown
           v-click-outside="{ 'close': () => dropdown.expanded = false }"
+          :menu-max-height-in-viewport-percent="0.25"
           :has-icon="true"
           :light="true"
           :dropdown="dropdown"
-          @expand="() => closeAllButOneDropdown(dropdown.id)"
+          @toggle="() => closeAllButOne(dropdown.id)"
           @close="closeOne(dropdown)"
         >
           <template v-if="dropdown.role === 'currency' && currentCurrency" #currency-dropdown>
@@ -76,39 +77,34 @@
 </template>
 
 <script setup lang="ts">
+import { convertToTitleCaseFromCamelCase } from '~/helpers'
 import type { Dropdown } from '~/types/Dropdown'
 import type { Currency } from '~/types/Currency'
 const currencyStore = useCurrencyStore()
 const cartStore = useCartStore()
+const productStore = useProductStore()
 const { current: currentCurrency } = storeToRefs(currencyStore)
-const dropdowns: Dropdown[] = reactive([
+await productStore.fetchPossibleCategories()
+const dropdowns = ref<Dropdown[]>([
   {
     id: Math.random(),
     text: 'Products',
     role: 'products',
     expanded: false,
-    classes: ['left-0', 'border-r', '2xl:border-l'],
-    links: [
-      {
-        text: 'Sweaters',
-        to: '/shop/sweaters'
-      },
-      {
-        text: 'Sweatshirts',
-        to: '/shop/sweatshirts'
-      },
-      {
-        text: 'Sweatpants',
-        to: '/shop/sweatpants'
+    classes: ['left-0', 'border-r', '2xl:border-l', 'absolute', 'menu-translate', 'top-0'],
+    links: productStore.categories.map((category) => {
+      return {
+        text: convertToTitleCaseFromCamelCase(category),
+        to: `/shop/${category}`
       }
-    ]
+    })
   },
   {
     id: Math.random(),
     text: 'Currency',
     role: 'currency',
     expanded: false,
-    classes: ['right-0', 'border-l', 'border-r']
+    classes: ['right-0', 'border-l', 'border-r', 'absolute', 'menu-translate', 'top-0']
   }
 ])
 const closeOne = (dropdown: Dropdown): void => {
@@ -119,9 +115,9 @@ const closeAll = (dropdowns: Dropdown[]): void => {
     closeOne(dropdown)
   })
 }
-const closeAllButOneDropdown = (id: number): void => {
-  const toClose = dropdowns.filter(dropdown => dropdown.id !== id)
-  const toOpen = dropdowns.find(dropdown => dropdown.id === id)
+const closeAllButOne = (dropdownId: number): void => {
+  const toClose = dropdowns.value.filter(dropdown => dropdown.id !== dropdownId)
+  const toOpen = dropdowns.value.find(dropdown => dropdown.id === dropdownId)
   closeAll(toClose)
   if (toOpen) {
     toOpen.expanded = !toOpen.expanded
@@ -129,10 +125,10 @@ const closeAllButOneDropdown = (id: number): void => {
 }
 const chooseCurrency = (currency: Currency): void => {
   currencyStore.setCurrent(currency.code)
-  closeAll(dropdowns)
+  closeAll(dropdowns.value)
 }
 watch(currentCurrency, (): void => {
-  const currencyDropdown = dropdowns.find(dropdown => dropdown.role === 'currency')
+  const currencyDropdown = dropdowns.value.find(dropdown => dropdown.role === 'currency')
   if (currencyDropdown) {
     if (currentCurrency.value) {
       currencyDropdown.text = `Currency [${currentCurrency.value.symbol}]`
@@ -145,6 +141,8 @@ watch(currentCurrency, (): void => {
 })
 </script>
 
-<style scoped>
-
+<style>
+.menu-translate {
+  transform: translateY(Calc(var(--nav-height) + 1px))
+}
 </style>

@@ -1,7 +1,7 @@
 import { fetchCollection } from '~/services/fetch'
 
 export default defineNuxtRouteMiddleware(async (to) => {
-  const categories = await fetchCollection('categories')
+  const categories = await fetchCollection<string>('categories')
   if (!categories) {
     throw createError({ statusCode: 404, statusMessage: 'Page not Found, try again later.' })
   }

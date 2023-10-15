@@ -4,8 +4,12 @@
       <ShopNavigation />
     </TheNavigation>
     <AppHeader text="Cosweats" />
-    <main>
-      <ProductList :products="productStore.products" />
+    <main class="wrapper flex flex-col border-whiteishDarker md:flex-row 2xl:border-l">
+      <ProductListFilters class="md:w-1/2 min-h-max" />
+      <ProductList
+        class="w-full md:border-l md:border-whiteishDarker"
+        :products="productStore.getProductsMatchingFilters(productStore.products)"
+      />
     </main>
     <TheFooter />
     <teleport to="body">

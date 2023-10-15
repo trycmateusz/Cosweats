@@ -4,9 +4,7 @@ import { defineNuxtConfig } from 'nuxt/config'
 export default defineNuxtConfig({
   devtools: { enabled: true },
   runtimeConfig: {
-    public: {
-      cityApiKey: process.env.API_NINJAS_API_KEY
-    }
+    cityApiKey: process.env.API_NINJAS_API_KEY
   },
   modules: [
     ['@pinia/nuxt', {

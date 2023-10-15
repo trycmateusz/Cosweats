@@ -42,7 +42,6 @@
 import { convertToTitleCaseFromCamelCase, getEntries } from '~/helpers'
 import type { CheckoutForm, CheckoutFormRule, CheckoutFormRulesetWithActiveErrors } from '~/types/Checkout'
 import type { City } from '~/types/City'
-const cityApiKey = useRuntimeConfig().cityApiKey
 const cartStore = useCartStore()
 const emit = defineEmits<{
   (e: 'success'): void
@@ -129,10 +128,10 @@ const getErrorMessage = (rule: keyof CheckoutFormRule | null, field: string): st
 }
 const checkShippingPriceTo = async (city: string) => {
   if (city.length > 0) {
-    console.log(cityApiKey)
+    console.log(useRuntimeConfig().public.cityApiKey)
     const { data, error } = await useFetch<City[]>(`https://api.api-ninjas.com/v1/city?name=${city}`, {
       headers: {
-        'X-Api-Key': cityApiKey as string
+        'X-Api-Key': useRuntimeConfig().public.cityApiKey as string
       }
     })
     if (error.value) {

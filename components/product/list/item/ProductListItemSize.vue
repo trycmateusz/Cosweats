@@ -9,7 +9,7 @@
     {{ size.value }}
     <span
       v-if="size.quantity < 5 && size.quantity !== 0"
-      title="Last in stock"
+      title="One of the last in stock for that size"
       class="block absolute top-0 right-0 translate-x-1/4 -translate-y-1/4 w-10 rounded-full border-blackishDark border bg-whiteishMain text-blackishMain aspect-square"
     >
       !

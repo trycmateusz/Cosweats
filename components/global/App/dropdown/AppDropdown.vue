@@ -34,7 +34,7 @@
     </button>
     <div
       ref="menu"
-      class="menu flex flex-col top-0 min-w-full max-h-0 bg-blackishDark border-borderDarkColor transition-max-height overflow-hidden"
+      class="menu flex flex-col top-0 min-w-full max-h-0 bg-blackishDark border-borderDarkColor transition-max-height overflow-hidden duration-300"
       :class="[...dropdown.classes, { 'overflow-y-auto': isMenuOverflowing, 'menu-expanded': dropdown.expanded }]"
     >
       <slot name="options" />

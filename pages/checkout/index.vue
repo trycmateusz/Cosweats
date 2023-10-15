@@ -75,22 +75,24 @@
     </main>
     <TheFooter />
     <ClientOnly>
-      <CheckoutPopup
-        v-if="discountAppliedPopupOpen"
-        title="Discount code applied!"
-        button-text="Okay"
-        @close="closeDiscountOverlay"
-      />
-      <CheckoutPopup
-        v-if="submitSuccessPopupOpen"
-        title="Transaction completed successfully!"
-        button-text="Thanks!"
-        @close="navigateToShopAfterFormSuccess"
-      >
-        <template #message>
-          Thank you for shopping at Cosweats! I hope you will visit us again soon. : )
-        </template>
-      </CheckoutPopup>
+      <teleport to="body">
+        <CheckoutPopup
+          v-if="discountAppliedPopupOpen"
+          title="Discount code applied!"
+          button-text="Okay"
+          @close="closeDiscountOverlay"
+        />
+        <CheckoutPopup
+          v-if="submitSuccessPopupOpen"
+          title="Transaction completed successfully!"
+          button-text="Thanks!"
+          @close="navigateToShopAfterFormSuccess"
+        >
+          <template #message>
+            Thank you for shopping at Cosweats! I hope you will visit us again soon. : )
+          </template>
+        </CheckoutPopup>
+      </teleport>
     </ClientOnly>
   </div>
 </template>

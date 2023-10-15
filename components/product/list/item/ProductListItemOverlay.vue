@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed top-0 left-0 right-0 h-[100svh] bg-whiteishMain z-50 overflow-y-auto overflow-x-hidden">
+  <div class="fixed top-0 left-0 right-0 h-full bg-whiteishMain z-50 overflow-y-auto overflow-x-hidden">
     <div
       :id="overlayId"
       class="overlay wrapper h-full"

@@ -1,6 +1,6 @@
 <template>
   <button
-    class="w-max py-[0.7em] px-[3em] rounded-full focus:outline-offset-8 hover:opacity-90 focus:opacity-90 transition-opacity"
+    class="w-max py-[0.7em] px-[3em] rounded-full focus:outline-offset-8 hover:opacity-90 focus:opacity-90 transition-opacity duration-300"
     :class="[styleType]"
   >
     {{ text }}

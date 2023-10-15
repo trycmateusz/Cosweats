@@ -162,7 +162,7 @@ useHead({
 }
 .outro-partly-visible-enter-active,
 .outro-partly-visible-leave-active {
-  transition: opacity 0.15s ease;
+  transition: opacity 0.3s ease;
 }
 
 .outro-partly-visible-enter-from,

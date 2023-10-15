@@ -12,7 +12,7 @@
     <div class="flex flex-col w-full items-end max-h-[Calc(100svh_-_var(--shop-nav-and-filter-height))] overflow-auto md:max-h-[Calc(100svh_-_var(--shop-nav-height))]">
       <div
         id="filters"
-        class="text-2xl border-t min-w-full max-h-0 transition-max-height overflow-y-auto md:filters-open"
+        class="text-2xl border-t min-w-full max-h-0 transition-max-height overflow-y-auto duration-300 md:filters-open"
         :class="{ 'filters-open': areFiltersOpen, 'border-whiteishDarker': areFiltersOpen }"
       >
         <div>
@@ -28,7 +28,7 @@
               <div
                 v-if="filter.role === 'sizes'"
                 :class="{ 'filter-expanded': areFiltersOpen }"
-                class="max-h-0 transition-max-height ease-linear"
+                class="max-h-0 transition-max-height duration-300 ease-linear"
               >
                 <ProductListFiltersSize
                   v-for="size in productStore.getPossibleSizes"
@@ -41,7 +41,7 @@
               <div
                 v-if="filter.role === 'colors'"
                 :class="{ 'filter-expanded': areFiltersOpen }"
-                class="max-h-0 transition-max-height ease-linear"
+                class="max-h-0 transition-max-height duration-300 ease-linear"
               >
                 <ProductListFiltersColor
                   v-for="color in productStore.getPossibleColors"
@@ -54,7 +54,7 @@
               <div
                 v-if="filter.role === 'sort'"
                 :class="{ 'filter-expanded': areFiltersOpen }"
-                class="max-h-0 transition-max-height ease-linear"
+                class="max-h-0 transition-max-height duration-300 ease-linear"
               >
                 <ProductListFiltersSort
                   v-for="option in allSortsWithText"
@@ -209,6 +209,11 @@ const closeAndReset = () => {
 watch(isDesktop, () => {
   if (isDesktop.value) {
     areFiltersOpen.value = true
+  }
+})
+watch(areFiltersOpen, () => {
+  if (!areFiltersOpen) {
+    closeAll(filters)
   }
 })
 onMounted(() => {

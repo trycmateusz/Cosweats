@@ -13,9 +13,9 @@
             Contact
           </span>
           <ul class="list-none">
-            <li>Customer service <a href="#" class="underline text-whiteishDarker hover:opacity-80 transition-opacity">123 123 123</a></li>
-            <li>Aisha Atta CEO <a href="#" class="underline text-whiteishDarker hover:opacity-80 transition-opacity">123 123 123</a></li>
-            <li><a href="#" class="underline text-whiteishDarker hover:opacity-80 transition-opacity">cosweats@business.com</a></li>
+            <li>Customer service <a href="#" class="underline text-whiteishDarker hover:opacity-80 transition-opacity duration-300">123 123 123</a></li>
+            <li>Aisha Atta CEO <a href="#" class="underline text-whiteishDarker hover:opacity-80 transition-opacity duration-300">123 123 123</a></li>
+            <li><a href="#" class="underline text-whiteishDarker hover:opacity-80 transition-opacity duration-300">cosweats@business.com</a></li>
           </ul>
         </div>
         <div class="flex flex-col gap-5 sm:gap-8 md:flex-shrink">
@@ -23,11 +23,11 @@
             Info
           </span>
           <ul class="list-none">
-            <li><a href="#" class="text-whiteishDarker hover:opacity-80 transition-opacity">Returns</a></li>
-            <li><a href="#" class="text-whiteishDarker hover:opacity-80 transition-opacity">Shipping</a></li>
-            <li><a href="#" class="text-whiteishDarker hover:opacity-80 transition-opacity">Privacy policy</a></li>
-            <li><a href="#" class="text-whiteishDarker hover:opacity-80 transition-opacity">Cookies</a></li>
-            <li><a href="#" class="text-whiteishDarker hover:opacity-80 transition-opacity">Wash & Care</a></li>
+            <li><a href="#" class="text-whiteishDarker hover:opacity-80 transition-opacity duration-300">Returns</a></li>
+            <li><a href="#" class="text-whiteishDarker hover:opacity-80 transition-opacity duration-300">Shipping</a></li>
+            <li><a href="#" class="text-whiteishDarker hover:opacity-80 transition-opacity duration-300">Privacy policy</a></li>
+            <li><a href="#" class="text-whiteishDarker hover:opacity-80 transition-opacity duration-300">Cookies</a></li>
+            <li><a href="#" class="text-whiteishDarker hover:opacity-80 transition-opacity duration-300">Wash & Care</a></li>
           </ul>
         </div>
       </div>

@@ -9,6 +9,8 @@ I think this is the project where I became very comfortable using Tailwind CSS.
 Another thing I learned, is that Nuxt is way scarier on the first glance than it is once you understand what it does.
 At the end, I also think I enhanced my ability to determine the right priorities to writing code, which contribute to time being spent more efficiently and saving my nerves :P.
 
+Live: https://cosweats.vercel.app
+
 ## Techstack
 - Nuxt 3
 - Vue 3 (Composition API)

@@ -205,7 +205,9 @@ const isFormValid = (): boolean => {
 const submitForm = () => {
   if (isFormValid()) {
     emit('success')
+    return true
   }
+  return false
 }
 </script>
 

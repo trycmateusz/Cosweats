@@ -21,6 +21,9 @@ export const useCartStore = defineStore('CartStore', () => {
       cart.value.splice(index, 1)
     }
   }
+  const emptyCart = () => {
+    cart.value = []
+  }
   const setShipping = (price: number) => {
     shippingPriceInCents.value = price
   }
@@ -51,6 +54,7 @@ export const useCartStore = defineStore('CartStore', () => {
     removeOne,
     openCart,
     closeCart,
+    emptyCart,
     setShipping,
     getLength,
     hasProducts,

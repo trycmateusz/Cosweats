@@ -63,6 +63,8 @@
       <div class="flex flex-col justify-end items-end gap-5 mb-5 text-3xl md:flex-row sm:gap-8 sm:mb-8">
         <AppButton
           form="checkoutForm"
+          type="submit"
+          formnovalidate="true"
           text="Checkout"
           style-type="primary"
         />
@@ -146,7 +148,8 @@ const checkIfEmptyAndFetchDiscount = () => {
 const navigateToShopAfterFormSuccess = () => {
   submitSuccessPopupOpen.value = false
   removeFixedFromBody()
-  router.push('/shop')
+  cartStore.emptyCart()
+  router.push('/')
 }
 watch(discount, () => {
   if (discount.value) {

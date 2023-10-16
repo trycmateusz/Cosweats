@@ -1,6 +1,7 @@
 <template>
   <div id="content" class="text-center">
-    <header class="flex flex-col justify-center items-center gap-16 p-8 min-h-[100vh] text-blackishMain overflow-hidden">
+    <TheNavigation />
+    <header class="flex flex-col justify-center items-center gap-16 p-8 min-h-[Calc(100svh_-_var(--nav-height))] text-blackishMain overflow-hidden">
       <h1 class="wrapper flex flex-col font-halibutSerifRegular text-6xl sm:text-8xl">
         You cannot
         <span>get more
@@ -16,7 +17,6 @@
         anchor="#main-content"
       />
     </header>
-    <TheNavigation />
     <header
       id="main-content"
       class="flex flex-col justify-center items-center p-16 min-h-[Calc(100svh_-_var(--nav-height))] bg-whiteishPink font-halibutSerifRegular"

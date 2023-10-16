@@ -10,7 +10,7 @@
       :id="sort"
       :checked="isChecked"
       type="checkbox"
-      class="pointer-events-none rounded-full w-5 h-5 border border-blackishDark bg-white checked:bg-pinkDark"
+      class="pointer-events-none w-5 h-5 border border-blackishDark bg-white checked:bg-pinkDark"
     >
   </div>
 </template>

@@ -21,7 +21,7 @@
       id="main-content"
       class="flex flex-col justify-center items-center p-16 min-h-[Calc(100svh_-_var(--nav-height))] bg-whiteishPink font-halibutSerifRegular"
     >
-      <h2 class="wrapper flex flex-col uppercase p-8 text-5xl sm:text-6xl md:text-7xl text-pinkDark">
+      <h2 class="wrapper flex flex-col items-center uppercase p-8 text-5xl sm:text-6xl md:text-7xl text-pinkDark">
         we are presenting
         <span class="block mt-4 font-violetSans">maximum level of comfort</span>
         <span class="block mt-4 mb-16">with our clothing</span>
@@ -31,6 +31,12 @@
           </span>
           the gender and/or body type
         </span>
+        <AppLink
+          class="mt-16 text-3xl font-violetSans max-w-max sm:text-4xl md:text-5xl"
+          link="/shop"
+          style-type="primary"
+          text="See for yourself"
+        />
       </h2>
     </header>
     <main>
@@ -115,7 +121,7 @@
               class="mt-8 text-3xl sm:text-4xl md:text-5xl"
               link="/shop"
               style-type="secondary"
-              text="Hi Offer!"
+              text="Show me your goods!"
             />
           </div>
         </section>

@@ -23,6 +23,12 @@
           <template #options>
             <div v-if="dropdown.links" class="flex flex-col">
               <AppDropdownLink
+                :aria-hidden="!dropdown.expanded"
+                :tabindex="dropdown.expanded ? 0 : -1"
+                text="All"
+                to="/shop"
+              />
+              <AppDropdownLink
                 v-for="(link, linkIndex) in dropdown.links"
                 :key="linkIndex"
                 :aria-hidden="!dropdown.expanded"

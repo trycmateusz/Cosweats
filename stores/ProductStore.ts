@@ -4,6 +4,8 @@ import { fetchCollection, fetchOnCondition } from '~/services/fetch'
 import type { Product, ProductForCart, ProductFilterConditions, ProductSort } from '~/types/Product.js'
 import type { Color } from 'types/Color'
 import type { Size } from 'types/Size'
+import { isColor } from '~/types/Color'
+import { isSize } from '~/types/Size'
 
 export const useProductStore = defineStore('ProductStore', () => {
   const active = ref<ProductForCart | null>(null)
@@ -11,9 +13,6 @@ export const useProductStore = defineStore('ProductStore', () => {
   const categories = ref<string[]>([])
   const appliedFilters = ref<ProductFilterConditions | null>(null)
   const appliedSort = ref<ProductSort | null>(null)
-  const getPhotoUrl = (product: Product | ProductForCart) => {
-    return product.photoUrls[product.colors[0]]
-  }
   const fetchAll = async (): Promise<void> => {
     const fetchedProducts = await fetchCollection<Product>('products')
     if (fetchedProducts) {
@@ -60,12 +59,27 @@ export const useProductStore = defineStore('ProductStore', () => {
       appliedFilters.value = null
     }
   }
+  const removeFilter = (filter: Color | Size) => {
+    if (appliedFilters.value) {
+      if (isColor(filter)) {
+        const index = appliedFilters.value.colors.findIndex(color => color === filter)
+        appliedFilters.value.colors.splice(index, 1)
+      }
+      if (isSize(filter)) {
+        const index = appliedFilters.value.sizes.findIndex(color => color === filter)
+        appliedFilters.value.sizes.splice(index, 1)
+      }
+    }
+  }
   const setSort = (sort: ProductSort | null) => {
     appliedSort.value = sort
   }
   const areAnyFilters = computed(() => {
     return appliedFilters.value && (appliedFilters.value.sizes.length > 0 || appliedFilters.value.colors.length > 0)
   })
+  const getPhotoUrl = (product: Product | ProductForCart) => {
+    return product.photoUrls[product.colors[0]]
+  }
   const getProductsFrom = computed(() => {
     return (category: string) => {
       return products.value.filter(product => product.category === category)
@@ -127,7 +141,6 @@ export const useProductStore = defineStore('ProductStore', () => {
     categories,
     appliedFilters,
     appliedSort,
-    getPhotoUrl,
     fetchAll,
     fetchCategory,
     fetchPossibleCategories,
@@ -136,6 +149,9 @@ export const useProductStore = defineStore('ProductStore', () => {
     setSize,
     setFilters,
     setSort,
+    removeFilter,
+    areAnyFilters,
+    getPhotoUrl,
     getProductsFrom,
     getProductsMatchingFilters,
     getPossibleSizes,

@@ -34,6 +34,7 @@
                   v-for="size in productStore.getPossibleSizes"
                   :key="size"
                   :size="size"
+                  :filter-expanded="filter.expanded"
                   :is-checked="filterConditions.sizes.includes(size)"
                   @toggle-filter="(size) => toggleFilter(size)"
                 />
@@ -47,6 +48,7 @@
                   v-for="color in productStore.getPossibleColors"
                   :key="color"
                   :color="color"
+                  :filter-expanded="filter.expanded"
                   :is-checked="filterConditions.colors.includes(color)"
                   @toggle-filter="(color) => toggleFilter(color)"
                 />
@@ -60,6 +62,7 @@
                   v-for="option in allSortsWithText"
                   :key="option.sort"
                   :sort="option.sort"
+                  :filter-expanded="filter.expanded"
                   :text="option.text"
                   :is-checked="currentSort === option.sort"
                   @change-sort="(sort) => toggleOrSetSort(sort)"
@@ -91,9 +94,19 @@
 import type { Dropdown } from '~/types/Dropdown'
 import type { Size } from '~/types/Size'
 import type { Color } from '~/types/Color'
-import type { ProductFilterConditions, ProductSort, ProductSortWithText } from '~/types/Product'
+import type { ProductSort, ProductSortWithText, ProductFilterConditions } from '~/types/Product'
 import { isColor } from '~/types/Color'
 import { isSize } from '~/types/Size'
+const props = defineProps<{
+  filterConditions: ProductFilterConditions
+}>()
+const emit = defineEmits<{
+  (e: 'remove-color-filter', index: number): void
+  (e: 'add-color-filter', value: Color): void
+  (e: 'remove-size-filter', index: number): void
+  (e: 'add-size-filter', value: Size): void
+  (e: 'apply-filters'): void
+}>()
 const productStore = useProductStore()
 const areFiltersOpen = ref(false)
 const isDesktop = ref(false)
@@ -138,10 +151,6 @@ const allSortsWithText: ProductSortWithText[] = [
     text: 'Price Ascending'
   }
 ]
-const filterConditions = ref<ProductFilterConditions>({
-  colors: [],
-  sizes: []
-})
 const currentSort = ref<ProductSort | null>(null)
 const closeAll = (filters: Dropdown[]) => {
   filters.forEach((filter) => {
@@ -158,19 +167,19 @@ const closeAllButOne = (filterId: number) => {
 }
 const toggleFilter = (condition: Color | Size) => {
   if (isColor(condition)) {
-    const isSetIndex = filterConditions.value.colors.findIndex(color => color === condition)
+    const isSetIndex = props.filterConditions.colors.findIndex(color => color === condition)
     if (isSetIndex === -1) {
-      filterConditions.value.colors.push(condition)
+      emit('add-color-filter', condition)
     } else {
-      filterConditions.value.colors.splice(isSetIndex, 1)
+      emit('remove-color-filter', isSetIndex)
     }
   }
   if (isSize(condition)) {
-    const isSetIndex = filterConditions.value.sizes.findIndex(size => size === condition)
+    const isSetIndex = props.filterConditions.sizes.findIndex(size => size === condition)
     if (isSetIndex === -1) {
-      filterConditions.value.sizes.push(condition)
+      emit('add-size-filter', condition)
     } else {
-      filterConditions.value.sizes.splice(isSetIndex, 1)
+      emit('remove-size-filter', isSetIndex)
     }
   }
 }
@@ -186,7 +195,7 @@ const closeAndApply = () => {
   if (!isDesktop.value) {
     areFiltersOpen.value = false
   }
-  productStore.setFilters(filterConditions.value)
+  emit('apply-filters')
   productStore.setSort(currentSort.value)
   window.scrollTo({
     top: 0,

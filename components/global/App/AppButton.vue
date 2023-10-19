@@ -4,12 +4,13 @@
     :class="[styleType]"
   >
     {{ text }}
+    <slot />
   </button>
 </template>
 
 <script setup lang="ts">
 defineProps<{
-  styleType: 'primary' | 'secondary'
+  styleType: 'primary' | 'secondary' | 'tertiary'
   text: string
 }>()
 </script>
@@ -20,5 +21,8 @@ defineProps<{
 }
 .secondary {
   @apply bg-whiteishMain text-blackishMain border-blackishMain border
+}
+.tertiary {
+  @apply bg-whiteishMain border-whiteishDarker border-2
 }
 </style>

@@ -1,22 +1,9 @@
 <template>
   <div id="content">
-    <TheNavigation>
-      <ShopNavigation />
-    </TheNavigation>
-    <AppHeader :text="headerText" />
-    <main class="wrapper flex flex-col border-whiteishDarker md:flex-row 2xl:border-l">
-      <ProductListFilters class="min-h-max md:w-1/2" />
-      <ProductList
-        class="w-full md:border-l md:border-whiteishDarker"
-        :products="productStore.getProductsMatchingFilters(productStore.getProductsFrom(category))"
-      />
-    </main>
-    <teleport to="body">
-      <TheCart
-        v-if="cartStore.isCartOpen"
-      />
-    </teleport>
-    <TheFooter />
+    <TheShop
+      :products="productStore.getProductsMatchingFilters(productStore.getProductsFrom(category))"
+      :header-text="headerText"
+    />
   </div>
 </template>
 
@@ -27,7 +14,6 @@ definePageMeta({
 })
 const productStore = useProductStore()
 const currencyStore = useCurrencyStore()
-const cartStore = useCartStore()
 const route = useRoute()
 const category = route.path.split('/')[2]
 const initialQueryItemId = route.query.itemId
@@ -50,5 +36,8 @@ useHead({
 </script>
 
 <style scoped>
-
+.filter-button {
+  padding-left: 0.7em !important;
+  padding-right: 0.7em !important;
+}
 </style>

@@ -102,10 +102,11 @@ const props = defineProps<{
 }>()
 const emit = defineEmits<{
   (e: 'remove-color-filter', index: number): void
-  (e: 'add-color-filter', value: Color): void
+  (e: 'add-color-filter', color: Color): void
   (e: 'remove-size-filter', index: number): void
-  (e: 'add-size-filter', value: Size): void
+  (e: 'add-size-filter', size: Size): void
   (e: 'apply-filters'): void
+  (e: 'reset-filters'): void
 }>()
 const productStore = useProductStore()
 const areFiltersOpen = ref(false)
@@ -208,6 +209,7 @@ const closeAndReset = () => {
   if (!isDesktop.value) {
     areFiltersOpen.value = false
   }
+  emit('reset-filters')
   productStore.setFilters(null)
   window.scrollTo({
     top: 0,

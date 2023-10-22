@@ -13,6 +13,7 @@
         @remove-color-filter="(index) => filterConditions.colors.splice(index, 1)"
         @remove-size-filter="(index) => filterConditions.sizes.splice(index, 1)"
         @apply-filters="productStore.setFilters(filterConditions)"
+        @reset-filters="resetFilters"
       />
       <div class="grid grid-cols-1 md:w-full h-max md:border-l md:border-whiteishDarker">
         <transition>
@@ -84,6 +85,11 @@ const removeFilter = (condition: Color | Size, index: number) => {
     filterConditions.value.sizes.splice(index, 1)
   }
   productStore.removeFilter(condition)
+}
+const resetFilters = () => {
+  filterConditions.value.colors = []
+  filterConditions.value.sizes = []
+  productStore.setFilters(null)
 }
 const initialQueryItemId = route.query.itemId
 provide('initialQueryItemId', initialQueryItemId)

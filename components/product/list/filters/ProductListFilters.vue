@@ -5,6 +5,7 @@
       aria-controls="filters"
       :aria-expanded="areFiltersOpen"
       :aria-hidden="isDesktop"
+      aria-label="Toggler of "
       @click="areFiltersOpen = !areFiltersOpen"
     >
       <img class="w-10" src="~/assets/img/filter.svg" alt="">

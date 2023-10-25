@@ -5,7 +5,7 @@
         href="#"
         class="inline-block px-5 py-5 sm:px-8"
       >
-        CS
+        Cosweats
       </a>
       <div class="flex">
         <div v-for="link in links" :key="link.id">

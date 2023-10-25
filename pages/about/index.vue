@@ -33,7 +33,7 @@
         </span>
         <AppLink
           class="mt-16 text-3xl font-violetSans max-w-max sm:text-4xl md:text-5xl"
-          link="/shop"
+          link="/"
           style-type="primary"
           text="See for yourself"
         />
@@ -119,7 +119,7 @@
             </h2>
             <AppLink
               class="mt-8 text-2xl sm:text-3xl md:text-4xl"
-              link="/shop"
+              link="/"
               style-type="secondary"
               text="Show me your goods!"
             />

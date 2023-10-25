@@ -78,7 +78,6 @@ const emit = defineEmits<{
 }>()
 const router = useRouter()
 const activePhoto = ref<HTMLImageElement | undefined>(undefined)
-// const route = useRoute()
 productStore.setActive({
   ...props.product,
   size: props.product.sizes[0].value,
@@ -97,12 +96,10 @@ const activePhotoAlt = computed(() => {
 const zoomInActivePhoto = (e: MouseEvent) => {
   const scale = 2
   if (activePhoto.value && !('ontouchstart' in window)) {
-    console.log('123')
     activePhoto.value.style.transform = `scale(${scale}) translate(${scale * 0.25 * -e.offsetX}px, ${scale * 0.25 * -e.offsetY}px)`
   }
 }
 const resetZoomInActivePhoto = () => {
-  console.log('reset')
   if (activePhoto.value) {
     activePhoto.value.style.transform = 'translate(0) scale(1)'
   }
@@ -123,11 +120,6 @@ const setActiveProductColor = (color: Color) => {
     productStore.setColor(color, productStore.active)
   }
 }
-// watch(route, (to, from) => {
-//   if (to.name === from.name) {
-//     emit('close')
-//   }
-// })
 onMounted(() => {
   const { makeBodyFixed } = useFixedBody()
   makeBodyFixed()

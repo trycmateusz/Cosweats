@@ -72,7 +72,6 @@ defineProps<{
 }>()
 const productStore = useProductStore()
 const cartStore = useCartStore()
-const route = useRoute()
 const filterConditions = ref<ProductFilterConditions>({
   colors: [],
   sizes: []
@@ -91,8 +90,6 @@ const resetFilters = () => {
   filterConditions.value.sizes = []
   productStore.setFilters(null)
 }
-const initialQueryItemId = route.query.itemId
-provide('initialQueryItemId', initialQueryItemId)
 </script>
 
 <style scoped>

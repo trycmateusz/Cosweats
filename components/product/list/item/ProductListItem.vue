@@ -42,11 +42,19 @@ const productStore = useProductStore()
 const props = defineProps<{
   product: Product
 }>()
+const route = useRoute()
 const imageAlt = ref(`${props.product.name} in ${props.product.colors[0]}`)
-const initialQueryItemId = inject('initialQueryItemId')
-const isOverlayActive = ref(initialQueryItemId ? props.product.id === initialQueryItemId : false)
+const queryItemId = computed(() => {
+  return route.query.itemId
+})
+const isOverlayActive = ref(queryItemId ? props.product.id === queryItemId.value : false)
 const overlayAriaControlsId = computed(() => {
   return `${props.product.nameKebab}-overlay`
+})
+watch(queryItemId, () => {
+  if (!queryItemId.value) {
+    isOverlayActive.value = false
+  }
 })
 </script>
 

@@ -63,7 +63,6 @@
 </template>
 
 <script setup lang="ts">
-import debounce from 'lodash/debounce'
 import type { Product, ProductForCart } from '~/types/Product'
 import type { Size } from '~/types/Size'
 import type { Color } from '~/types/Color'
@@ -95,12 +94,11 @@ const activePhotoSrc = computed(() => {
 const activePhotoAlt = computed(() => {
   return `${props.product.name} in ${productStore.active?.color}`
 })
-const zoomInActivePhoto = (e: MouseEvent | TouchEvent) => {
+const zoomInActivePhoto = (e: MouseEvent) => {
   const scale = 2
-  if (activePhoto.value) {
-    if (e instanceof MouseEvent) {
-      activePhoto.value.style.transform = `scale(${scale}) translate(${scale * 0.25 * -e.offsetX}px, ${scale * 0.25 * -e.offsetY}px)`
-    }
+  if (activePhoto.value && !('ontouchstart' in window)) {
+    console.log('123')
+    activePhoto.value.style.transform = `scale(${scale}) translate(${scale * 0.25 * -e.offsetX}px, ${scale * 0.25 * -e.offsetY}px)`
   }
 }
 const resetZoomInActivePhoto = () => {

@@ -5,7 +5,7 @@
       :class="{ 'is-transitioning': isTransitioning }"
     />
     <button
-      aria-label="Button to showcase previous model"
+      aria-label="Showcase previous model"
       :disabled="isTransitioning"
       class="hidden animate-pulse z-30 disabled:opacity-30 disabled:animate-none md:block"
       @click="decrementSpotlight"
@@ -19,7 +19,7 @@
       </ClientOnly>
     </button>
     <button
-      aria-label="Button to showcase next model"
+      aria-label="Showcase next model"
       :disabled="isTransitioning"
       class="hidden animate-pulse z-30 disabled:opacity-30 disabled:animate-none md:block"
       @click="incrementSpotlight"
@@ -32,13 +32,15 @@
         >
       </ClientOnly>
     </button>
-    <ModelListItem
-      v-for="(cosweatsModel, index) in cosweatsModels"
-      :key="cosweatsModel.id"
-      :model="cosweatsModel"
-      :index="index"
-      :spotlight="spotlight"
-    />
+    <ul class="w-full h-full relative">
+      <ModelListItem
+        v-for="(cosweatsModel, index) in cosweatsModels"
+        :key="cosweatsModel.id"
+        :model="cosweatsModel"
+        :index="index"
+        :spotlight="spotlight"
+      />
+    </ul>
   </div>
 </template>
 

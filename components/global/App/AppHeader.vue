@@ -1,5 +1,5 @@
 <template>
-  <header class="flex justify-center items-center p-16 bg-blackishDark text-whiteishMain text-7xl md:text-9xl first-letter:uppercase overflow-hidden">
+  <header class="flex justify-center items-center p-16 bg-blackishDark text-whiteishMain text-6xl md:text-8xl first-letter:uppercase overflow-hidden">
     <h1>
       <AppGlow glow="dark">
         <span class="relative z-20">

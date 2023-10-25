@@ -1,5 +1,5 @@
 <template>
-  <div class="sticky top-0 text-3xl font-halibutSerifRegular bg-blackishDark text-whiteishMain z-40">
+  <div class="sticky top-0 text-2xl font-halibutSerifRegular bg-blackishDark text-whiteishMain z-40">
     <nav class="links wrapper flex justify-between items-center">
       <a
         href="#"
@@ -28,13 +28,13 @@ const route = useRoute()
 const links = [
   {
     id: Math.random(),
-    name: 'Home',
+    name: 'Shop',
     to: '/'
   },
   {
     id: Math.random(),
-    name: 'Shop',
-    to: '/shop'
+    name: 'About',
+    to: '/about'
   }
 ]
 </script>

@@ -13,12 +13,12 @@
       >
         <AppCloseBar
           class="sticky top-0 bg-whiteishMain z-60"
-          button-label="Button to close Cart"
+          button-label="Close Cart"
           @close="cartStore.closeCart()"
         />
         <div class="p-5 sm:p-8">
           <div class="flex gap-4 mb-10 sm:mb-16">
-            <span class="text-7xl">Cart</span>
+            <span class="text-6xl">Cart</span>
             <img src="~/assets/img/cart_dark.svg" alt="">
           </div>
           <div v-if="cartStore.hasProducts" class="flex flex-col gap-5 sm:gap-8">
@@ -30,16 +30,20 @@
             <AppLink
               text="Checkout"
               style-type="primary"
-              class="ml-auto text-3xl"
+              class="ml-auto text-2xl"
               link="/checkout"
             />
           </div>
 
-          <div v-else class="flex flex-col gap-5 text-2xl sm:gap-8">
+          <div v-else class="flex flex-col gap-5 text-xl sm:gap-8">
             <p>
               It seems like you haven't added any items. Please, take a look around!
             </p>
-            <AppButton text="Continue shopping" style-type="primary" @click="emit('close')" />
+            <AppButton
+              text="Continue shopping"
+              style-type="primary"
+              @click="cartStore.closeCart()"
+            />
           </div>
         </div>
       </div>
@@ -50,9 +54,6 @@
 <script setup lang="ts">
 const cartStore = useCartStore()
 const { makeBodyFixed, removeFixedFromBody } = useFixedBody()
-const emit = defineEmits<{
-  (e: 'close'): void
-}>()
 onMounted(() => {
   makeBodyFixed()
 })

@@ -1,6 +1,6 @@
 <template>
   <span
-    class="glow-box relative inline-block"
+    class="glow-box relative inline-block pointer-events-none"
   >
     <span class="relative z-20">
       <slot />

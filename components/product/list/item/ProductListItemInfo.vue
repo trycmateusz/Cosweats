@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex justify-between mb-10 gap-8 text-3xl font-bold lg:mb-5">
+    <div class="flex justify-between mb-10 gap-8 text-2xl font-bold lg:mb-5">
       <h2>
         {{ product.name }}
       </h2>
@@ -13,7 +13,7 @@
         </span>
       </span>
     </div>
-    <p class="text-2xl">
+    <p class="text-xl">
       {{ product.description }}
     </p>
   </div>

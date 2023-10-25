@@ -1,5 +1,9 @@
 <template>
-  <div class="flex flex-col gap-10 p-5 bg-whiteishDarker text-2xl sm:p-8 sm:gap-8 md:h-full">
+  <div
+    class="flex flex-col gap-10 p-5 bg-whiteishDarker text-xl sm:p-8 sm:gap-8 md:h-full"
+    tabindex="-1"
+    @click="isOverlayActive = true"
+  >
     <button
       :aria-controls="overlayAriaControlsId"
       :aria-expanded="isOverlayActive"
@@ -14,7 +18,7 @@
     </button>
     <ProductListItemInfo :product="product" />
     <AppButton
-      class="mt-auto ml-auto text-3xl"
+      class="mt-auto ml-auto text-2xl"
       style-type="primary"
       text="Take a look"
       :aria-controls="overlayAriaControlsId"

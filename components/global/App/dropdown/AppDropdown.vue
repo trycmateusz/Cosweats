@@ -4,6 +4,7 @@
       :aria-label="dropdown.text"
       :aria-controls="dropdownId"
       :aria-expanded="dropdown.expanded"
+      :tabindex="buttonTabindex ? buttonTabindex : '0'"
       class="relative flex items-center w-full px-5 py-5 h-full sm:px-8 sm:gap-2"
       @click="emit('toggle')"
     >
@@ -51,6 +52,7 @@ const props = defineProps<{
   light?: boolean
   hasIcon?: boolean
   menuMaxHeightInViewportPercent: number
+  buttonTabindex?: string
 }>()
 const styleMenuMaxHeight = ref(`${props.menuMaxHeightInViewportPercent * 100}svh`)
 const emit = defineEmits(['toggle', 'close'])
@@ -77,11 +79,6 @@ onMounted(() => {
 button[aria-expanded="true"]{
   svg {
     @apply rotate-180
-  }
-}
-.dropdown {
-  ::-webkit-scrollbar-thumb {
-    border-right: 0;
   }
 }
 .overflow-y-auto {

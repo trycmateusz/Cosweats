@@ -8,17 +8,17 @@
         <img src="~/assets/img/error_box.svg" alt="" class="left-box">
         <img src="~/assets/img/error_box_2.svg" alt="" class="right-box hidden absolute bottom-8 right-8 w-[50%] max-w-[60vh] border-8 border-whiteishMain opacity-100 sm:block">
         <div class="flex flex-col items-center mb-10 z-20 sm:mb-16">
-          <span class="relative bold text-6xl sm:text-9xl">
+          <span class="relative bold text-5xl sm:text-8xl">
             {{ error.statusCode }}
           </span>
-          <span class="text-3xl sm:text-4xl">
+          <span class="text-2xl sm:text-3xl">
             {{ fullMessage }}
           </span>
         </div>
         <AppButton
           text="Take me back!"
           style-type="primary"
-          class="relative text-3xl z-20 sm:text-4xl"
+          class="relative text-2xl z-20 sm:text-3xl"
           @click="goBack"
         />
       </div>

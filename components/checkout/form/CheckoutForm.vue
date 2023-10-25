@@ -7,7 +7,7 @@
     <div
       v-for="(attr, key) in formData"
       :key="key"
-      class="flex flex-col gap-2 w-full text-2xl justify-end"
+      class="flex flex-col gap-2 w-full text-xl justify-end"
     >
       <label
         :for="key"

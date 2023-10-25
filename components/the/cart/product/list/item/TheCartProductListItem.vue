@@ -1,12 +1,12 @@
 <template>
-  <div class="text-3xl h-full">
+  <li class="text-2xl h-full">
     <AppCloseBar
       v-if="!checkout"
       class="bg-whiteishDarker border-whiteishMain"
       dynamic-element-parent-id="cart"
       :is-bin="true"
       :light-border="true"
-      :button-label="`Button to delete ${product.name} with size ${product.size} and color ${product.color} from the cart`"
+      :button-label="`Delete ${product.name} with size ${product.size} and color ${product.color} from the cart`"
       @close="cartStore.removeOne(props.product)"
     />
     <div
@@ -39,7 +39,7 @@
         <span>
           Choose a size:
         </span>
-        <div class="flex flex-wrap gap-5 text-3xl">
+        <div class="flex flex-wrap gap-5 text-2xl">
           <ProductListItemSize
             v-for="size in product.sizes"
             :key="size.value"
@@ -53,7 +53,7 @@
         <span>
           Choose a color:
         </span>
-        <div class="flex flex-wrap gap-5 text-3xl">
+        <div class="flex flex-wrap gap-5 text-2xl">
           <ProductListItemColor
             v-for="color in product.colors"
             :key="color"
@@ -64,7 +64,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </li>
 </template>
 
 <script setup lang="ts">

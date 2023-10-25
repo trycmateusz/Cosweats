@@ -26,7 +26,7 @@
                 :aria-hidden="!dropdown.expanded"
                 :tabindex="dropdown.expanded ? 0 : -1"
                 text="All"
-                to="/shop"
+                to="/"
               />
               <AppDropdownLink
                 v-for="(link, linkIndex) in dropdown.links"
@@ -97,11 +97,11 @@ const dropdowns = ref<Dropdown[]>([
     text: 'Products',
     role: 'products',
     expanded: false,
-    classes: ['left-0', 'border-r', '2xl:border-l', 'absolute', 'menu-translate', 'top-0'],
+    classes: ['left-0', '2xl:border-l', 'absolute', 'menu-translate', 'top-0'],
     links: productStore.categories.map((category) => {
       return {
         text: convertToTitleCaseFromCamelCase(category),
-        to: `/shop/${category}`
+        to: `/category/${category}`
       }
     })
   },
@@ -110,7 +110,7 @@ const dropdowns = ref<Dropdown[]>([
     text: 'Currency',
     role: 'currency',
     expanded: false,
-    classes: ['right-0', 'border-l', 'border-r', 'absolute', 'menu-translate', 'top-0']
+    classes: ['right-0', 'border-l', 'absolute', 'menu-translate', 'top-0']
   }
 ])
 const closeOne = (dropdown: Dropdown): void => {
@@ -149,6 +149,6 @@ watch(currentCurrency, (): void => {
 
 <style>
 .menu-translate {
-  transform: translateY(Calc(var(--nav-height) + 1px))
+  transform: translateY(var(--nav-height))
 }
 </style>

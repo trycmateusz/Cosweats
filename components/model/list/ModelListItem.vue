@@ -1,5 +1,5 @@
 <template>
-  <div
+  <li
     class="model wrapper relative pt-8 pb-8 flex gap-8 mb-16 md:absolute md:p-16 md:h-full"
     :class="{ 'in-spotlight': inSpotlight }"
   >
@@ -8,14 +8,14 @@
       :class="{ 'show': inSpotlight }"
     >
       <h3 class="flex flex-col items-center justify-center mb-8 sm:mb-16 text-center leading-none">
-        <span class="uppercase text-3xl sm:text-5xl">
+        <span class="uppercase text-2xl sm:text-4xl">
           {{ fullName }}
         </span>
-        <span class="text-2xl sm:text-3xl text-grayLight">
+        <span class="text-xl sm:text-2xl text-grayLight">
           {{ model.occupation }}
         </span>
       </h3>
-      <p class="text-2xl sm:text-3xl font-halibutSerifRegular">
+      <p class="text-xl sm:text-2xl font-halibutSerifRegular">
         {{ model.introduction }}
       </p>
     </div>
@@ -42,7 +42,7 @@
       :class="classesForSide"
       :style="`background-image: url('${maskImageUrl}')`"
     />
-  </div>
+  </li>
 </template>
 
 <script setup lang="ts">

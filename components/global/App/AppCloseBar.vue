@@ -6,12 +6,11 @@
     />
     <button
       :data-dynamic-element-parent-id="dynamicElementParentId"
-      :aria-label="buttonLabel"
       class="close-btn sticky top-0 p-5 sm:p-8"
       @click.prevent="emit('close')"
     >
-      <img v-if="!isBin" class="text-2xl w-[1.4em] h-[1.4em] pointer-events-none" src="~/assets/img/x.svg" alt="">
-      <img v-else class="text-2xl w-[1.6em] h-[1.6em] pointer-events-none" src="~/assets/img/bin.svg" alt="">
+      <img v-if="!isBin" class="text-xl w-[1.4em] h-[1.4em] pointer-events-none" src="~/assets/img/x.svg" :alt="buttonLabel">
+      <img v-else class="text-xl w-[1.6em] h-[1.6em] pointer-events-none" src="~/assets/img/bin.svg" :alt="buttonLabel">
     </button>
   </div>
 </template>

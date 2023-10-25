@@ -3,17 +3,17 @@
     <img class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-[60deg] h-[200%] opacity-40 z-10" src="~/assets/img/dollar.svg" alt="">
     <div class="flex gap-10 relative h-full z-20 font-bold sm:gap-16">
       <div class="flex flex-col justify-center gap-2 sm:gap-5">
-        <span class="text-4xl">
+        <span class="text-3xl">
           {{ showTotalOrSubtotal }}
         </span>
         <span
           v-if="!shipping"
-          class="text-grayDark text-2xl"
+          class="text-grayDark text-xl"
         >
           Price excludes shipping
         </span>
       </div>
-      <span class="flex-grow text-4xl text-right h-max mt-auto mb-auto">
+      <span class="flex-grow text-3xl text-right h-max mt-auto mb-auto">
         {{ priceToShow }}
       </span>
     </div>

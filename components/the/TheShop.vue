@@ -8,7 +8,7 @@
       <ProductListFilters
         :filter-conditions="filterConditions"
         class="md:w-1/2 min-h-max"
-        @add-color-filter="(color) => filterConditions.colors.push(color)"
+        @add-color-filter="(color: Color) => filterConditions.colors.push(color)"
         @add-size-filter="(size) => filterConditions.sizes.push(size)"
         @remove-color-filter="(index) => filterConditions.colors.splice(index, 1)"
         @remove-size-filter="(index) => filterConditions.sizes.splice(index, 1)"
@@ -17,7 +17,7 @@
       />
       <div class="grid grid-cols-1 md:w-full h-max md:border-l md:border-whiteishDarker">
         <transition>
-          <div v-if="productStore.areAnyFilters" class="flex flex-wrap gap-5 p-5 pb-0 h-max text-2xl sm:p-8 sm:pb-0">
+          <div v-if="productStore.areAnyFilters" class="flex flex-wrap bg-whiteishMain gap-5 p-5 pb-0 h-max text-xl sm:p-8 sm:pb-0">
             <AppButton
               v-for="(color, index) in productStore.appliedFilters?.colors"
               :key="color"

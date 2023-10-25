@@ -5,22 +5,23 @@
       aria-controls="filters"
       :aria-expanded="areFiltersOpen"
       :aria-hidden="isDesktop"
-      aria-label="Toggler of "
       @click="areFiltersOpen = !areFiltersOpen"
     >
-      <img class="w-10" src="~/assets/img/filter.svg" alt="">
+      <img class="w-10" src="~/assets/img/filter.svg" alt="Toggler for filters">
     </button>
     <div class="flex flex-col w-full items-end max-h-[Calc(100svh_-_var(--shop-nav-and-filter-height))] overflow-auto md:max-h-[Calc(100svh_-_var(--shop-nav-height))]">
       <div
         id="filters"
-        class="text-2xl border-t min-w-full max-h-0 transition-max-height overflow-y-auto duration-300 md:filters-open"
+        class="text-xl border-t min-w-full max-h-0 transition-max-height overflow-y-auto duration-300 md:filters-open"
         :class="{ 'filters-open': areFiltersOpen, 'border-whiteishDarker': areFiltersOpen }"
+        :aria-hidden="!areFiltersOpen"
       >
         <div>
           <AppDropdown
             v-for="filter in filters"
             :key="filter.id"
             :dropdown="filter"
+            :button-tabindex="areFiltersOpen ? '0' : '-1'"
             :menu-max-height-in-viewport-percent="0.30"
             class="w-full border-b border-whiteishDarker last:border-whiteishMain"
             @toggle="() => closeAllButOne(filter.id)"
@@ -74,15 +75,17 @@
         </div>
         <div class="flex flex-wrap justify-end gap-5 border-t border-whiteishDarker p-5 sm:p-8">
           <AppButton
-            class="text-2xl"
+            class="text-xl"
             text="Reset"
             style-type="secondary"
+            :tabindex="areFiltersOpen ? '0' : '-1'"
             @click="closeAndReset"
           />
           <AppButton
-            class="text-2xl"
+            class="text-xl"
             text="Apply"
             style-type="primary"
+            :tabindex="areFiltersOpen ? '0' : '-1'"
             @click="closeAndApply"
           />
         </div>

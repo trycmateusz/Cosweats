@@ -14,7 +14,7 @@
           :shipping="false"
         />
         <form
-          class="flex flex-col flex-grow gap-5 text-3xl sm:gap-8"
+          class="flex flex-col flex-grow gap-5 text-2xl sm:gap-8"
           @submit.prevent="checkIfEmptyAndFetchDiscount"
         >
           <div>
@@ -22,7 +22,7 @@
               You found a discount code?<br>
               Paste it here!
             </label>
-            <span class="inline-block text-grayDark text-2xl">
+            <span class="inline-block text-grayDark text-xl">
               Psst. Try <span class="italic">s3cretc0de.</span> I think the dev put this message here so you can use it freely...
             </span>
           </div>
@@ -56,11 +56,11 @@
           :shipping="true"
           :price-to-show="totalWithCurrency"
         />
-        <span class="text-3xl text-grayDark">
+        <span class="text-2xl text-grayDark">
           {{ `${subtotalWithCurrency} worth of products ${discountText} and ${shipmentText}` }}
         </span>
       </div>
-      <div class="flex flex-col justify-end items-end gap-5 mb-5 text-3xl md:flex-row sm:gap-8 sm:mb-8">
+      <div class="flex flex-col justify-end items-end gap-5 mb-5 text-2xl md:flex-row sm:gap-8 sm:mb-8">
         <AppButton
           form="checkoutForm"
           type="submit"

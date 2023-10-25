@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <ul>
     <TheCartProductListItem
       v-for="product in products"
       :key="product.id"
       :product="product"
       :checkout="checkout"
     />
-  </div>
+  </ul>
 </template>
 
 <script setup lang="ts">

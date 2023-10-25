@@ -36,7 +36,13 @@ export const useCurrencyStore = defineStore('CurrencyStore', () => {
       const currencyCode = currencyCookie.split('=')[1]
       setCurrent(currencyCode)
     } else {
-      setCurrent(currencies.value[0].code)
+      const userLanguage = navigator.language.toLowerCase()
+      const languageCurrency = currencies.value.find(currency => currency.countryLanguageCode === userLanguage)
+      if (languageCurrency) {
+        setCurrent(languageCurrency.code)
+      } else {
+        setCurrent('EUR')
+      }
     }
   }
   onMounted(() => {

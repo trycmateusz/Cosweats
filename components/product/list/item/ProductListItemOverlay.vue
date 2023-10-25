@@ -95,10 +95,12 @@ const activePhotoSrc = computed(() => {
 const activePhotoAlt = computed(() => {
   return `${props.product.name} in ${productStore.active?.color}`
 })
-const zoomInActivePhoto = (e: MouseEvent) => {
+const zoomInActivePhoto = (e: MouseEvent | TouchEvent) => {
   const scale = 2
   if (activePhoto.value) {
-    activePhoto.value.style.transform = `scale(${scale}) translate(${scale * 0.25 * -e.offsetX}px, ${scale * 0.25 * -e.offsetY}px)`
+    if (e instanceof MouseEvent) {
+      activePhoto.value.style.transform = `scale(${scale}) translate(${scale * 0.25 * -e.offsetX}px, ${scale * 0.25 * -e.offsetY}px)`
+    }
   }
 }
 const resetZoomInActivePhoto = () => {

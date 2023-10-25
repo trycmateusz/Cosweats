@@ -19,9 +19,7 @@
                 :alt="activePhotoAlt"
                 class="w-full max-h-[550px] p-5 origin-top-left cursor-zoom-in sm:p-8"
                 @mousemove="zoomInActivePhoto"
-                @pointermove="zoomInActivePhoto"
                 @mouseout="resetZoomInActivePhoto"
-                @pointerout="resetZoomInActivePhoto"
               >
             </div>
           </ClientOnly>

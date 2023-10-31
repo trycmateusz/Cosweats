@@ -27,7 +27,7 @@
       <img
         :src="imageUrl"
         :alt="`A picture of Cosweats ${model.occupation} - ${model.firstName}`"
-        class="h-full w-full sm:max-h-[300px] md:max-h-[60svh]"
+        class="h-full w-full sm:max-h-[300px] md:max-h-[500px]"
       >
       <ClientOnly>
         <img

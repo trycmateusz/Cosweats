@@ -1,46 +1,49 @@
 <template>
-  <div class="model-list flex flex-col justify-center items-center gap-16 p-16 text-whiteishMain bg-blackishDark  md:relative md:h-[Calc(100svh_-_var(--nav-height))] xl:h-[Calc(100svh_-_var(--nav-height)] md:w-full md:bg-whiteishMain">
+  <div class="bg-whiteishMain">
     <div
       class="shadow hidden absolute w-full h-full md:block bg-black z-20"
       :class="{ 'is-transitioning': isTransitioning }"
     />
-    <button
-      aria-label="Showcase previous model"
-      :disabled="isTransitioning"
-      class="hidden animate-pulse z-30 disabled:opacity-30 disabled:animate-none md:block"
-      @click="decrementSpotlight"
-    >
-      <ClientOnly>
-        <img
-          src="~/assets/img/arrow_left.svg"
-          alt=""
-          class="absolute top-0 left-0 max-w-[15%] max-h-[15svh]"
-        >
-      </ClientOnly>
-    </button>
-    <button
-      aria-label="Showcase next model"
-      :disabled="isTransitioning"
-      class="hidden animate-pulse z-30 disabled:opacity-30 disabled:animate-none md:block"
-      @click="incrementSpotlight"
-    >
-      <ClientOnly>
-        <img
-          src="~/assets/img/arrow_right.svg"
-          alt=""
-          class="absolute top-0 right-0 max-w-[15%] max-h-[15svh]"
-        >
-      </ClientOnly>
-    </button>
-    <ul class="w-full h-full relative">
-      <ModelListItem
-        v-for="(cosweatsModel, index) in cosweatsModels"
-        :key="cosweatsModel.id"
-        :model="cosweatsModel"
-        :index="index"
-        :spotlight="spotlight"
-      />
-    </ul>
+    <div class="wrapper relative model-list flex flex-col justify-center items-center gap-16 p-16 text-whiteishMain  md:relative md:h-[Calc(100svh_-_var(--nav-height))] xl:h-[Calc(100svh_-_var(--nav-height)] md:w-full md:bg-whiteishMain">
+      <button
+        aria-label="Showcase previous model"
+        :disabled="isTransitioning"
+        class="hidden animate-pulse z-30 disabled:opacity-30 disabled:animate-none md:block"
+        @click="decrementSpotlight"
+      >
+        <ClientOnly>
+          <img
+            src="~/assets/img/arrow_left.svg"
+            alt=""
+            class="absolute top-0 left-0 max-w-[15%] max-h-[15svh]"
+          >
+        </ClientOnly>
+      </button>
+      <button
+        aria-label="Showcase next model"
+        :disabled="isTransitioning"
+        class="hidden animate-pulse z-30 disabled:opacity-30 disabled:animate-none md:block"
+        @click="incrementSpotlight"
+      >
+        <ClientOnly>
+          <img
+            src="~/assets/img/arrow_right.svg"
+            alt=""
+            class="absolute top-0 right-0 max-w-[15%] max-h-[15svh]"
+          >
+        </ClientOnly>
+      </button>
+
+      <ul class="wrapper w-full h-full relative">
+        <ModelListItem
+          v-for="(cosweatsModel, index) in cosweatsModels"
+          :key="cosweatsModel.id"
+          :model="cosweatsModel"
+          :index="index"
+          :spotlight="spotlight"
+        />
+      </ul>
+    </div>
   </div>
 </template>
 

@@ -14,7 +14,7 @@ Live: https://cosweats.vercel.app
 ## Techstack
 - Nuxt 3
 - Vue 3 (Composition API)
-- REST API (Firebase Realtime Database and Api Ninja for geographical position of cities)
+- REST API (Firebase and Api Ninja for geographical position of cities)
 - Pinia
 - TypeScript
 - Tailwind CSS

@@ -6,8 +6,23 @@ I challenged myself with creating a complex (in my opinion) design and coding it
 It comes with all necessary UI elements I've seen throughout multiple online shops.
 I am very excited with how I defined my composables and Pinia stores and I think everything's really cohesive.
 I think this is the project where I became very comfortable using Tailwind CSS.
-Another thing I learned, is that Nuxt is way scarier on the first glance than it is once you understand what it does.
 At the end, I also think I enhanced my ability to determine the right priorities to writing code, which contribute to time being spent more efficiently and saving my nerves :P.
+
+## Functionality
+
+Here's a list of all the different things you can do on this site:
+
+### Shopping
+
+- browsing through different categories of items, each category having it's own server side rendered page
+- simulation of checkout with calculating delivery prices to user's destination
+- opening an overlay to zoom in on an item and choose it's different colors etc.
+- sorting or filtering by size and/or color
+- checking and modifying items in your cart
+
+### Landing
+
+- checking out an awesome introduction to Cosweats' models 8 )
 
 Live: https://cosweats.vercel.app
 
